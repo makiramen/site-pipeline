@@ -6,7 +6,7 @@ completely separate from the operations dashboards
 
 ## Live link
 
-https://maki-nori.github.io/site-pipeline/
+https://makiramen.github.io/site-pipeline/
 
 ## Contents
 
