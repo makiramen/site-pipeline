@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Maki &amp; Ramen — UK Site Pipeline (Live Model)</title>
+<style>
+:root{
+  --bg:#0d0e11; --panel:#16181d; --panel2:#1d2028; --card:#191c22;
+  --ink:#f4efe6; --muted:#98a0ac; --faint:#6b7280; --line:#2a2f39;
+  --red:#e2231a; --red2:#ff5147;
+  --go:#3fb950; --watch:#e3a008; --no:#c1554a;
+  --go-bg:rgba(63,185,80,.13); --watch-bg:rgba(227,160,8,.13); --no-bg:rgba(193,85,74,.13);
+  --shadow:0 8px 30px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  font-size:14px; line-height:1.45; -webkit-font-smoothing:antialiased;
+}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-variant-numeric:tabular-nums}
+a{color:var(--red2)}
+button{font-family:inherit}
+
+/* ---- Layout ---- */
+header.top{
+  position:sticky; top:0; z-index:40; background:linear-gradient(180deg,#101216,#0d0e11);
+  border-bottom:1px solid var(--line); padding:14px 22px; display:flex; align-items:center; gap:18px;
+}
+.brandmark{width:40px;height:40px;border-radius:9px;background:radial-gradient(circle at 30% 30%,var(--red2),var(--red) 70%);
+  display:flex;align-items:center;justify-content:center;font-weight:800;font-size:20px;color:#fff;flex:0 0 auto;box-shadow:0 4px 14px rgba(226,35,26,.4)}
+.brandmark span{transform:translateY(-1px)}
+.title h1{margin:0;font-size:17px;letter-spacing:.2px;font-weight:700}
+.title p{margin:2px 0 0;font-size:12px;color:var(--muted)}
+.top .spacer{flex:1}
+.tophint{font-size:11.5px;color:var(--faint);text-align:right;max-width:280px}
+.top button.ghost{background:transparent;border:1px solid var(--line);color:var(--muted);padding:8px 12px;border-radius:8px;cursor:pointer;font-size:12.5px}
+.top button.ghost:hover{color:var(--ink);border-color:#3a414d}
+
+.shell{display:flex;align-items:stretch;min-height:calc(100vh - 69px)}
+
+/* ---- Control rail ---- */
+aside.rail{
+  width:322px;flex:0 0 322px;background:var(--panel);border-right:1px solid var(--line);
+  padding:0;overflow-y:auto;max-height:calc(100vh - 69px);position:sticky;top:69px;transition:margin-left .25s ease;
+}
+aside.rail.collapsed{margin-left:-322px}
+.rail-head{padding:16px 18px 10px;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--panel);z-index:2}
+.rail-head .rt{font-size:12px;text-transform:uppercase;letter-spacing:1.4px;color:var(--muted);font-weight:700}
+.rail-head .rd{font-size:11.5px;color:var(--faint);margin-top:3px}
+.rail-body{padding:6px 16px 40px}
+.grp{margin-top:14px}
+.grp>h3{font-size:11px;text-transform:uppercase;letter-spacing:1.1px;color:var(--red2);margin:12px 0 8px;font-weight:700;
+  display:flex;align-items:center;gap:8px}
+.grp>h3::after{content:"";flex:1;height:1px;background:var(--line)}
+.ctrl{margin:11px 0}
+.ctrl .cl{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:5px}
+.ctrl .cl label{font-size:12.5px;color:var(--ink)}
+.ctrl .cl .cv{font-size:12.5px;color:var(--red2);font-weight:700}
+input[type=range]{width:100%;-webkit-appearance:none;height:4px;border-radius:3px;background:#2c313b;outline:none;margin:2px 0}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:15px;height:15px;border-radius:50%;
+  background:var(--red2);cursor:pointer;border:2px solid #14161b;box-shadow:0 0 0 1px var(--red)}
+input[type=range]::-moz-range-thumb{width:15px;height:15px;border-radius:50%;background:var(--red2);cursor:pointer;border:2px solid #14161b}
+.wsum{font-size:11.5px;margin-top:8px;padding:7px 10px;border-radius:7px;background:var(--panel2);color:var(--muted);display:flex;justify-content:space-between}
+.wsum.ok{color:var(--go)} .wsum.bad{color:var(--watch)}
+.rail-actions{display:flex;gap:8px;margin-top:16px}
+.rail-actions button{flex:1;padding:9px;border-radius:8px;border:1px solid var(--line);background:var(--panel2);color:var(--ink);cursor:pointer;font-size:12.5px}
+.rail-actions button.primary{background:var(--red);border-color:var(--red);color:#fff;font-weight:600}
+.rail-actions button:hover{filter:brightness(1.1)}
+
+/* ---- Main ---- */
+main{flex:1;min-width:0;padding:0 0 60px}
+.tabs{display:flex;gap:2px;padding:14px 22px 0;border-bottom:1px solid var(--line);position:sticky;top:69px;background:var(--bg);z-index:20}
+.tab{padding:11px 18px;border:none;background:transparent;color:var(--muted);cursor:pointer;font-size:13.5px;font-weight:600;
+  border-bottom:2px solid transparent;border-radius:6px 6px 0 0}
+.tab:hover{color:var(--ink)}
+.tab.active{color:var(--ink);border-bottom-color:var(--red)}
+.pane{padding:20px 22px;display:none}
+.pane.active{display:block}
+
+/* ---- Summary strip ---- */
+.summary{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:13px 16px;min-width:120px;flex:1}
+.kpi .kl{font-size:11px;text-transform:uppercase;letter-spacing:.8px;color:var(--muted)}
+.kpi .kv{font-size:22px;font-weight:800;margin-top:3px}
+.kpi.go .kv{color:var(--go)} .kpi.watch .kv{color:var(--watch)} .kpi.no .kv{color:var(--no)}
+.kpi .ks{font-size:11px;color:var(--faint);margin-top:2px}
+
+.toolbar{display:flex;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+.toolbar .seg{display:flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.toolbar .seg button{background:var(--panel);border:none;color:var(--muted);padding:7px 13px;cursor:pointer;font-size:12.5px}
+.toolbar .seg button.active{background:var(--panel2);color:var(--ink)}
+.toolbar input.search{background:var(--panel);border:1px solid var(--line);color:var(--ink);padding:8px 12px;border-radius:8px;font-size:12.5px;min-width:180px}
+.toolbar .hint{font-size:11.5px;color:var(--faint);margin-left:auto}
+
+/* ---- Table ---- */
+.tablewrap{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--card)}
+table{width:100%;border-collapse:collapse;font-size:13px}
+thead th{background:var(--panel2);text-align:right;padding:10px 12px;font-size:11px;text-transform:uppercase;letter-spacing:.5px;
+  color:var(--muted);font-weight:700;cursor:pointer;white-space:nowrap;border-bottom:1px solid var(--line);user-select:none}
+thead th.l{text-align:left}
+thead th:hover{color:var(--ink)}
+thead th .ar{color:var(--red2);font-size:10px}
+tbody td{padding:10px 12px;text-align:right;border-bottom:1px solid #23272f;white-space:nowrap}
+tbody td.l{text-align:left}
+tbody tr{cursor:pointer;transition:background .12s}
+tbody tr:hover{background:#20242c}
+tbody tr:last-child td{border-bottom:none}
+.rank{color:var(--faint);font-weight:700;width:34px}
+.sitename{font-weight:700}
+.sitesub{font-size:11px;color:var(--faint);font-weight:400}
+.pill{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800;letter-spacing:.4px}
+.pill.GO{background:var(--go-bg);color:var(--go)} .pill.WATCH{background:var(--watch-bg);color:var(--watch)} .pill.NO{background:var(--no-bg);color:var(--no)}
+.bar-cell{position:relative}
+.scorebar{position:relative;height:20px;background:#242a33;border-radius:5px;overflow:hidden;min-width:80px;display:inline-block;width:96px;vertical-align:middle}
+.scorebar>i{position:absolute;left:0;top:0;bottom:0;border-radius:5px}
+.scorebar>b{position:absolute;left:7px;top:0;bottom:0;display:flex;align-items:center;font-size:11px;font-weight:800;color:#fff;font-style:normal}
+.delta{font-size:10.5px;color:var(--faint)}
+.up{color:var(--go)} .down{color:var(--no)}
+
+/* ---- Board view ---- */
+.board{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+.col{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;min-height:120px}
+.col h4{margin:2px 4px 12px;font-size:12px;text-transform:uppercase;letter-spacing:1px;display:flex;justify-content:space-between;align-items:center}
+.col.go h4{color:var(--go)} .col.watch h4{color:var(--watch)} .col.no h4{color:var(--no)}
+.col h4 .n{background:var(--panel2);border-radius:20px;padding:1px 9px;font-size:12px}
+.bcard{background:var(--card);border:1px solid var(--line);border-radius:9px;padding:10px 12px;margin-bottom:9px;cursor:pointer;border-left:3px solid transparent}
+.bcard:hover{background:#20242c}
+.col.go .bcard{border-left-color:var(--go)} .col.watch .bcard{border-left-color:var(--watch)} .col.no .bcard{border-left-color:var(--no)}
+.bcard .bt{display:flex;justify-content:space-between;align-items:baseline}
+.bcard .bn{font-weight:700;font-size:13.5px}
+.bcard .bs{font-weight:800;font-size:14px}
+.bcard .bm{font-size:11px;color:var(--muted);margin-top:4px;display:flex;gap:10px;flex-wrap:wrap}
+
+/* ---- Deep dive ---- */
+.dd-top{display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap;margin-bottom:16px}
+.dd-select{background:var(--panel);border:1px solid var(--line);color:var(--ink);padding:11px 14px;border-radius:10px;font-size:14px;font-weight:700;min-width:260px}
+.dd-nav{display:flex;gap:8px}
+.dd-nav button{background:var(--panel);border:1px solid var(--line);color:var(--muted);width:38px;height:42px;border-radius:9px;cursor:pointer;font-size:16px}
+.dd-nav button:hover{color:var(--ink)}
+.dd-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:16px;align-items:start}
+@media(max-width:1100px){.dd-grid{grid-template-columns:1fr}}
+.panelbox{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:16px}
+.panelbox h3{margin:0 0 12px;font-size:12px;text-transform:uppercase;letter-spacing:1px;color:var(--red2)}
+.verdict{font-size:14px;line-height:1.6;color:#e8e3d8}
+.headline{display:flex;gap:14px;align-items:center;margin-bottom:14px;flex-wrap:wrap}
+.headline .hbig{font-size:26px;font-weight:800}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:10px 22px}
+.fact{display:flex;justify-content:space-between;border-bottom:1px dashed #262b33;padding:5px 0;font-size:12.5px}
+.fact .fl{color:var(--muted)} .fact .fv{font-weight:700}
+.scoregrid{display:flex;flex-direction:column;gap:9px}
+.srow{display:grid;grid-template-columns:96px 1fr 52px;align-items:center;gap:10px;font-size:12px}
+.srow .sn{color:var(--muted)}
+.srow .sb{height:16px;background:#242a33;border-radius:4px;overflow:hidden;position:relative}
+.srow .sb>i{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,var(--red),var(--red2));border-radius:4px}
+.srow .sv{text-align:right;font-weight:700}
+.srow .smax{color:var(--faint);font-weight:400;font-size:10px}
+.fmttable{width:100%;border-collapse:collapse;font-size:12.5px}
+.fmttable th{text-align:right;color:var(--muted);font-size:10.5px;text-transform:uppercase;padding:6px 8px;border-bottom:1px solid var(--line)}
+.fmttable th.l,.fmttable td.l{text-align:left}
+.fmttable td{text-align:right;padding:7px 8px;border-bottom:1px solid #23272f}
+.fmttable tr.rec td{background:var(--go-bg)}
+.recbadge{font-size:9.5px;background:var(--go);color:#04210b;font-weight:800;padding:1px 6px;border-radius:4px;margin-left:6px}
+.pnl{display:grid;grid-template-columns:1fr 1fr;gap:2px 26px}
+.pnl .pr{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px dashed #262b33;font-size:12.5px}
+.pnl .pr.tot{border-bottom:2px solid var(--line);font-weight:800;margin-top:4px}
+.pnl .pr .pv{font-weight:700}
+.neg{color:var(--no)}
+.tag{display:inline-block;font-size:10.5px;padding:2px 7px;border-radius:5px;background:var(--panel2);color:var(--muted);margin-right:5px}
+
+/* ---- Charts ---- */
+.chartcard{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:18px}
+.chartcard h3{margin:0 0 4px;font-size:14px}
+.chartcard p.cx{margin:0 0 12px;font-size:12px;color:var(--muted)}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;margin-top:8px}
+.legend .li{display:flex;align-items:center;gap:6px;color:var(--muted)}
+.legend .dot{width:10px;height:10px;border-radius:50%}
+svg text{fill:var(--muted);font-size:10px;font-family:inherit}
+svg .axline{stroke:#2c313b;stroke-width:1}
+svg .grid{stroke:#20242c;stroke-width:1}
+svg .quad{stroke:#3a414d;stroke-width:1;stroke-dasharray:4 4}
+.bubble{cursor:pointer;transition:opacity .15s}
+.bubble:hover{opacity:1!important}
+.blabel{fill:var(--ink);font-size:10px;font-weight:600;pointer-events:none}
+.tooltip{position:fixed;pointer-events:none;background:#20242c;border:1px solid var(--line);border-radius:8px;padding:8px 11px;font-size:12px;
+  box-shadow:var(--shadow);z-index:100;opacity:0;transition:opacity .1s;max-width:230px}
+.tooltip b{color:var(--red2)}
+
+/* ---- Modal ---- */
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:80;display:none;align-items:center;justify-content:center;padding:24px}
+.modal.open{display:flex}
+.modal .box{background:var(--panel);border:1px solid var(--line);border-radius:14px;max-width:720px;width:100%;max-height:82vh;overflow-y:auto;padding:24px 26px;box-shadow:var(--shadow)}
+.modal h2{margin:0 0 4px;font-size:18px}
+.modal .sub{color:var(--muted);font-size:12.5px;margin-bottom:16px}
+.modal ol{margin:0;padding-left:20px}
+.modal ol li{margin-bottom:11px;font-size:13px;line-height:1.55;color:#e2ddd2}
+.modal .close{float:right;background:transparent;border:1px solid var(--line);color:var(--muted);border-radius:8px;padding:5px 11px;cursor:pointer}
+.warnblock{background:var(--no-bg);border:1px solid rgba(193,85,74,.3);border-radius:10px;padding:12px 14px;margin-top:14px;font-size:12.5px;color:#e9d9d5}
+
+.footnote{color:var(--faint);font-size:11.5px;margin-top:20px;padding:0 22px;line-height:1.6}
+@media(max-width:820px){aside.rail{position:fixed;z-index:60;height:100%;top:0}.board{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="top">
+  <button class="ghost" id="railToggle" title="Show / hide assumptions" style="padding:8px 11px">&#9776;</button>
+  <div class="brandmark"><span>M</span></div>
+  <div class="title">
+    <h1>Maki &amp; Ramen — UK Site Pipeline</h1>
+    <p>Live commercial model &middot; 26 locations &middot; move an assumption and the whole board re-ranks</p>
+  </div>
+  <div class="spacer"></div>
+  <div class="tophint">Internal working model. Every P&amp;L number is bottom-up from public footfall, not trading data.</div>
+  <button class="ghost" id="notesBtn">&#9432; Model notes</button>
+</header>
+
+<div class="shell">
+  <aside class="rail" id="rail">
+    <div class="rail-head">
+      <div class="rt">Assumptions</div>
+      <div class="rd">Blue in Excel = editable. Drag any lever; the ranking recomputes instantly.</div>
+    </div>
+    <div class="rail-body" id="controls"></div>
+  </aside>
+
+  <main>
+    <div class="tabs">
+      <button class="tab active" data-tab="rank">Ranking board</button>
+      <button class="tab" data-tab="site">Site deep-dive</button>
+      <button class="tab" data-tab="charts">Compare &amp; charts</button>
+    </div>
+
+    <!-- RANKING -->
+    <section class="pane active" id="pane-rank">
+      <div class="summary" id="summary"></div>
+      <div class="toolbar">
+        <div class="seg" id="viewSeg">
+          <button data-view="table" class="active">Table</button>
+          <button data-view="board">Tier board</button>
+        </div>
+        <input class="search" id="search" placeholder="Filter sites / regions…"/>
+        <span class="hint">Click any site for its full P&amp;L &amp; verdict</span>
+      </div>
+      <div id="rankTable"></div>
+      <div id="rankBoard" style="display:none"></div>
+    </section>
+
+    <!-- DEEP DIVE -->
+    <section class="pane" id="pane-site">
+      <div class="dd-top">
+        <select class="dd-select" id="ddSelect"></select>
+        <div class="dd-nav">
+          <button id="ddPrev" title="Previous by rank">&#8249;</button>
+          <button id="ddNext" title="Next by rank">&#8250;</button>
+        </div>
+      </div>
+      <div id="ddBody"></div>
+    </section>
+
+    <!-- CHARTS -->
+    <section class="pane" id="pane-charts">
+      <div class="chartcard">
+        <h3>EBITDA vs payback</h3>
+        <p class="cx">The decision quadrant. Top-left = high profit, fast payback. Bubble size = net sales. Colour = tier. Recompute anything on the left and watch sites move.</p>
+        <div id="scatter"></div>
+        <div class="legend">
+          <span class="li"><span class="dot" style="background:var(--go)"></span>GO</span>
+          <span class="li"><span class="dot" style="background:var(--watch)"></span>WATCH</span>
+          <span class="li"><span class="dot" style="background:var(--no)"></span>NO</span>
+          <span class="li"><span class="dot" style="background:var(--faint)"></span>bubble size = net sales</span>
+        </div>
+      </div>
+      <div class="chartcard">
+        <h3>Weighted score by site</h3>
+        <p class="cx">Ranked. The dashed lines are your GO and WATCH thresholds — drag them on the left and the colours flip live.</p>
+        <div id="scoreChart"></div>
+      </div>
+      <div class="chartcard">
+        <h3>Occupancy cost vs site EBITDA</h3>
+        <p class="cx">Occupancy % of sales (bar) against absolute EBITDA (dot). The cost discipline read: rent-heavy sites sit to the right.</p>
+        <div id="occChart"></div>
+      </div>
+    </section>
+
+    <div class="footnote" id="footnote"></div>
+  </main>
+</div>
+
+<div class="tooltip" id="tip"></div>
+
+<div class="modal" id="notesModal">
+  <div class="box">
+    <button class="close" id="notesClose">Close</button>
+    <h2>Model notes &amp; health warnings</h2>
+    <div class="sub">Read these before quoting any single number. Prepared August 2026, internal.</div>
+    <p style="font-size:13px;color:#d9d4c9">This is a <b>live capacity-led model</b>. Revenue is built bottom-up: covers = seats &times; seat-turns &times; 7 &times; utilisation, where utilisation maps a weighted demand index (footfall, catchment, students, affluence, whitespace, evening economy, delivery) onto a 28–95% band. Spend per head = base + slope &times; affluence. It re-ranks the moment you change a lever.</p>
+    <ol id="warnList"></ol>
+    <div class="warnblock" id="capexNote"></div>
+  </div>
+</div>
+
+<script>
+/* ====================== DATA ====================== */
+const DATA = {"sites": [{"location": "Exeter", "region": "South West", "country": "England", "nearest": "Southampton", "driveMin": 140, "footfall_m": 10.7, "footfallTrend": "up", "footfallSource": "verified", "catchment": 400000, "urbanPop": 138399, "students": 24000, "affluence": 5, "whitespace15": 5, "evening15": 2, "delivery15": 4, "wagamama": 1, "asianOps": 9, "ramenSpecialists": 0, "demandIndex": 0.6231888, "whitespaceScorecard": 1, "affluenceNorm": 1, "verdict": "Exeter is the clearest white space of the four: no ramen specialist at all, both incumbent Asian chains rated below 4.0, growing scheme footfall and the only verified ACORN profile in the study at 79 percent top 4. The counterweights are scale, a 138,399 district population against 10.7m footfall, and a structurally weak evening economy where post 18:00 trading rights are still unverified.", "excelTier": "GO", "excelTotal": 92.1309712431869, "excelRecFormat": "Shopping centre in-line", "formats": [{"format": "Shopping centre in-line", "recommended": true, "scheme": "Princesshay", "landlord": "Frasers Group", "evening": "partial", "sqft": 2500, "rentPsf": 30, "rentBasis": "estimate", "scPsf": 12.09, "ratesPsf": 19.71, "notes": "SU45 and MSU5 are both in band and 79 percent of visitors are top 4 ACORN, but there is no cinema or leisure anchor, post 18:00 trading is unverified and leases are offered outside the Landlord and Tenant Act.", "x_seats": 76, "x_util": 0.61383211648, "x_covers": 979.67605790208, "x_sph": 25.25, "x_netSales": 1543577.59683052, "x_occ": 154500, "x_ebitda": 241684.916519833, "x_capexBase": 507500}, {"format": "Street level", "recommended": false, "scheme": "Bedford Street EX1", "landlord": "Frasers Group", "evening": "partial", "sqft": 2193, "rentPsf": 66.29, "rentBasis": "quoted", "scPsf": 12.09, "ratesPsf": 19.71, "notes": "Both Wagamama and YO! sit on this one short street so it is where the trade is, but the rent taper is steep and a sub 2,000 sq ft unit runs to 98 psf all in.", "x_seats": 68, "x_util": 0.61383211648, "x_covers": 934.989079822336, "x_sph": 25.25, "x_netSales": 1473168.79416807, "x_occ": 215111.37, "x_ebitda": 163001.953836472, "x_capexBase": 453775}]}, {"location": "Reading", "region": "South East", "country": "England", "nearest": "Southampton", "driveMin": 60, "footfall_m": 12.9, "footfallTrend": "up", "footfallSource": "verified", "catchment": 1100000, "urbanPop": 182907, "students": 19000, "affluence": 5, "whitespace15": 4, "evening15": 4, "delivery15": 5, "wagamama": 1, "asianOps": 11, "ramenSpecialists": 1, "demandIndex": 0.73930064, "whitespaceScorecard": 0.75, "affluenceNorm": 1, "verdict": "Reading is the strongest of the four on demand fundamentals: the highest BME population at 46.5 per cent, worker salaries of 61467, 12.9m visits with 69 to 79 minute dwell, no seasonality, a purpose built riverside quarter that trades in the evening and no branded ramen specialist. The offsetting risk is entirely cost, because Hammerson at 95 per cent occupancy has explicit pricing power and this will be the most expensive deal of the four to do.", "excelTier": "GO", "excelTotal": 85.0360128, "excelRecFormat": "Street level", "formats": [{"format": "Shopping centre in-line", "recommended": false, "scheme": "The Oracle, Riverside", "landlord": "Hammerson", "evening": "yes", "sqft": 2500, "rentPsf": 55, "rentBasis": "estimate", "scPsf": 13, "ratesPsf": 26, "notes": "Riverside is a purpose built evening dining quarter of 20 to 22 units with a Vue cinema, 12.9m visits and 69 to 79 minute dwell, and 18 units currently to let.", "x_seats": 76, "x_util": 0.7753314288, "x_covers": 1237.4289603648, "x_sph": 25.25, "x_netSales": 2030930.28119873, "x_occ": 235000, "x_ebitda": 268670.709737284, "x_capexBase": 507500}, {"format": "Retail park / leisure terrace", "recommended": false, "scheme": "Brunel Retail Park", "landlord": null, "evening": "partial", "sqft": 2500, "rentPsf": 42.13, "rentBasis": "quoted", "scPsf": 8, "ratesPsf": 18.12, "notes": "Unit 11 at 1780 sq ft and 75000 pa is the only sized retail park comparable found, with no evidence of evening leisure critical mass.", "x_seats": 85, "x_util": 0.682291657344, "x_covers": 1055.50519391117, "x_sph": 25.25, "x_netSales": 1732347.8995067, "x_occ": 170625, "x_ebitda": 258997.279077663, "x_capexBase": 507500}, {"format": "Street level", "recommended": true, "scheme": "Friar Street and Gun Street / Kings Road", "landlord": null, "evening": "yes", "sqft": 1900, "rentPsf": 28, "rentBasis": "peer median", "scPsf": 3, "ratesPsf": 12.04, "notes": "Reading's traditional bar and restaurant streets, but Rightmove returned zero restaurant listings town wide so there is no distressed stock and no rent evidence.", "x_seats": 59, "x_util": 0.7753314288, "x_covers": 1024.67801630208, "x_sph": 25.25, "x_netSales": 1681752.79425579, "x_occ": 81776, "x_ebitda": 335298.692975435, "x_capexBase": 402500}]}, {"location": "Cardiff", "region": "South Wales", "country": "Wales", "nearest": "Birmingham", "driveMin": 130, "footfall_m": 27, "footfallTrend": "up", "footfallSource": "verified", "catchment": 950000, "urbanPop": 383919, "students": 50000, "affluence": 3, "whitespace15": 3, "evening15": 4, "delivery15": 4, "wagamama": 2, "asianOps": 15, "ramenSpecialists": 2, "demandIndex": 0.72636512, "whitespaceScorecard": 0.5, "affluenceNorm": 0.5, "verdict": "Cardiff pairs 27m footfall with 69 visits per customer per year and is the only one of the four with verified positive city centre footfall growth, at an estimated all in cost of 54 to 75 psf against Bristol's 72 to 83. The offsets are real: Tonkotsu is 300 metres away, Matsudai owns the local ramen reputation, and Landsec is letting above ERV at 97 percent occupancy so there is little negotiating room.", "excelTier": "GO", "excelTotal": 82.5273024, "excelRecFormat": "Retail park / leisure terrace", "formats": [{"format": "Shopping centre in-line", "recommended": false, "scheme": "St Davids Dewi Sant", "landlord": "Landsec", "evening": "partial", "sqft": 2500, "rentPsf": 34, "rentBasis": "estimate", "scPsf": 11.5, "ratesPsf": 19, "notes": "27m footfall and 69 visits per customer per year with a Queens Arcade F&B conversion being leased now, but the mall closes at 20:00 weekdays so independent late access must be contractual.", "x_seats": 76, "x_util": 0.674664874752, "x_covers": 1076.76514010419, "x_sph": 22.95, "x_netSales": 1542013.82184041, "x_occ": 161250, "x_ebitda": 234533.547605705, "x_capexBase": 507500}, {"format": "Retail park / leisure terrace", "recommended": true, "scheme": "The Brewery Quarter", "landlord": null, "evening": "yes", "sqft": 2750, "rentPsf": 29.5, "rentBasis": "peer median", "scPsf": 8, "ratesPsf": 12.69, "notes": "Self described entertainment district with no Japanese or pan Asian operator at all, a genuine gap, but the mix is drink led and quick service so a full service ramen and sushi bar would be a category first.", "x_seats": 94, "x_util": 0.7666646304, "x_covers": 1311.60984968832, "x_sph": 22.95, "x_netSales": 1878330.23354165, "x_occ": 138022.5, "x_ebitda": 344082.259942357, "x_capexBase": 551250}, {"format": "Street level", "recommended": false, "scheme": "High Street and St Mary Street CF10", "landlord": null, "evening": "yes", "sqft": 1600, "rentPsf": 54.62, "rentBasis": "quoted", "scPsf": 3, "ratesPsf": 23.49, "notes": "The historic core and night out spine where Tonkotsu trades to 22:00, but the marketed units are small at 518 to 1,007 sq ft and quote 51 to 55 psf.", "x_seats": 49, "x_util": 0.7666646304, "x_covers": 841.49109832704, "x_sph": 22.95, "x_netSales": 1205082.57209219, "x_occ": 129776, "x_ebitda": 179528.526836995, "x_capexBase": 350000}]}, {"location": "Rushden Lakes", "region": "East Midlands", "country": "England", "nearest": "M11 Leicester", "driveMin": 60, "footfall_m": 5.8, "footfallTrend": "unknown", "footfallSource": "agent_marketing", "catchment": 600000, "urbanPop": 25500, "students": 0, "affluence": 4, "whitespace15": 5, "evening15": 3, "delivery15": 1, "wagamama": 1, "asianOps": 1, "ramenSpecialists": 0, "demandIndex": 0.517816, "whitespaceScorecard": 1, "affluenceNorm": 0.75, "verdict": "Rushden Lakes is the most defensible new territory of the four with zero ramen competition, 600,000 people within 30 minutes, the longest dwell at 109 minutes and a landlord actively re-letting to a brand that trades to midnight. Against that, 20 pounds average F&B spend per visit, no students, no tourism and poor delivery geography mean this is a weekend and school holiday family business that will not carry a 25 to 35 percent delivery mix or thin Tuesday evenings.", "excelTier": "GO", "excelTotal": 82.35632, "excelRecFormat": "Retail park / leisure terrace", "formats": [{"format": "Retail park / leisure terrace", "recommended": true, "scheme": "Rushden Lakes", "landlord": "The Crown Estate", "evening": "yes", "sqft": 3000, "rentPsf": 26, "rentBasis": "estimate", "scPsf": 6, "ratesPsf": 11.18, "notes": "450,000 sq ft open air lakeside scheme with four units to let or under offer through JLL and Park Place Retail, a 14 screen Cineworld and five hours free parking.", "x_seats": 102, "x_util": 0.62693672, "x_covers": 1163.845327008, "x_sph": 24.1, "x_netSales": 1531457.51199675, "x_occ": 129540, "x_ebitda": 310936.351069541, "x_capexBase": 595000}]}, {"location": "Bromley", "region": "London", "country": "England", "nearest": "MAF3 The O2 London", "driveMin": 30, "footfall_m": 15, "footfallTrend": "flat", "footfallSource": "verified", "catchment": 1400000, "urbanPop": 329991, "students": null, "affluence": 5, "whitespace15": 4, "evening15": 3, "delivery15": 4, "wagamama": 1, "asianOps": 4, "ramenSpecialists": 0, "demandIndex": 0.7374048, "whitespaceScorecard": 0.75, "affluenceNorm": 1, "verdict": "The safest of the four: highest affluence, a 1.3m catchment, no ramen or sushi operator since YO! Sushi closed, and zero overlap with any existing Maki site. Against that, a sushi operator has already failed here, three of five 2016 restaurant lettings have gone, and a passive sovereign wealth landlord with no capex programme means the High Street or St Mark's Square is a better bet than an in mall Glades unit that will not trade after 18:00.", "excelTier": "GO", "excelTotal": 81.998096, "excelRecFormat": "Street level", "formats": [{"format": "Shopping centre in-line", "recommended": false, "scheme": "The Glades", "landlord": "Alaska Permanent Fund Corporation 85 percent and London Borough of Bromley 15 percent", "evening": "no", "sqft": 2500, "rentPsf": 38, "rentBasis": "estimate", "scPsf": 10, "ratesPsf": 16, "notes": "Cushman & Wakefield is actively marketing units at price on application but an in mall unit probably closes at 18:00 or 19:00, which removes the evening sitting.", "x_seats": 76, "x_util": 0.55732407552, "x_covers": 889.48922452992, "x_sph": 25.25, "x_netSales": 1401479.22216934, "x_occ": 160000, "x_ebitda": 199713.000356798, "x_capexBase": 507500}, {"format": "Street level", "recommended": true, "scheme": "Bromley High Street and St Mark's Square", "landlord": "private freeholders", "evening": "yes", "sqft": 2200, "rentPsf": 32, "rentBasis": "estimate", "scPsf": 4, "ratesPsf": 14, "notes": "The southern High Street, St Mark's Square and Bromley South cluster is the de facto restaurant pitch and trades independently after mall close.", "x_seats": 68, "x_util": 0.774061216, "x_covers": 1179.0500442112, "x_sph": 25.25, "x_netSales": 1857711.24965917, "x_occ": 110000, "x_ebitda": 366812.554079186, "x_capexBase": 455000}]}, {"location": "Watford", "region": "East of England", "country": "England", "nearest": "M18 Soho London", "driveMin": 45, "footfall_m": 17.2, "footfallTrend": "flat", "footfallSource": "verified", "catchment": 1200000, "urbanPop": 102246, "students": null, "affluence": 4, "whitespace15": 4, "evening15": 4, "delivery15": 4, "wagamama": 2, "asianOps": 5, "ramenSpecialists": 0, "demandIndex": 0.7314604, "whitespaceScorecard": 0.75, "affluenceNorm": 0.75, "verdict": "Strongest of the three on fundamentals and the only genuine competitive white space: no ramen specialist at all, 17.9 percent Asian catchment, 9.03 percent town centre vacancy against 17.8 percent nationally, and restaurant rents of 40 to 48 per sq ft against URW pricing of roughly triple that. The fatal weakness is the total absence of a student population, so volumes must be modelled off a family and commuter town rather than off Edinburgh, Glasgow or Newcastle.", "excelTier": "GO", "excelTotal": 81.379208, "excelRecFormat": "Street level", "formats": [{"format": "Shopping centre in-line", "recommended": false, "scheme": "Harlequin Watford", "landlord": "SGS Group, asset managed by Global Mutual", "evening": "partial", "sqft": 2450, "rentPsf": 44, "rentBasis": "quoted", "scPsf": 11, "ratesPsf": 18.92, "notes": "Real marketed units imply 40 to 48 per sq ft for a restaurant unit, but evening trade only exists if you take the 2018 extension or leisure half with extended hours and an external entrance.", "x_seats": 75, "x_util": 0.67766905184, "x_covers": 1067.328756648, "x_sph": 24.1, "x_netSales": 1605091.67739753, "x_occ": 181104, "x_ebitda": 230869.530532032, "x_capexBase": 498750}, {"format": "Street level", "recommended": true, "scheme": "Watford High Street", "landlord": "Watford Borough Council owns 29 to 35 High Street", "evening": "yes", "sqft": 1900, "rentPsf": 28, "rentBasis": "peer median", "scPsf": 3, "ratesPsf": 12.04, "notes": "Pedestrianising high street with a long established late night circuit and a regeneration motivated council landlord that just signed Lidl on a 25 year lease adjacent to Harlequin.", "x_seats": 59, "x_util": 0.770078468, "x_covers": 1017.7357033088, "x_sph": 24.1, "x_netSales": 1530511.66006391, "x_occ": 81776, "x_ebitda": 311055.326083069, "x_capexBase": 402500}]}, {"location": "Milton Keynes", "region": "South East", "country": "England", "nearest": "M11 Leicester", "driveMin": 70, "footfall_m": 21.4, "footfallTrend": "up", "footfallSource": "verified", "catchment": 280000, "urbanPop": 298200, "students": 0, "affluence": 4, "whitespace15": 4, "evening15": 2, "delivery15": 2, "wagamama": 2, "asianOps": 4, "ramenSpecialists": 0, "demandIndex": 0.534404, "whitespaceScorecard": 0.75, "affluenceNorm": 0.75, "verdict": "Milton Keynes is the strongest of the four on scale, growth and white space: 21.4m footfall growing, 90 minute dwell, 43000 CMK workers, 2.5m within 30 miles and no full service ramen anywhere in the core. The disqualifying issue is trading hours, because centre:mk shuts at 20:00, so the location only works at Midsummer Place with confirmed extended hours or at Xscape or MK1 where Wagamama already trades.", "excelTier": "GO", "excelTotal": 79.93808, "excelRecFormat": "Retail park / leisure terrace", "formats": [{"format": "Shopping centre in-line", "recommended": false, "scheme": "Midsummer Place", "landlord": "NewRiver", "evening": "partial", "sqft": 2500, "rentPsf": 37.5, "rentBasis": "estimate", "scPsf": 11, "ratesPsf": 16.5, "notes": "The correct target scheme rather than centre:mk, with an actively built F and B Quarter, live vacancy and the UK's largest Lane7, but its trading hours are not published and must be confirmed.", "x_seats": 76, "x_util": 0.5614845984, "x_covers": 896.1294190464, "x_sph": 24.1, "x_netSales": 1235332.32674384, "x_occ": 162500, "x_ebitda": 178900.93393648, "x_capexBase": 507500}, {"format": "Retail park / leisure terrace", "recommended": true, "scheme": "Xscape Milton Keynes and MK1 Shopping and Leisure Park", "landlord": null, "evening": "yes", "sqft": 3000, "rentPsf": 29.5, "rentBasis": "peer median", "scPsf": 8, "ratesPsf": 12.69, "notes": "The genuine evening locations in MK, but both already have a Wagamama and the only sized availability found is a 10043 sq ft unit at MK1.", "x_seats": 102, "x_util": 0.63805068, "x_covers": 1184.477282352, "x_sph": 24.1, "x_netSales": 1632825.62326788, "x_occ": 150570, "x_ebitda": 300683.626794032, "x_capexBase": 595000}]}, {"location": "Dublin", "region": "Greater Dublin Area", "country": "Republic of Ireland", "nearest": "M9 Manchester", "driveMin": null, "footfall_m": 18, "footfallTrend": "unknown", "footfallSource": "estimate", "catchment": 2100000, "urbanPop": 1450000, "students": 110000, "affluence": 5, "whitespace15": 2, "evening15": 4, "delivery15": 3, "wagamama": 2, "asianOps": null, "ramenSpecialists": 27, "demandIndex": 0.73374, "whitespaceScorecard": 0.25, "affluenceNorm": 1, "verdict": "Dublin is the larger and wealthier prize and the 1 July 2026 VAT cut from 13.5% to 9% is the biggest structural margin improvement in a decade, but the market is already ramen literate with 27 ramen results and a Wagamama that has retaken both of the best shopping centres directly. The decisive constraint is not property, it is that moving broth from Glasgow, Edinburgh or Shoreditch into the Republic is a full EU import with export health certificates and EU establishment listing, which the research concludes is not economic, so the entry decision is a supply chain decision first.", "excelTier": "GO", "excelTotal": 79.2248, "excelRecFormat": "Street level", "formats": [{"format": "Shopping centre in-line", "recommended": false, "scheme": "Dundrum Town Centre", "landlord": "Hammerson 50% and Allianz Real Estate", "evening": "partial", "sqft": 2250, "rentPsf": 42, "rentBasis": "peer median", "scPsf": 4.4, "ratesPsf": 18.06, "notes": "Occupancy over 98% with a named unlet large scale first floor dining opportunity in the former Donnybrook Fair unit, but restaurant rents are unpublished and the service charge shown is the midpoint of a 4.00 to 6.50 euro per sq ft estimate converted at 1 EUR equals 0.84 GBP, giving roughly 3.36 to 5.46 pounds per sq ft.", "x_seats": 69, "x_util": 0.679013104, "x_covers": 983.889987696, "x_sph": 25.25, "x_netSales": 1485624.68692158, "x_occ": 145035, "x_ebitda": 250270.351476523, "x_capexBase": 463750}, {"format": "Street level", "recommended": true, "scheme": "South William Street", "landlord": null, "evening": "yes", "sqft": 1900, "rentPsf": 28, "rentBasis": "peer median", "scPsf": 3, "ratesPsf": 12.04, "notes": "The correct Dublin analogue for the Edinburgh and Glasgow city centre estate but The Ramen Bar flagship already holds 51 South William Street, and the only published comparators are Grafton Street Zone A at 500 to 540 euro per sq ft, which is about 420 to 454 pounds per sq ft converted at 1 EUR equals 0.84 GBP, and Henry Street at about 250 euro per sq ft, which is about 210 pounds per sq ft on the same conversion.", "x_seats": 59, "x_util": 0.7716058, "x_covers": 1019.75422528, "x_sph": 25.25, "x_netSales": 1539777.89246154, "x_occ": 81776, "x_ebitda": 327938.813124548, "x_capexBase": 402500}]}, {"location": "Bristol", "region": "South West", "country": "England", "nearest": "Southampton", "driveMin": 105, "footfall_m": 17.4, "footfallTrend": "flat", "footfallSource": "verified", "catchment": 1200000, "urbanPop": 494400, "students": 68000, "affluence": 4, "whitespace15": 2, "evening15": 4, "delivery15": 4, "wagamama": 3, "asianOps": 20, "ramenSpecialists": 6, "demandIndex": 0.694726, "whitespaceScorecard": 0.25, "affluenceNorm": 0.75, "verdict": "Bristol has the best demographic and the strongest landlord momentum of the four, but it is also the most contested and the most expensive, with a national ramen specialist entrenched, three Wagamamas and a failed YO! inside the target scheme. It only works on a high volume, high average spend site where the sushi bar and evening alcohol trade carry the differentiation, not the ramen.", "excelTier": "GO", "excelTotal": 79.14452, "excelRecFormat": "Shopping centre in-line", "formats": [{"format": "Shopping centre in-line", "recommended": true, "scheme": "Cabot Circus", "landlord": "Hammerson", "evening": "yes", "sqft": 2500, "rentPsf": 42, "rentBasis": "estimate", "scPsf": 11.5, "ratesPsf": 23.91, "notes": "Glass Walk is the F&B spine with several marketed units in band and an Odeon reopened February 2026, but YO! failed inside the scheme and all in cost is an estimated 72 to 83 psf.", "x_seats": 76, "x_util": 0.74546642, "x_covers": 1189.76440632, "x_sph": 24.1, "x_netSales": 1789215.30480027, "x_occ": 193525, "x_ebitda": 265706.928232069, "x_capexBase": 507500}, {"format": "Street level", "recommended": false, "scheme": "Clifton Triangle and Queens Road BS8", "landlord": null, "evening": "yes", "sqft": 1900, "rentPsf": 48, "rentBasis": "estimate", "scPsf": 3, "ratesPsf": 20.64, "notes": "Strongest student plus affluent resident pitch in the city with Wagamama trading to 22:00, rent inferred from 111 Whiteladies Road at 723 sq ft quoting 35,000 pa or 48.41 psf.", "x_seats": 59, "x_util": 0.74546642, "x_covers": 985.208420672, "x_sph": 24.1, "x_netSales": 1481595.83134338, "x_occ": 136116, "x_ebitda": 244160.263378134, "x_capexBase": 402500}]}, {"location": "Bournemouth", "region": "South West", "country": "England", "nearest": "Southampton", "driveMin": 45, "footfall_m": null, "footfallTrend": "up", "footfallSource": "not_found", "catchment": 616000, "urbanPop": 401898, "students": 23000, "affluence": 3, "whitespace15": 5, "evening15": 5, "delivery15": 3, "wagamama": 1, "asianOps": 19, "ramenSpecialists": 0, "demandIndex": 0.48608144, "whitespaceScorecard": 1, "affluenceNorm": 0.5, "verdict": "Bournemouth is the clearest category white space of the four, with no ramen specialist at all, 23000 students, BH2 trading to 02:30 at weekends and rents that Savills say have rebased. It is also the most fragile trading environment: 20 per cent vacancy, a flat population to 2030, only 10000 town centre workers and Castlepoint permanently leaking spend three miles out.", "excelTier": "GO", "excelTotal": 78.2216288, "excelRecFormat": "Street level", "formats": [{"format": "Shopping centre in-line", "recommended": false, "scheme": "BH2", "landlord": "Legal and General", "evening": "yes", "sqft": 2250, "rentPsf": 27, "rentBasis": "estimate", "scPsf": 8, "ratesPsf": 11.61, "notes": "Purpose built 2016 leisure scheme, 70000 sq ft, 12 restaurants, 10 screen Odeon, trades 07:30 to 00:30 and to 02:30 Friday and Saturday.", "x_seats": 69, "x_util": 0.6056745648, "x_covers": 877.6224443952, "x_sph": 22.95, "x_netSales": 1204457.81891242, "x_occ": 104872.5, "x_ebitda": 215618.015293217, "x_capexBase": 463750}, {"format": "Retail park / leisure terrace", "recommended": false, "scheme": "Castlepoint Shopping Park", "landlord": null, "evening": "partial", "sqft": 3000, "rentPsf": 29.5, "rentBasis": "peer median", "scPsf": 8, "ratesPsf": 12.69, "notes": "775000 sq ft with 2800 free spaces and 7.25m visitors in 2022 but F and B is entirely QSR and coffee with no full service dining anchor, and it sits 3 miles out draining the town centre.", "x_seats": 102, "x_util": 0.532993617024, "x_covers": 989.449350643354, "x_sph": 22.95, "x_netSales": 1357930.18331644, "x_occ": 150570, "x_ebitda": 210757.50964768, "x_capexBase": 595000}, {"format": "Street level", "recommended": true, "scheme": "Westover Road", "landlord": null, "evening": "yes", "sqft": 1900, "rentPsf": 20, "rentBasis": "estimate", "scPsf": 3, "ratesPsf": 8.6, "notes": "Best street pitch in town, adjacent to BH2 and the Lower Gardens, with Wagamama already at 31 to 32 Westover Road.", "x_seats": 59, "x_util": 0.6056745648, "x_covers": 800.45950483968, "x_sph": 22.95, "x_netSales": 1098558.62903703, "x_occ": 60040, "x_ebitda": 232272.122161156, "x_capexBase": 402500}]}, {"location": "Liverpool", "region": "North West", "country": "England", "nearest": "M9 Manchester", "driveMin": 60, "footfall_m": 22, "footfallTrend": "up", "footfallSource": "verified", "catchment": 1200000, "urbanPop": 1550000, "students": 62960, "affluence": 3, "whitespace15": 3, "evening15": 5, "delivery15": 4, "wagamama": 3, "asianOps": 6, "ramenSpecialists": 0, "demandIndex": 0.76741808, "whitespaceScorecard": 0.5, "affluenceNorm": 0.5, "verdict": "Strongest of the four and the only one with all five demand drivers present: 22m verified footfall, 120 minute dwell, 63000 walkable students, 66m regional visitors and a strong seven day evening economy, with no branded ramen competitor. Cannibalisation with M9 is low at 50 to 70 minutes, but Landsec is letting 10 percent above ERV at 96 percent occupancy so the deal will be expensive.", "excelTier": "WATCH", "excelTotal": 77.8483616, "excelRecFormat": "Street level", "formats": [{"format": "Shopping centre in-line", "recommended": false, "scheme": "Liverpool ONE", "landlord": "Landsec", "evening": "yes", "sqft": 2500, "rentPsf": 45, "rentBasis": "estimate", "scPsf": 11, "ratesPsf": 19, "notes": "Leisure Terrace above South John Street is the evening led pitch, precedent Brewski at 4700 sq ft opened November 2025.", "x_seats": 76, "x_util": 0.7941701136, "x_covers": 1267.4955013056, "x_sph": 22.95, "x_netSales": 1815154.95750972, "x_occ": 187500, "x_ebitda": 278389.772427496, "x_capexBase": 507500}, {"format": "Street level", "recommended": true, "scheme": "Bold Street", "landlord": null, "evening": "yes", "sqft": 2200, "rentPsf": 28, "rentBasis": "estimate", "scPsf": 3, "ratesPsf": 12, "notes": "Independent restaurant spine running into the Concert Square bar cluster, best cultural fit but period stock with limited kitchen extract capacity.", "x_seats": 68, "x_util": 0.7941701136, "x_covers": 1209.67991703552, "x_sph": 22.95, "x_netSales": 1732358.41558823, "x_occ": 94600, "x_ebitda": 350038.660000979, "x_capexBase": 455000}]}, {"location": "Cambridge", "region": "East of England", "country": "England", "nearest": "Westfield Stratford", "driveMin": 80, "footfall_m": 55, "footfallTrend": "down", "footfallSource": "verified", "catchment": 400000, "urbanPop": 150000, "students": 41500, "affluence": 5, "whitespace15": 2, "evening15": 2, "delivery15": 4, "wagamama": 1, "asianOps": 14, "ramenSpecialists": 3, "demandIndex": 0.60669852, "whitespaceScorecard": 0.25, "affluenceNorm": 1, "verdict": "Cambridge has the money and the students but already carries 13 to 14 Japanese operators including three ramen specialists, on a footfall base that peaked at 55m in 2023 and is falling. Grand Arcade has one restaurant in 450,000 sq ft and a 2pm peak, so the only defensible route is a historic core or Petty Cury pitch bought on rental evidence you do not yet have.", "excelTier": "WATCH", "excelTotal": 76.8839704, "excelRecFormat": "Retail park / leisure terrace", "formats": [{"format": "Shopping centre in-line", "recommended": false, "scheme": "Grand Arcade", "landlord": null, "evening": "no", "sqft": 2500, "rentPsf": 58, "rentBasis": "estimate", "scPsf": 12, "ratesPsf": 24.94, "notes": "Fashion led mall of 450,000 to 480,000 sq ft with essentially one restaurant, all units quoted POA, and an Everyman Cinema as the only evening driver.", "x_seats": 76, "x_util": 0.494271366048, "x_covers": 788.857100212608, "x_sph": 25.25, "x_netSales": 1242923.24709499, "x_occ": 237350, "x_ebitda": 81666.9667543795, "x_capexBase": 507500}, {"format": "Retail park / leisure terrace", "recommended": true, "scheme": "Cambridge Leisure Park, Clifton Way", "landlord": "Landsec", "evening": "yes", "sqft": 2750, "rentPsf": 29.5, "rentBasis": "peer median", "scPsf": 5.5, "ratesPsf": 12.69, "notes": "The only genuinely evening led car accessible scheme in Cambridge, already trading Wagamama, Five Guys, Nando's and Nines Global Buffet.", "x_seats": 94, "x_util": 0.6864880084, "x_covers": 1174.44368477072, "x_sph": 25.25, "x_netSales": 1850453.46972475, "x_occ": 131147.5, "x_ebitda": 343802.223896018, "x_capexBase": 551250}, {"format": "Street level", "recommended": false, "scheme": "Petty Cury and the historic core (Sidney Street, Market Hill, King's Parade)", "landlord": null, "evening": "partial", "sqft": 2200, "rentPsf": 58, "rentBasis": "estimate", "scPsf": 3, "ratesPsf": 24.94, "notes": "Prime pedestrian pitch with the busiest BID counters, but units are small, listed and extraction constrained, with a 12 to 18 month search assumed.", "x_seats": 68, "x_util": 0.604109447392, "x_covers": 920.179510267495, "x_sph": 25.25, "x_netSales": 1449834.83637746, "x_occ": 189068, "x_ebitda": 183056.274670216, "x_capexBase": 455000}]}, {"location": "Belfast", "region": "Belfast Metropolitan Area", "country": "Northern Ireland", "nearest": "M8 Glasgow Bath St", "driveMin": null, "footfall_m": 11.4, "footfallTrend": "unknown", "footfallSource": "agent_marketing", "catchment": 650000, "urbanPop": 345000, "students": 54000, "affluence": 2, "whitespace15": 4, "evening15": 4, "delivery15": 3, "wagamama": 1, "asianOps": 9, "ramenSpecialists": 2, "demandIndex": 0.55161912, "whitespaceScorecard": 0.6375, "affluenceNorm": 0.25, "verdict": "Belfast is the low barrier entry: it needs no new entity, no VAT regime, no customs border and no EU labelling, rent in the Cathedral Quarter is around 15 pounds per sq ft against 420 pounds plus per sq ft Zone A in Dublin, and the two chain Asian operators are rated 3.7 and 3.2 while independents including a direct sushi and ramen hybrid sit at 4.5 and above. The counterweights are real and costed rather than fatal, namely a capped liquor licensing regime where a licence must be purchased at an estimated low to mid six figures, no GB hospitality rates relief, the lowest regional disposable income in the UK, and an unverified Victoria Square landlord.", "excelTier": "WATCH", "excelTotal": 75.7948824, "excelRecFormat": "Street level", "formats": [{"format": "Shopping centre in-line", "recommended": false, "scheme": "CastleCourt", "landlord": "Wirefox", "evening": "partial", "sqft": 2500, "rentPsf": 42, "rentBasis": "peer median", "scPsf": 10, "ratesPsf": 18.06, "notes": "CastleCourt has 12 units available quoting 10,000 to 90,000 pounds per annum in total rather than per sq ft, a funded leisure led repositioning with an Omniplex cinema and a 50,000 sq ft adventure centre, a stable owner since 2017 and no Wagamama, while Victoria Square is the alternative at 95% occupancy with Wagamama renewed, Mowgli arriving 2026 and an unverified current owner.", "x_seats": 76, "x_util": 0.571634633152, "x_covers": 912.328874510592, "x_sph": 21.8, "x_netSales": 1189348.41396699, "x_occ": 175150, "x_ebitda": 141320.099716433, "x_capexBase": 507500}, {"format": "Street level", "recommended": true, "scheme": "Cathedral Quarter", "landlord": null, "evening": "yes", "sqft": 2200, "rentPsf": 15, "rentBasis": "estimate", "scPsf": 3, "ratesPsf": 6.45, "notes": "A live listing at 5 to 9 Donegall Street quotes 12,000 pounds for 814 sq ft, about 14.70 pounds per sq ft, so a 2,000 to 3,000 sq ft unit at circa 15 pounds per sq ft is a 30,000 to 45,000 pound rent, with the Ulster University York Street campus adjacent and Lisburn Road as the affluent alternative at about 24 to 29 pounds per sq ft.", "x_seats": 68, "x_util": 0.6495848104, "x_covers": 989.44758320128, "x_sph": 21.8, "x_netSales": 1289883.44736452, "x_occ": 53790, "x_ebitda": 289431.160776993, "x_capexBase": 455000}]}, {"location": "Romford", "region": "London", "country": "England", "nearest": "M17 Lakeside Thurrock", "driveMin": 25, "footfall_m": 13.6, "footfallTrend": "unknown", "footfallSource": "agent_marketing", "catchment": 1450000, "urbanPop": 264700, "students": null, "affluence": 3, "whitespace15": 3, "evening15": 5, "delivery15": 4, "wagamama": 1, "asianOps": 5, "ramenSpecialists": 0, "demandIndex": 0.6917788, "whitespaceScorecard": 0.5, "affluenceNorm": 0.5, "verdict": "The most likely of the four to work: Elizabeth line access, PTAL 6, a night time population at 92 percent of daytime, no dedicated ramen or sushi operator in a 1.1m shopper catchment, and an actively repositioning owner with a named F&B mandate and a planned Swan Walk F&B quarter that would welcome a credible pre let. The two things that must be resolved first are The Liberty's reported 18:00 mall close, which would disqualify an in mall unit, and COSMO's effect on achievable average spend in a value led catchment.", "excelTier": "WATCH", "excelTotal": 72.835576, "excelRecFormat": "Retail park / leisure terrace", "formats": [{"format": "Shopping centre in-line", "recommended": false, "scheme": "The Liberty", "landlord": "Redical", "evening": "no", "sqft": 2500, "rentPsf": 38, "rentBasis": "estimate", "scPsf": 11, "ratesPsf": 16, "notes": "Mall hours reported as 09:00 to 18:00 Monday to Saturday from a Tier 3 source, which would be disqualifying for an in mall unit, so the target is a pre let into the proposed Swan Walk F&B quarter.", "x_seats": 76, "x_util": 0.53531409312, "x_covers": 854.36129261952, "x_sph": 22.95, "x_netSales": 1223513.71993456, "x_occ": 162500, "x_ebitda": 151535.188116538, "x_capexBase": 507500}, {"format": "Retail park / leisure terrace", "recommended": true, "scheme": "The Brewery", "landlord": "Schroders Capital UK Real Estate Fund and Zurich Investment Foundation", "evening": "yes", "sqft": 3000, "rentPsf": 32, "rentBasis": "estimate", "scPsf": 10, "ratesPsf": 14, "notes": "Lower density retail park style scheme with 1700 surface spaces trading to 23:00 with 2 pound evening parking, and it holds essentially all of Romford's branded casual dining including Wagamama and COSMO.", "x_seats": 102, "x_util": 0.743491796, "x_covers": 1380.2181700944, "x_sph": 22.95, "x_netSales": 1976582.83702879, "x_occ": 168000, "x_ebitda": 339322.928170722, "x_capexBase": 595000}, {"format": "Street level", "recommended": false, "scheme": "South Street and the Romford ring", "landlord": "private freeholders", "evening": "yes", "sqft": 2200, "rentPsf": 27, "rentBasis": "estimate", "scPsf": 0, "ratesPsf": 12, "notes": "Pedestrianised spine from Romford station into the Market Place, at the heart of the night time economy, with independent freehold and leasehold units.", "x_seats": 68, "x_util": 0.743491796, "x_covers": 1132.4867036672, "x_sph": 22.95, "x_netSales": 1621811.55858772, "x_occ": 85800, "x_ebitda": 330464.966704183, "x_capexBase": 455000}]}, {"location": "Plymouth", "region": "South West", "country": "England", "nearest": "Southampton", "driveMin": 185, "footfall_m": 17, "footfallTrend": "unknown", "footfallSource": "agent_marketing", "catchment": 350000, "urbanPop": 272067, "students": 25500, "affluence": 2, "whitespace15": 4, "evening15": 2, "delivery15": 2, "wagamama": 1, "asianOps": 9, "ramenSpecialists": 0, "demandIndex": 0.44753216, "whitespaceScorecard": 0.6375, "affluenceNorm": 0.25, "verdict": "The landlord's own agent publishes 27 percent catering conversion and 17 pounds average catering spend, which says Drake Circus is a shopping centre where people grab a coffee rather than a dining destination, and the mall forfeits the evening entirely with YO! closing at 18:00. Cheap rent at 42 to 60 psf is not a bargain in a deprived, isolated catchment with falling student numbers, a landlord not investing and a two year footfall blackout, so any Plymouth case reduces to a single Barcode unit and should be deferred.", "excelTier": "WATCH", "excelTotal": 71.2232047739219, "excelRecFormat": "Retail park / leisure terrace", "formats": [{"format": "Retail park / leisure terrace", "recommended": true, "scheme": "The Barcode", "landlord": "British Land", "evening": "yes", "sqft": 3000, "rentPsf": 32, "rentBasis": "estimate", "scPsf": 10.5, "ratesPsf": 13.5, "notes": "The only credible evening pitch in Plymouth, with a 12 screen IMAX anchor and trading to 23:00 or 23:30, and no Asian operator at all, but it is already full of directly competing mid market chains.", "x_seats": 102, "x_util": 0.5798465472, "x_covers": 1076.42713022208, "x_sph": 21.8, "x_netSales": 1342261.57430172, "x_occ": 168000, "x_ebitda": 202952.289625204, "x_capexBase": 595000}]}, {"location": "Brighton", "region": "South East", "country": "England", "nearest": "M18 Soho London", "driveMin": 85, "footfall_m": 9, "footfallTrend": "down", "footfallSource": "agent_marketing", "catchment": 1100000, "urbanPop": null, "students": 37700, "affluence": 4, "whitespace15": 1, "evening15": 5, "delivery15": 4, "wagamama": 1, "asianOps": 37, "ramenSpecialists": 4, "demandIndex": 0.56169954, "whitespaceScorecard": 0, "affluenceNorm": 0.75, "verdict": "Brighton is the weakest of the four on the evidence: 37 Japanese venues, a branded ramen specialist already established on New Road, and the only scheme with real footfall costing 76 per sq ft before service charge while its reported footfall has fallen from 13m to 9m. The one genuine positive is that the seasonal coastal risk is overstated, which is not enough to offset category saturation and prime occupancy cost.", "excelTier": "WATCH", "excelTotal": 70.7339908, "excelRecFormat": "Street level", "formats": [{"format": "Shopping centre in-line", "recommended": false, "scheme": "Churchill Square", "landlord": "Ingka Centres", "evening": "no", "sqft": 2500, "rentPsf": 51.88, "rentBasis": "quoted", "scPsf": 11, "ratesPsf": 24.43, "notes": "High footfall but food court and coffee F and B only, no full service letting announced 2024 to 2026, and rates run at 47 per cent of rent.", "x_seats": 76, "x_util": 0.472563858096, "x_covers": 754.211917521216, "x_sph": 24.1, "x_netSales": 1134214.05004511, "x_occ": 218275, "x_ebitda": 72839.939511577, "x_capexBase": 507500}, {"format": "Street level", "recommended": true, "scheme": "North Laine (Gardner Street, Kensington Street) and The Lanes", "landlord": null, "evening": "yes", "sqft": 1682, "rentPsf": 28, "rentBasis": "quoted", "scPsf": 3, "ratesPsf": 12.04, "notes": "Derived from 20 Brighton Square at 45000 pa over 1303 to 2061 sq ft, the natural brand pitch and also the most contested.", "x_seats": 52, "x_util": 0.6563386918, "x_covers": 764.50330820864, "x_sph": 24.1, "x_netSales": 1149690.65501648, "x_occ": 72393.28, "x_ebitda": 222693.988120897, "x_capexBase": 364350}]}, {"location": "Cheshire Oaks Designer Outlet", "region": "North West", "country": "England", "nearest": "M9 Manchester", "driveMin": 58, "footfall_m": 8.5, "footfallTrend": "unknown", "footfallSource": "agent_marketing", "catchment": 850000, "urbanPop": 55000, "students": 0, "affluence": 5, "whitespace15": 2, "evening15": 2, "delivery15": 1, "wagamama": 1, "asianOps": 4, "ramenSpecialists": 0, "demandIndex": 0.485612, "whitespaceScorecard": 0.25, "affluenceNorm": 1, "verdict": "Marginal: the turnover lease structure and the most affluent catchment of the four are real advantages, but footfall is only 8.5m, roughly a third of Liverpool ONE, and PHO has just taken the noodle slot against four existing Asian operators. There are no students, near zero delivery, a five day trough and a 7pm Sunday close, so two of the model's revenue legs are simply absent.", "excelTier": "WATCH", "excelTotal": 70.7022835837481, "excelRecFormat": "Retail park / leisure terrace", "formats": [{"format": "Shopping centre in-line", "recommended": false, "scheme": "Cheshire Oaks Designer Outlet", "landlord": "McArthurGlen", "evening": "partial", "sqft": 2500, "rentPsf": 33, "rentBasis": "estimate", "scPsf": 13, "ratesPsf": 14, "notes": "Outlet lease terms apply, roughly 10 year leases on a turnover percentage of 6 to 12 percent with base rent at about 80 percent of expected, which transfers real downside risk to the landlord.", "x_seats": 76, "x_util": 0.5327168352, "x_covers": 850.2160689792, "x_sph": 25.25, "x_netSales": 1172150.38349817, "x_occ": 150000, "x_ebitda": 187132.776968046, "x_capexBase": 507500}, {"format": "Retail park / leisure terrace", "recommended": true, "scheme": "Coliseum Leisure Park", "landlord": null, "evening": "partial", "sqft": 2750, "rentPsf": 29.5, "rentBasis": "peer median", "scPsf": 8, "ratesPsf": 12.69, "notes": "Separately owned adjacent leisure park with a cinema, but the tenant list of Bella Italia, Chiquito, Prezzo, TGI Fridays and Giraffe reads like a 2015 leisure park and is the weak part of the offer.", "x_seats": 94, "x_util": 0.5327168352, "x_covers": 911.37196166016, "x_sph": 25.25, "x_netSales": 1256462.95494278, "x_occ": 138022.5, "x_ebitda": 223360.178469257, "x_capexBase": 551250}]}, {"location": "Oxford", "region": "South East", "country": "England", "nearest": "Birmingham", "driveMin": 80, "footfall_m": 17, "footfallTrend": "flat", "footfallSource": "agent_marketing", "catchment": 450000, "urbanPop": 160000, "students": 52900, "affluence": 4, "whitespace15": 1, "evening15": 3, "delivery15": 5, "wagamama": 1, "asianOps": 14, "ramenSpecialists": 4, "demandIndex": 0.566442, "whitespaceScorecard": 0, "affluenceNorm": 0.75, "verdict": "The catchment is the best of the four but the competitive position is the worst: seven ramen operators, four specialists, and Shoryu sitting in the single best unit in the city. Sub 3 percent vacancy means you cannot get space and will overpay for whatever you do get, with a congestion charge quietly taxing the evening trade you need.", "excelTier": "WATCH", "excelTotal": 70.32884, "excelRecFormat": "Street level", "formats": [{"format": "Shopping centre in-line", "recommended": false, "scheme": "Westgate Oxford", "landlord": "Westgate Oxford Alliance, a JV of The Crown Estate and Landsec", "evening": "partial", "sqft": 2250, "rentPsf": 58, "rentBasis": "estimate", "scPsf": 15, "ratesPsf": 24.94, "notes": "778,512 sq ft, 17m footfall and the strongest F&B scheme of the four, but the mall shuts at 8pm and Shoryu Ramen, Sticks'n'Sushi and Pho already trade there.", "x_seats": 69, "x_util": 0.5803742032, "x_covers": 840.9622204368, "x_sph": 24.1, "x_netSales": 1317367.31831425, "x_occ": 220365, "x_ebitda": 106342.094941933, "x_capexBase": 463750}, {"format": "Street level", "recommended": true, "scheme": "Cowley Road", "landlord": null, "evening": "yes", "sqft": 2200, "rentPsf": 19.54, "rentBasis": "quoted", "scPsf": 3, "ratesPsf": 8.4, "notes": "381 Cowley Road at 4,862 sq ft and 95,004 pounds per annum is by a wide margin the cheapest large unit in Oxford and sits in the student food strip, though Taberu and Sushi Corner are already on the road.", "x_seats": 68, "x_util": 0.65951614, "x_covers": 1004.574984448, "x_sph": 24.1, "x_netSales": 1573666.71313779, "x_occ": 68068, "x_ebitda": 322201.344858172, "x_capexBase": 455000}]}, {"location": "Teesside Shopping Park", "region": "North East", "country": "England", "nearest": "M15 Metrocentre Gateshead", "driveMin": 48, "footfall_m": 9, "footfallTrend": "up", "footfallSource": "agent_marketing", "catchment": 625000, "urbanPop": 206800, "students": 25045, "affluence": 1, "whitespace15": 5, "evening15": 2, "delivery15": 2, "wagamama": 1, "asianOps": 1, "ramenSpecialists": 0, "demandIndex": 0.4598304256, "whitespaceScorecard": 0.85, "affluenceNorm": 0, "verdict": "Weakest of the four: it is cheap and growing at 4.3 percent, but it is cheap for a reason, with the lowest incomes of the four, no accessible students, no tourism, weak delivery and no evening economy beyond the cinema. The 2019 closure of the last Asian buffet and the fact that Cosmo, YO and Itsu have all declined the Tees Valley suggests the market is under served because spend per head does not support it, not because nobody has noticed.", "excelTier": "WATCH", "excelTotal": 67.6853065152399, "excelRecFormat": "Retail park / leisure terrace", "formats": [{"format": "Retail park / leisure terrace", "recommended": true, "scheme": "Teesside Park", "landlord": "British Land", "evening": "partial", "sqft": 3000, "rentPsf": 23, "rentBasis": "estimate", "scPsf": 4.5, "ratesPsf": 9, "notes": "Standalone or terraced A3 pod at the cheapest occupancy cost of the four, but only one unit was listed, 2056 sq ft, and it was under offer.", "x_seats": 102, "x_util": 0.51751601893376, "x_covers": 960.716737548632, "x_sph": 20.65, "x_netSales": 1134779.39605769, "x_occ": 109500, "x_ebitda": 204111.760365035, "x_capexBase": 595000}]}, {"location": "Croydon", "region": "London", "country": "England", "nearest": "MAF3 The O2 London", "driveMin": 35, "footfall_m": null, "footfallTrend": "down", "footfallSource": "not_found", "catchment": 1550000, "urbanPop": 400000, "students": null, "affluence": 2, "whitespace15": 3, "evening15": 3, "delivery15": 5, "wagamama": 1, "asianOps": 8, "ramenSpecialists": 0, "demandIndex": 0.3521889168, "whitespaceScorecard": 0.425, "affluenceNorm": 0.25, "verdict": "The weakest of the four by a clear margin: Whitgift has more empty units than trading ones, the freeholder's property income fell 64 percent from its 2017 peak, and Croydon takes only 4.6 percent of comparison goods spend in the neighbouring Bromley survey against Bromley's 14.4 percent. A purpose built 200 seat food court in Centrale has sat empty since 2013, so if Croydon is tested at all it should be a Boxpark unit or a delivery led format, not a company owned restaurant.", "excelTier": "WATCH", "excelTotal": 62.7449850991843, "excelRecFormat": "Street level", "formats": [{"format": "Shopping centre in-line", "recommended": false, "scheme": "Centrale and Whitgift", "landlord": "Unibail-Rodamco-Westfield", "evening": "no", "sqft": 2500, "rentPsf": 22, "rentBasis": "estimate", "scPsf": 11, "ratesPsf": 10, "notes": "Technically available and cheap but the research recommends against signing inside the Whitgift or Centrale redevelopment red line given 73 empty units and a Centrale food court vacant since 2013.", "x_seats": 76, "x_util": 0.37149593346432, "x_covers": 592.907509809055, "x_sph": 21.8, "x_netSales": 840149.941399431, "x_occ": 107500, "x_ebitda": 100857.185467059, "x_capexBase": 507500}, {"format": "Street level", "recommended": true, "scheme": "South End restaurant quarter and High Street", "landlord": "private freeholders", "evening": "yes", "sqft": 2200, "rentPsf": 21, "rentBasis": "estimate", "scPsf": 0, "ratesPsf": 9, "notes": "An independent dominated linear strip with no managed scheme, no service charge and no scheme footfall data; Boxpark on George Street trades to 01:00 but is a licence not a lease.", "x_seats": 68, "x_util": 0.515966574256, "x_covers": 785.920285906739, "x_sph": 21.8, "x_netSales": 1113649.04512985, "x_occ": 66000, "x_ebitda": 210184.963192203, "x_capexBase": 455000}]}, {"location": "Trafford Centre", "region": "North West", "country": "England", "nearest": "M9 Manchester", "driveMin": 25, "footfall_m": 30, "footfallTrend": "unknown", "footfallSource": "agent_marketing", "catchment": 4400000, "urbanPop": 2900000, "students": 86460, "affluence": 4, "whitespace15": 1, "evening15": 4, "delivery15": 2, "wagamama": 1, "asianOps": 10, "ramenSpecialists": 2, "demandIndex": 0.70358, "whitespaceScorecard": 0, "affluenceNorm": 0.75, "verdict": "Strong scheme, weak fit: the best footfall and affluence in the study but ten Asian operators already trade here, three of them selling ramen or Japanese noodles directly against us, and Eastern Garden was filled in February 2025 with exactly the operators we would compete with. M9 is 20 to 30 minutes away with a direct tram, there is no available space and the likely 70 to 90 pounds per sq ft occupancy cost is the deal breaker.", "excelTier": "WATCH", "excelTotal": 62.4564386080428, "excelRecFormat": "Shopping centre in-line", "formats": [{"format": "Shopping centre in-line", "recommended": true, "scheme": "Trafford Centre", "landlord": "CPP Investments, asset managed by Pradera Lateral", "evening": "yes", "sqft": 2500, "rentPsf": 48, "rentBasis": "estimate", "scPsf": 24, "ratesPsf": 21, "notes": "The Great Hall is the full service pitch, Eastern Garden is the right precinct but was filled in February 2025 with Nichi and Hello Oriental, and no units are currently listed as available.", "x_seats": 76, "x_util": 0.7513986, "x_covers": 1199.2321656, "x_sph": 24.1, "x_netSales": 1653165.52492291, "x_occ": 232500, "x_ebitda": 224374.835978696, "x_capexBase": 507500}]}, {"location": "York", "region": "Yorkshire and the Humber", "country": "England", "nearest": "M10 Leeds", "driveMin": 40, "footfall_m": null, "footfallTrend": "down", "footfallSource": "not_found", "catchment": 320000, "urbanPop": 141685, "students": 30700, "affluence": 2, "whitespace15": 4, "evening15": 3, "delivery15": 3, "wagamama": 2, "asianOps": 15, "ramenSpecialists": 1, "demandIndex": 0.2734206696, "whitespaceScorecard": 0.6375, "affluenceNorm": 0.25, "verdict": "York is the least contested of the three cities on ramen and the only one where Asian delivery looks genuinely under served, but the trading data is going the wrong way with footfall down 8.8 percent and Food and Drink sales down 7.5 percent. The students are two miles out at Heslington and the visitor is older, repeat and low spend, so this is a delivery and lunch play with a dine in room attached, not a destination evening play.", "excelTier": "NO", "excelTotal": 56.9646834281433, "excelRecFormat": "Retail park / leisure terrace", "formats": [{"format": "Shopping centre in-line", "recommended": false, "scheme": "Coppergate Centre", "landlord": null, "evening": "no", "sqft": 2250, "rentPsf": 32, "rentBasis": "estimate", "scPsf": 8, "ratesPsf": 13.76, "notes": "200,000 sq ft 1984 open air promenade anchored by Fenwick and Primark with core hours of 9am to 5.30pm, weak F&B and a distressed ownership history since the 2014 administration.", "x_seats": 69, "x_util": 0.33349813101504, "x_covers": 483.238791840793, "x_sph": 21.8, "x_netSales": 629969.418595331, "x_occ": 120960, "x_ebitda": 46666.6452958012, "x_capexBase": 463750}, {"format": "Retail park / leisure terrace", "recommended": true, "scheme": "Vangarde Leisure Park and Vangarde Shopping Park", "landlord": null, "evening": "yes", "sqft": 3000, "rentPsf": 27, "rentBasis": "estimate", "scPsf": 4.5, "ratesPsf": 11.61, "notes": "York's only genuine out of town evening leisure cluster, with Cineworld and Hollywood Bowl, free parking and two restaurant units available or under offer next to Monks Cross.", "x_seats": 102, "x_util": 0.463191848632, "x_covers": 859.869347800445, "x_sph": 21.8, "x_netSales": 1120960.07656657, "x_occ": 129330, "x_ebitda": 168942.855155975, "x_capexBase": 595000}, {"format": "Street level", "recommended": false, "scheme": "Parliament Street and Swinegate", "landlord": null, "evening": "yes", "sqft": 1600, "rentPsf": 28, "rentBasis": "peer median", "scPsf": 3, "ratesPsf": 12.04, "notes": "Parliament Street is the prime pitch with no live availability found, and Swinegate has the right independent character but units are estimated at 800 to 1,800 sq ft, probably too small for a full kitchen and sushi bar.", "x_seats": 49, "x_util": 0.463191848632, "x_covers": 508.399373058483, "x_sph": 21.8, "x_netSales": 662769.758693961, "x_occ": 68864, "x_ebitda": 107490.387965524, "x_capexBase": 350000}]}, {"location": "Ashford Designer Outlet", "region": "South East", "country": "England", "nearest": "M17 Lakeside Thurrock", "driveMin": 70, "footfall_m": 3.5, "footfallTrend": "flat", "footfallSource": "estimate", "catchment": 300000, "urbanPop": 83213, "students": null, "affluence": 2, "whitespace15": 2, "evening15": 1, "delivery15": 1, "wagamama": 1, "asianOps": 3, "ramenSpecialists": 0, "demandIndex": 0.238346976, "whitespaceScorecard": 0.2125, "affluenceNorm": 0.25, "verdict": "Reject the Designer Outlet: 3.5m footfall is one fourteenth of Stratford, there is no evening daypart behind a 9pm and 6pm Sunday close, no students, a 5.8 percent Asian catchment, and three incumbent Asian operators including KOKORO on the Japanese QSR occasion at 0.86 Asian operators per million visitors, the worst ratio of any scheme reviewed. The Eurostar premise that inflates the location's perceived value has been dead since March 2020, and if Kent is strategically required then Elwick Place or County Square in the town centre offer the evening trade, resident catchment and delivery viability the outlet does not.", "excelTier": "NO", "excelTotal": 53.0615001395795, "excelRecFormat": "Street level", "formats": [{"format": "Shopping centre in-line", "recommended": false, "scheme": "Ashford Designer Outlet, Kimberley Way, TN24 0SD", "landlord": "McArthurGlen Group", "evening": "no", "sqft": 2250, "rentPsf": 32, "rentBasis": "estimate", "scPsf": 9, "ratesPsf": 13.76, "notes": "285,000 sq ft outlet with 14 to 15 F&B units, 1,900 spaces free after 5pm, but it closes 9pm Monday to Saturday and 6pm Sunday, and outlet leases are turnover rent dominant which caps downside.", "x_seats": 69, "x_util": 0.3165785812224, "x_covers": 458.722364191258, "x_sph": 21.8, "x_netSales": 546008.05564957, "x_occ": 123210, "x_ebitda": 33832.3169582573, "x_capexBase": 463750}, {"format": "Street level", "recommended": true, "scheme": "Ashford town centre, Elwick Place and County Square", "landlord": null, "evening": "yes", "sqft": 1900, "rentPsf": 22, "rentBasis": "estimate", "scPsf": 3, "ratesPsf": 9.46, "notes": "Elwick Place is a 100,000 sq ft leisure scheme with cinema, 58 bed Travelodge and 282 spaces next to the station, explicitly marketed to cafe and restaurant operators, and County Square gets Primark in H2 2027; the research says the town centre is the better bet than the outlet if Kent is required.", "x_seats": 59, "x_util": 0.43969247392, "x_covers": 581.097573532672, "x_sph": 21.8, "x_netSales": 691668.819824469, "x_occ": 65474, "x_ebitda": 133463.127225704, "x_capexBase": 402500}]}, {"location": "Bluewater", "region": "South East", "country": "England", "nearest": "M17 Lakeside Thurrock", "driveMin": 25, "footfall_m": 18, "footfallTrend": "up", "footfallSource": "agent_marketing", "catchment": 2250000, "urbanPop": null, "students": 0, "affluence": 4, "whitespace15": 2, "evening15": 2, "delivery15": 1, "wagamama": 1, "asianOps": 4, "ramenSpecialists": 0, "demandIndex": 0.5758896, "whitespaceScorecard": 0.25, "affluenceNorm": 0.75, "verdict": "The best asset of the four and the worst strategic fit: Chi already sells ramen and sushi in the same mall, Wagamama and YO! Sushi cover the rest, and M17 Lakeside is 15 to 30 minutes away so most sales would transfer rather than be created. A 21:00 mall close, an 18:00 Sunday close, near zero delivery and an estimated 85 to 115 psf occupancy cost against a landlord at 97.7 percent occupancy make the economics hostile.", "excelTier": "NO", "excelTotal": 41.2885659959326, "excelRecFormat": "Shopping centre in-line", "formats": [{"format": "Shopping centre in-line", "recommended": true, "scheme": "Bluewater", "landlord": "Landsec", "evening": "partial", "sqft": 2500, "rentPsf": 58, "rentBasis": "estimate", "scPsf": 15, "ratesPsf": 24, "notes": "Plaza or West Village full service pitch is the target but the Plaza was declared fully let in November 2021 and no F&B letting has been publicised since.", "x_seats": 76, "x_util": 0.58594450816, "x_covers": 935.16743502336, "x_sph": 24.1, "x_netSales": 1230549.42104984, "x_occ": 242500, "x_ebitda": 111429.452530525, "x_capexBase": 507500}]}, {"location": "Westfield London White City", "region": "London", "country": "England", "nearest": "M18 Soho London", "driveMin": 25, "footfall_m": 27.9, "footfallTrend": "up", "footfallSource": "estimate", "catchment": 3000000, "urbanPop": null, "students": null, "affluence": 5, "whitespace15": 1, "evening15": 5, "delivery15": 5, "wagamama": 1, "asianOps": 12, "ramenSpecialists": 1, "demandIndex": 0.799251648, "whitespaceScorecard": 0, "affluenceNorm": 1, "verdict": "Best catchment quality in the UK at 59.3 percent top two Acorn and 77 percent conversion, but the worst competitive position and by far the worst rent, with a 164.80 per sq ft kiosk benchmark, a base or 15 percent of turnover structure and 3 percent fixed uplifts. You would be opening metres from Kanada-Ya, Japan Centre and Sticks n Sushi in a scheme carrying roughly half of Stratford's footfall across a 38 percent larger floorplate, so do not pursue without materially concessionary terms and a differentiated format.", "excelTier": "NO", "excelTotal": 32.194360690061, "excelRecFormat": "Shopping centre in-line", "formats": [{"format": "Shopping centre in-line", "recommended": true, "scheme": "Westfield London, White City", "landlord": "Unibail-Rodamco-Westfield and Commerz Real joint venture", "evening": "yes", "sqft": 2500, "rentPsf": 115, "rentBasis": "estimate", "scPsf": 20, "ratesPsf": 49.45, "notes": "Only hard rent is a 500 sq ft Southern Interchange kiosk at 164.80 per sq ft on base or 15 percent of turnover whichever is higher with 3 percent fixed annual uplifts and FRI, and that pitch is flagged for non F&B brands only.", "x_seats": 76, "x_util": 0.81549860416, "x_covers": 1301.53577223936, "x_sph": 25.25, "x_netSales": 2136145.58618785, "x_occ": 461125, "x_ebitda": 68639.1053745865, "x_capexBase": 507500}]}, {"location": "Westfield Stratford (benchmark)", "region": "London", "country": "England", "nearest": "Westfield Stratford", "driveMin": 0, "footfall_m": 50, "footfallTrend": "flat", "footfallSource": "agent_marketing", "catchment": 5300000, "urbanPop": null, "students": null, "affluence": 3, "whitespace15": 3, "evening15": 5, "delivery15": 5, "wagamama": 1, "asianOps": 17, "ramenSpecialists": 1, "demandIndex": 0.8216872, "whitespaceScorecard": 0.5, "affluenceNorm": 0.5, "verdict": "This is the existing Maki and Ramen trading site used as the ceiling benchmark at index 100, not a pipeline opportunity, and every other location in this file is indexed against it. The evidence base is 50m to 54m annual visitors across 1.88m sq ft, 100 restaurants of which about 17 are Asian, a five line rail interchange and a strong evening and weekend economy from the Olympic Park, Here East and the stadium, which together set the tolerance threshold showing Asian saturation alone does not disqualify the brand.", "excelTier": "NO", "excelTotal": 30.0183673682863, "excelRecFormat": "Shopping centre in-line", "formats": [{"format": "Shopping centre in-line", "recommended": true, "scheme": "Westfield Stratford City", "landlord": "Unibail-Rodamco-Westfield", "evening": "yes", "sqft": 2500, "rentPsf": 120, "rentBasis": "estimate", "scPsf": 15, "ratesPsf": 51.6, "notes": "Published rent is POA; the 90 to 150 per sq ft band is an estimate anchored on a 164.80 per sq ft Westfield London kiosk, with turnover overlays typically 10 to 15 percent, and Maki already holds the real number from its own lease.", "x_seats": 76, "x_util": 0.830530424, "x_covers": 1325.526556704, "x_sph": 22.95, "x_netSales": 1977354.24096319, "x_occ": 466500, "x_ebitda": 23883.8517588715, "x_capexBase": 507500}]}]};
+
+/* ====================== ENGINE ====================== */
+// ==== Maki & Ramen pipeline engine (ports the Excel model) ====
+const FMT = {
+  'Shopping centre in-line': {foh:0.55, sqftCover:18,   sit:3.0},
+  'Retail park / leisure terrace': {foh:0.58, sqftCover:17, sit:2.6},
+  'Street level': {foh:0.54, sqftCover:17.5, sit:3.2},
+};
+const EV = {yes:1.0, partial:0.88, no:0.72};
+
+function clamp(x,a,b){return Math.max(a,Math.min(b,x));}
+
+// A = adjustable assumptions
+function computeFormat(site, f, A){
+  const spec = FMT[f.format];
+  const seats = Math.floor(f.sqft * spec.foh / spec.sqftCover);
+  const evf = EV[(f.evening||'partial').toLowerCase()] ?? 0.88;
+  const util = clamp((A.utilFloor + (A.utilCeil-A.utilFloor)*site.demandIndex) * evf, 0, 1);
+  const covers = seats * spec.sit * 7 * util;             // per week
+  const sph = A.sphBase + A.sphSlope * site.affluence;
+  const dineIn = covers * sph * 52;
+  const delivery = dineIn * A.delPerPoint * site.delivery15;
+  const net = dineIn + delivery;
+  const rentPsf = Math.min(f.rentPsf ?? 0, A.rentCap);
+  const rent = rentPsf * f.sqft;
+  const sc = (f.scPsf ?? 0) * f.sqft;
+  const rates = (f.ratesPsf ?? 0) * f.sqft;
+  const occ = rent + sc + rates;
+  const food = net * A.foodPct;
+  const labour = net * A.labourPct;
+  const agg = delivery * A.aggComm;
+  const otherVar = net * A.otherVarPct;
+  const central = net * A.centralPct;
+  const ebitda = net - occ - food - labour - agg - otherVar - central;
+  // capex: flat all-in per site (user decision)
+  const capex = A.capexFlat;
+  const payback = ebitda>0 ? (capex/ebitda) + A.rampYears : 99;
+  return {seats,util,covers,sph,dineIn,delivery,net,rent,sc,rates,occ,
+    occPct: net>0?occ/net:0, food,labour,agg,otherVar,central,ebitda,
+    ebitdaPct: net>0?ebitda/net:0, capex,payback,
+    salesPerSqft: net/f.sqft, format:f.format, meta:f};
+}
+
+function networkNorm(site){
+  if(site.location==='Dublin') return 5.8/10;
+  if(site.location==='Belfast') return 6.2/10;
+  const d = site.driveMin;
+  if(d===''||d==null) return 0;
+  return clamp((d-20)/10, 0, 10)/10;
+}
+
+function scoreSite(site, best, A){
+  const W = A.weights;
+  const demand = clamp(site.demandIndex,0,1);
+  const white = clamp(site.whitespaceScorecard,0,1);
+  const affl = clamp(site.affluenceNorm,0,1);
+  const occN = clamp((A.occZero - best.occPct)/(A.occZero - A.occFull),0,1);
+  const ebN = clamp(best.ebitda / A.ebitdaFull,0,1);
+  const pbN = clamp((A.pbZero - best.payback)/(A.pbZero - A.pbFull),0,1);
+  const netN = networkNorm(site);
+  const pts = {
+    demand: demand*W.demand, whitespace: white*W.whitespace, affluence: affl*W.affluence,
+    occupancy: occN*W.occupancy, ebitda: ebN*W.ebitda, payback: pbN*W.payback, network: netN*W.network,
+  };
+  const total = Object.values(pts).reduce((a,b)=>a+b,0);
+  const tier = total>=A.tierGo ? 'GO' : total>=A.tierWatch ? 'WATCH' : 'NO';
+  return {pts, total, tier};
+}
+
+function runModel(sites, A){
+  return sites.map(site=>{
+    const fmts = site.formats.map(f=>computeFormat(site,f,A));
+    const best = fmts.reduce((a,b)=> b.ebitda>a.ebitda?b:a, fmts[0]);
+    const sc = scoreSite(site, best, A);
+    return {site, fmts, best, ...sc};
+  }).sort((a,b)=> b.total-a.total);
+}
+
+
+
+/* ====================== DEFAULT ASSUMPTIONS ====================== */
+const DEFAULTS = {
+  capexFlat:300000,
+  foodPct:0.25, labourPct:0.27, otherVarPct:0.13, centralPct:0.05, aggComm:0.26,
+  sphBase:19.5, sphSlope:1.15, delPerPoint:0.05,
+  utilFloor:0.28, utilCeil:0.95, rentCap:130, rampYears:0.5,
+  occFull:0.11, occZero:0.24, ebitdaFull:220000, pbFull:2.5, pbZero:7.0,
+  tierGo:78, tierWatch:62,
+  weights:{demand:20,whitespace:15,affluence:8,occupancy:18,ebitda:14,payback:15,network:10}
+};
+const state = {A: structuredClone(DEFAULTS), tab:'rank', view:'table', sort:{key:'total',dir:-1},
+  search:'', ddIndex:0, baseline:null};
+
+/* ====================== HELPERS ====================== */
+const gbp = (n)=> n==null||isNaN(n)?'—':'£'+Math.round(n).toLocaleString('en-GB');
+const gbpk = (n)=> n==null||isNaN(n)?'—':'£'+(Math.round(n/1000)).toLocaleString('en-GB')+'k';
+const pct = (n,d=0)=> (n*100).toFixed(d)+'%';
+const yrs = (n)=> n>=90?'—':n.toFixed(1)+'y';
+const num = (n)=> Math.round(n).toLocaleString('en-GB');
+function tierColor(t){return t==='GO'?'var(--go)':t==='WATCH'?'var(--watch)':'var(--no)';}
+
+/* ====================== CONTROL DEFINITIONS ====================== */
+const CTRLS = [
+  {g:'Capital', items:[
+    {k:'capexFlat', label:'Capex per site (all-in £)', min:200000, max:600000, step:10000, fmt:v=>gbpk(v)},
+    {k:'rampYears', label:'Ramp added to payback (yrs)', min:0, max:1.5, step:0.1, fmt:v=>v.toFixed(1)+'y'},
+  ]},
+  {g:'Cost structure', items:[
+    {k:'foodPct', label:'Food cost', min:0.18, max:0.34, step:0.005, fmt:v=>pct(v,1)},
+    {k:'labourPct', label:'Labour / wages', min:0.20, max:0.36, step:0.005, fmt:v=>pct(v,1)},
+    {k:'otherVarPct', label:'Other variables', min:0.06, max:0.20, step:0.005, fmt:v=>pct(v,1)},
+    {k:'centralPct', label:'Central recharge', min:0, max:0.10, step:0.005, fmt:v=>pct(v,1)},
+    {k:'aggComm', label:'Aggregator commission', min:0.15, max:0.35, step:0.01, fmt:v=>pct(v,0)},
+    {k:'rentCap', label:'Rent psf cap', min:80, max:200, step:5, fmt:v=>'£'+v},
+  ]},
+  {g:'Revenue engine', items:[
+    {k:'sphBase', label:'Spend-per-head base', min:15, max:26, step:0.25, fmt:v=>'£'+v.toFixed(2)},
+    {k:'sphSlope', label:'SPH slope × affluence', min:0, max:2.5, step:0.05, fmt:v=>'£'+v.toFixed(2)},
+    {k:'utilFloor', label:'Utilisation floor', min:0.15, max:0.45, step:0.01, fmt:v=>pct(v,0)},
+    {k:'utilCeil', label:'Utilisation ceiling', min:0.70, max:1.0, step:0.01, fmt:v=>pct(v,0)},
+    {k:'delPerPoint', label:'Delivery per demand point', min:0, max:0.10, step:0.005, fmt:v=>pct(v,1)},
+  ]},
+  {g:'Scoring anchors', items:[
+    {k:'ebitdaFull', label:'EBITDA full-marks at', min:120000, max:350000, step:10000, fmt:v=>gbpk(v)},
+    {k:'pbFull', label:'Payback full-marks (yrs)', min:1, max:4, step:0.25, fmt:v=>v.toFixed(2)+'y'},
+    {k:'pbZero', label:'Payback zero-marks (yrs)', min:5, max:10, step:0.5, fmt:v=>v.toFixed(1)+'y'},
+    {k:'occFull', label:'Occupancy full-marks at', min:0.08, max:0.16, step:0.005, fmt:v=>pct(v,1)},
+    {k:'occZero', label:'Occupancy zero-marks at', min:0.18, max:0.30, step:0.005, fmt:v=>pct(v,1)},
+  ]},
+  {g:'Tier thresholds', items:[
+    {k:'tierGo', label:'GO at score ≥', min:65, max:90, step:1, fmt:v=>v.toFixed(0)},
+    {k:'tierWatch', label:'WATCH at score ≥', min:45, max:78, step:1, fmt:v=>v.toFixed(0)},
+  ]},
+  {g:'Scorecard weights (=100)', wkey:true, items:[
+    {k:'demand', label:'Demand', min:0, max:35, step:1, fmt:v=>v.toFixed(0)},
+    {k:'whitespace', label:'Whitespace', min:0, max:30, step:1, fmt:v=>v.toFixed(0)},
+    {k:'affluence', label:'Affluence', min:0, max:20, step:1, fmt:v=>v.toFixed(0)},
+    {k:'occupancy', label:'Occupancy cost', min:0, max:30, step:1, fmt:v=>v.toFixed(0)},
+    {k:'ebitda', label:'EBITDA quantum', min:0, max:30, step:1, fmt:v=>v.toFixed(0)},
+    {k:'payback', label:'Payback', min:0, max:30, step:1, fmt:v=>v.toFixed(0)},
+    {k:'network', label:'Network fit', min:0, max:25, step:1, fmt:v=>v.toFixed(0)},
+  ]}
+];
+
+/* ====================== BUILD CONTROLS ====================== */
+function buildControls(){
+  const host = document.getElementById('controls');
+  let html='';
+  for(const grp of CTRLS){
+    html += `<div class="grp"><h3>${grp.g}</h3>`;
+    for(const it of grp.items){
+      const val = grp.wkey ? state.A.weights[it.k] : state.A[it.k];
+      html += `<div class="ctrl">
+        <div class="cl"><label>${it.label}</label><span class="cv" id="cv-${grp.wkey?'w_':''}${it.k}">${it.fmt(val)}</span></div>
+        <input type="range" min="${it.min}" max="${it.max}" step="${it.step}" value="${val}"
+          data-k="${it.k}" data-w="${grp.wkey?1:0}"/></div>`;
+    }
+    if(grp.wkey){ html += `<div class="wsum" id="wsum"></div>`; }
+    html += `</div>`;
+  }
+  html += `<div class="rail-actions">
+      <button id="resetBtn">Reset to base</button>
+      <button class="primary" id="scenBtn">Set as baseline</button>
+    </div>
+    <div style="font-size:11px;color:var(--faint);margin-top:10px">“Set as baseline” freezes the current ranking so the arrows in the table show movement against it.</div>`;
+  host.innerHTML = html;
+
+  host.querySelectorAll('input[type=range]').forEach(inp=>{
+    inp.addEventListener('input', e=>{
+      const k=e.target.dataset.k, isW=e.target.dataset.w==='1', v=parseFloat(e.target.value);
+      if(isW){ state.A.weights[k]=v; document.getElementById('cv-w_'+k).textContent=fmtFor(k,true)(v); }
+      else { state.A[k]=v; document.getElementById('cv-'+k).textContent=fmtFor(k,false)(v); }
+      updateWsum(); renderAll();
+    });
+  });
+  document.getElementById('resetBtn').onclick=()=>{state.A=structuredClone(DEFAULTS);buildControls();renderAll();};
+  document.getElementById('scenBtn').onclick=()=>{state.baseline=indexByLoc(runModel(DATA.sites,state.A));renderAll();
+    const b=document.getElementById('scenBtn');b.textContent='Baseline set ✓';setTimeout(()=>b.textContent='Set as baseline',1400);};
+  updateWsum();
+}
+function fmtFor(k,isW){
+  for(const g of CTRLS) for(const it of g.items) if(it.k===k && (!!g.wkey)===isW) return it.fmt;
+  return v=>v;
+}
+function updateWsum(){
+  const w=state.A.weights, sum=Object.values(w).reduce((a,b)=>a+b,0);
+  const el=document.getElementById('wsum'); if(!el)return;
+  el.className='wsum '+(sum===100?'ok':'bad');
+  el.innerHTML=`<span>Weights total</span><span>${sum} / 100 ${sum===100?'✓':'— normalised'}</span>`;
+}
+function indexByLoc(rows){const m={};rows.forEach((r,i)=>m[r.site.location]={rank:i+1,total:r.total,tier:r.tier});return m;}
+
+/* ====================== RENDER ====================== */
+let CURRENT=[];
+function renderAll(){
+  CURRENT = runModel(DATA.sites, state.A);
+  renderSummary();
+  renderRankTable();
+  renderBoard();
+  renderDeepDive();
+  renderCharts();
+  renderFootnote();
+}
+
+function renderSummary(){
+  const go=CURRENT.filter(r=>r.tier==='GO').length;
+  const watch=CURRENT.filter(r=>r.tier==='WATCH').length;
+  const no=CURRENT.filter(r=>r.tier==='NO').length;
+  const pipe=CURRENT.filter(r=>r.site.location!=='Westfield Stratford (benchmark)');
+  const avgPb = pipe.filter(r=>r.best.payback<90).reduce((a,r)=>a+r.best.payback,0)/pipe.length;
+  const totEb = CURRENT.filter(r=>r.tier==='GO').reduce((a,r)=>a+r.best.ebitda,0);
+  const top = CURRENT[0];
+  document.getElementById('summary').innerHTML = `
+    <div class="kpi go"><div class="kl">GO</div><div class="kv">${go}</div><div class="ks">clear to pursue</div></div>
+    <div class="kpi watch"><div class="kl">WATCH</div><div class="kv">${watch}</div><div class="ks">conditional</div></div>
+    <div class="kpi no"><div class="kl">NO</div><div class="kv">${no}</div><div class="ks">park / reject</div></div>
+    <div class="kpi"><div class="kl">Top ranked</div><div class="kv" style="font-size:17px">${top.site.location}</div><div class="ks">${top.total.toFixed(1)} pts &middot; ${gbpk(top.best.ebitda)} EBITDA</div></div>
+    <div class="kpi"><div class="kl">GO EBITDA pool</div><div class="kv" style="font-size:19px">${gbpk(totEb)}</div><div class="ks">sum of GO sites</div></div>
+    <div class="kpi"><div class="kl">Avg payback</div><div class="kv" style="font-size:19px">${avgPb.toFixed(1)}y</div><div class="ks">at ${gbpk(state.A.capexFlat)}/site</div></div>`;
+}
+
+const COLS = [
+  {k:'rank', l:'#', cls:'l', get:(r,i)=>i+1, sortless:true},
+  {k:'location', l:'Site', cls:'l', get:r=>r.site.location},
+  {k:'region', l:'Region', cls:'l', get:r=>r.site.region},
+  {k:'format', l:'Rec. format', cls:'l', get:r=>r.best.format},
+  {k:'net', l:'Net sales', get:r=>r.best.net},
+  {k:'ebitda', l:'EBITDA', get:r=>r.best.ebitda},
+  {k:'ebitdaPct', l:'EBITDA %', get:r=>r.best.ebitdaPct},
+  {k:'occPct', l:'Occ %', get:r=>r.best.occPct},
+  {k:'payback', l:'Payback', get:r=>r.best.payback},
+  {k:'total', l:'Score', get:r=>r.total},
+  {k:'tier', l:'Tier', get:r=>r.tier},
+];
+function sortRows(rows){
+  const s=state.sort;
+  if(s.key==='total'){ return rows; } // already sorted desc by model
+  const col=COLS.find(c=>c.k===s.key); if(!col)return rows;
+  const sorted=[...rows].sort((a,b)=>{
+    let va=col.get(a), vb=col.get(b);
+    if(typeof va==='string') return s.dir*va.localeCompare(vb);
+    return s.dir*(va-vb);
+  });
+  return sorted;
+}
+function filterRows(rows){
+  const q=state.search.trim().toLowerCase();
+  if(!q)return rows;
+  return rows.filter(r=> (r.site.location+' '+r.site.region+' '+r.best.format).toLowerCase().includes(q));
+}
+function renderRankTable(){
+  let rows = filterRows(sortRows(CURRENT));
+  const bl=state.baseline;
+  let h=`<div class="tablewrap"><table><thead><tr>`;
+  for(const c of COLS){
+    const active = state.sort.key===c.k;
+    const ar = active ? (state.sort.dir<0?'▼':'▲') : '';
+    h+=`<th class="${c.cls==='l'?'l':''}" data-k="${c.k}">${c.l} <span class="ar">${ar}</span></th>`;
+  }
+  h+=`</tr></thead><tbody>`;
+  rows.forEach((r,i)=>{
+    const maxScore=100;
+    const w=Math.max(3,Math.min(100,r.total/maxScore*100));
+    let delta='';
+    if(bl && bl[r.site.location]){
+      const d=bl[r.site.location].rank-(i+1);
+      if(d>0) delta=`<span class="delta up">▲${d}</span>`;
+      else if(d<0) delta=`<span class="delta down">▼${-d}</span>`;
+      else delta=`<span class="delta">–</span>`;
+    }
+    const bench = r.site.location.includes('benchmark');
+    h+=`<tr data-loc="${r.site.location}" ${bench?'style="opacity:.6"':''}>
+      <td class="l rank">${i+1}</td>
+      <td class="l"><span class="sitename">${r.site.location}</span> ${delta}<div class="sitesub">${r.site.formats.length} format${r.site.formats.length>1?'s':''} assessed · ${r.best.meta.scheme}</div></td>
+      <td class="l">${r.site.region}</td>
+      <td class="l">${shortFmt(r.best.format)}</td>
+      <td class="mono">${gbp(r.best.net)}</td>
+      <td class="mono">${gbp(r.best.ebitda)}</td>
+      <td class="mono">${pct(r.best.ebitdaPct,0)}</td>
+      <td class="mono">${pct(r.best.occPct,0)}</td>
+      <td class="mono">${yrs(r.best.payback)}</td>
+      <td class="bar-cell"><span class="scorebar"><i style="width:${w}%;background:${tierColor(r.tier)}"></i><b>${r.total.toFixed(1)}</b></span></td>
+      <td><span class="pill ${r.tier}">${r.tier}</span></td>
+    </tr>`;
+  });
+  h+=`</tbody></table></div>`;
+  document.getElementById('rankTable').innerHTML=h;
+  document.querySelectorAll('#rankTable th').forEach(th=>{
+    th.onclick=()=>{const k=th.dataset.k;if(k==='rank')return;
+      if(state.sort.key===k)state.sort.dir*=-1;else state.sort={key:k,dir:(k==='location'||k==='region'||k==='format')?1:-1};
+      renderRankTable();};
+  });
+  document.querySelectorAll('#rankTable tbody tr').forEach(tr=>{
+    tr.onclick=()=>openSite(tr.dataset.loc);
+  });
+}
+function shortFmt(f){return f.replace('Shopping centre in-line','Shopping centre').replace('Retail park / leisure terrace','Retail park').replace('Street level','Street level');}
+
+function renderBoard(){
+  const cols=[['GO','go'],['WATCH','watch'],['NO','no']];
+  let h=`<div class="board">`;
+  for(const [tier,cls] of cols){
+    const rows=filterRows(CURRENT).filter(r=>r.tier===tier);
+    h+=`<div class="col ${cls}"><h4>${tier} <span class="n">${rows.length}</span></h4>`;
+    rows.forEach(r=>{
+      h+=`<div class="bcard" data-loc="${r.site.location}">
+        <div class="bt"><span class="bn">${r.site.location}</span><span class="bs" style="color:${tierColor(tier)}">${r.total.toFixed(1)}</span></div>
+        <div class="bm"><span>${gbpk(r.best.ebitda)} EBITDA</span><span>${yrs(r.best.payback)} payback</span><span>${pct(r.best.ebitdaPct,0)} margin</span></div>
+        <div class="bm"><span class="tag">${shortFmt(r.best.format)}</span><span class="tag">${r.site.region}</span></div>
+      </div>`;
+    });
+    h+=`</div>`;
+  }
+  h+=`</div>`;
+  document.getElementById('rankBoard').innerHTML=h;
+  document.querySelectorAll('#rankBoard .bcard').forEach(c=>c.onclick=()=>openSite(c.dataset.loc));
+}
+
+/* ---- Deep dive ---- */
+function buildDdSelect(){
+  const sel=document.getElementById('ddSelect');
+  sel.innerHTML=CURRENT.map((r,i)=>`<option value="${r.site.location}">${i+1}. ${r.site.location} — ${r.tier} (${r.total.toFixed(1)})</option>`).join('');
+  sel.value=CURRENT[state.ddIndex]?.site.location || CURRENT[0].site.location;
+  sel.onchange=()=>{state.ddIndex=CURRENT.findIndex(r=>r.site.location===sel.value);renderDeepDive();};
+}
+function openSite(loc){
+  state.ddIndex=CURRENT.findIndex(r=>r.site.location===loc);
+  switchTab('site');
+}
+function renderDeepDive(){
+  buildDdSelect();
+  const r=CURRENT[state.ddIndex]; if(!r){return;}
+  const s=r.site, b=r.best;
+  const W=state.A.weights;
+  const scoreRows=[
+    ['Demand', r.pts.demand, W.demand],
+    ['Whitespace', r.pts.whitespace, W.whitespace],
+    ['Affluence', r.pts.affluence, W.affluence],
+    ['Occupancy cost', r.pts.occupancy, W.occupancy],
+    ['EBITDA quantum', r.pts.ebitda, W.ebitda],
+    ['Payback', r.pts.payback, W.payback],
+    ['Network fit', r.pts.network, W.network],
+  ];
+  const fmtRows = r.fmts.map(f=>({f, rec:f===b}));
+  const compRow = (c)=>{
+    const asian = (v)=> v===''||v==null?'—':v;
+    return '';
+  };
+  const facts = [
+    ['Region', s.region],['Country', s.country],
+    ['Nearest Maki', s.nearest + (s.driveMin!==''&&s.driveMin!=null?` · ${s.driveMin} min`:'')],
+    ['Scheme footfall', s.footfall_m?`${s.footfall_m}m/yr (${s.footfallTrend})`:'—'],
+    ['Primary catchment', s.catchment?num(s.catchment):'—'],
+    ['Students', s.students!==''&&s.students!=null?num(s.students):'—'],
+    ['Affluence (1–5)', s.affluence],
+    ['Whitespace (1–5)', s.whitespace15],
+    ['Evening economy (1–5)', s.evening15],
+    ['Delivery strength (1–5)', s.delivery15],
+    ['Wagamama in town', s.wagamama],
+    ['Asian operators', s.asianOps===''||s.asianOps==null?'—':s.asianOps],
+    ['Ramen specialists', s.ramenSpecialists],
+    ['Demand index', (s.demandIndex*100).toFixed(0)+' / 100'],
+  ];
+  let h=`<div class="dd-grid"><div>
+    <div class="panelbox">
+      <div class="headline">
+        <span class="pill ${r.tier}" style="font-size:13px;padding:5px 14px">${r.tier}</span>
+        <span class="hbig">${s.location}</span>
+        <span style="color:var(--muted)">rank ${state.ddIndex+1} of ${CURRENT.length} · ${r.total.toFixed(1)} pts</span>
+      </div>
+      <div class="pnl">
+        <div class="pr"><span>Recommended format</span><span class="pv">${shortFmt(b.format)}</span></div>
+        <div class="pr"><span>Pitch</span><span class="pv" style="text-align:right;max-width:160px">${b.meta.scheme}</span></div>
+        <div class="pr"><span>Unit size</span><span class="pv">${num(b.meta.sqft)} sq ft · ${b.seats} seats</span></div>
+        <div class="pr"><span>Utilisation</span><span class="pv">${pct(b.util,0)}</span></div>
+        <div class="pr"><span>Covers / week</span><span class="pv">${num(b.covers)}</span></div>
+        <div class="pr"><span>Spend per head</span><span class="pv">£${b.sph.toFixed(2)}</span></div>
+      </div>
+    </div>
+    <div class="panelbox">
+      <h3>Site P&amp;L — recommended format</h3>
+      <div class="pnl">
+        <div class="pr"><span>Dine-in sales</span><span class="pv mono">${gbp(b.dineIn)}</span></div>
+        <div class="pr"><span>Delivery sales</span><span class="pv mono">${gbp(b.delivery)}</span></div>
+        <div class="pr tot"><span>Net sales</span><span class="pv mono">${gbp(b.net)}</span></div>
+        <div class="pr"><span>Rent + service + rates</span><span class="pv mono neg">${gbp(b.occ)} · ${pct(b.occPct,0)}</span></div>
+        <div class="pr"><span>Food (${pct(state.A.foodPct,0)})</span><span class="pv mono neg">${gbp(b.food)}</span></div>
+        <div class="pr"><span>Labour (${pct(state.A.labourPct,0)})</span><span class="pv mono neg">${gbp(b.labour)}</span></div>
+        <div class="pr"><span>Aggregator comm.</span><span class="pv mono neg">${gbp(b.agg)}</span></div>
+        <div class="pr"><span>Other variables</span><span class="pv mono neg">${gbp(b.otherVar)}</span></div>
+        <div class="pr"><span>Central recharge</span><span class="pv mono neg">${gbp(b.central)}</span></div>
+        <div class="pr tot"><span>Site EBITDA</span><span class="pv mono" style="color:var(--go)">${gbp(b.ebitda)} · ${pct(b.ebitdaPct,0)}</span></div>
+        <div class="pr"><span>Capex (all-in)</span><span class="pv mono">${gbp(b.capex)}</span></div>
+        <div class="pr"><span>Payback</span><span class="pv mono" style="color:${b.payback<3?'var(--go)':b.payback<5?'var(--watch)':'var(--no)'}">${yrs(b.payback)}</span></div>
+      </div>
+    </div>
+    ${r.fmts.length>1?`<div class="panelbox">
+      <h3>Format options — recommended = highest EBITDA</h3>
+      <table class="fmttable"><thead><tr><th class="l">Format</th><th>Sq ft</th><th>Net sales</th><th>Occ %</th><th>EBITDA</th><th>EBITDA %</th><th>Payback</th></tr></thead><tbody>
+      ${r.fmts.map(f=>`<tr class="${f===b?'rec':''}"><td class="l">${shortFmt(f.format)}${f===b?'<span class="recbadge">REC</span>':''}</td>
+        <td class="mono">${num(f.meta.sqft)}</td><td class="mono">${gbpk(f.net)}</td><td class="mono">${pct(f.occPct,0)}</td>
+        <td class="mono">${gbpk(f.ebitda)}</td><td class="mono">${pct(f.ebitdaPct,0)}</td><td class="mono">${yrs(f.payback)}</td></tr>`).join('')}
+      </tbody></table></div>`:''}
+  </div>
+  <div>
+    <div class="panelbox">
+      <h3>Weighted scorecard</h3>
+      <div class="scoregrid">
+        ${scoreRows.map(([n,v,mx])=>`<div class="srow">
+          <div class="sn">${n} <span class="smax">/${mx}</span></div>
+          <div class="sb"><i style="width:${mx>0?Math.min(100,v/mx*100):0}%"></i></div>
+          <div class="sv">${v.toFixed(1)}</div></div>`).join('')}
+        <div class="srow" style="margin-top:6px;border-top:1px solid var(--line);padding-top:8px">
+          <div class="sn" style="color:var(--ink);font-weight:700">Total</div>
+          <div class="sb" style="background:transparent"></div>
+          <div class="sv" style="color:${tierColor(r.tier)}">${r.total.toFixed(1)}</div></div>
+      </div>
+    </div>
+    <div class="panelbox">
+      <h3>Location facts</h3>
+      <div class="facts">
+        ${facts.map(([l,v])=>`<div class="fact"><span class="fl">${l}</span><span class="fv">${v}</span></div>`).join('')}
+      </div>
+    </div>
+    <div class="panelbox">
+      <h3>Analyst verdict</h3>
+      <div class="verdict">${s.verdict || 'No written verdict recorded for the benchmark row.'}</div>
+    </div>
+  </div></div>`;
+  document.getElementById('ddBody').innerHTML=h;
+}
+
+/* ====================== CHARTS ====================== */
+const tip=document.getElementById('tip');
+function showTip(html,x,y){tip.innerHTML=html;tip.style.opacity=1;tip.style.left=(x+14)+'px';tip.style.top=(y+14)+'px';}
+function hideTip(){tip.style.opacity=0;}
+
+function renderCharts(){
+  if(state.tab!=='charts')return;
+  renderScatter(); renderScoreChart(); renderOccChart();
+}
+function svgEl(w,h){return `<svg viewBox="0 0 ${w} ${h}" width="100%" height="${h}" preserveAspectRatio="xMidYMid meet">`;}
+
+function renderScatter(){
+  const rows=CURRENT.filter(r=>r.best.payback<20 && !r.site.location.includes('benchmark'));
+  const W=860,H=460,m={l:64,r:24,t:34,b:46};
+  const iw=W-m.l-m.r, ih=H-m.t-m.b;
+  const xmin=1, xmax=Math.max(5, Math.ceil(Math.max(...rows.map(r=>r.best.payback))));
+  const ymax=Math.max(...rows.map(r=>r.best.ebitda))*1.08, ymin=Math.min(0,...rows.map(r=>r.best.ebitda));
+  const nmax=Math.max(...rows.map(r=>r.best.net));
+  const X=v=>m.l+(v-xmin)/(xmax-xmin)*iw;
+  const Y=v=>m.t+ih-(v-ymin)/(ymax-ymin)*ih;
+  const R=v=>6+Math.sqrt(v/nmax)*20;
+  let s=svgEl(W,H);
+  // grid
+  for(let i=0;i<=5;i++){const yy=m.t+ih*i/5;const val=ymax-(ymax-ymin)*i/5;
+    s+=`<line class="grid" x1="${m.l}" y1="${yy}" x2="${W-m.r}" y2="${yy}"/><text x="${m.l-8}" y="${yy+3}" text-anchor="end">${gbpk(val)}</text>`;}
+  for(let i=xmin;i<=xmax;i++){const xx=X(i);s+=`<text x="${xx}" y="${H-m.b+18}" text-anchor="middle">${i}y</text>`;}
+  // quadrant lines at pbFull*1.5-ish and ebitdaFull
+  const qx=X(state.A.pbFull+ state.A.rampYears); const qy=Y(state.A.ebitdaFull);
+  s+=`<line class="quad" x1="${qx}" y1="${m.t}" x2="${qx}" y2="${m.t+ih}"/><text x="${qx+4}" y="${m.t+12}">fast payback →</text>`;
+  s+=`<line class="quad" x1="${m.l}" y1="${qy}" x2="${W-m.r}" y2="${qy}"/><text x="${W-m.r}" y="${qy-6}" text-anchor="end">↑ EBITDA target</text>`;
+  s+=`<text x="${m.l+iw/2}" y="${H-6}" text-anchor="middle">Payback (years, incl. ramp) — lower is better →</text>`;
+  // bubbles (draw largest first so small sit on top)
+  const ordered=[...rows].sort((a,b)=>b.best.net-a.best.net);
+  ordered.forEach((r)=>{
+    const c=tierColor(r.tier);
+    s+=`<circle class="bubble" cx="${X(r.best.payback)}" cy="${Y(r.best.ebitda)}" r="${R(r.best.net)}" fill="${c}" fill-opacity="0.5" stroke="${c}" stroke-width="1.4"
+      data-loc="${r.site.location}"/>`;
+  });
+  // labels: only the standouts, to avoid the fast-payback pile-up. Everything is hoverable.
+  const rank=Object.fromEntries(CURRENT.map((r,i)=>[r.site.location,i+1]));
+  rows.forEach(r=>{
+    const label = rank[r.site.location]<=3 || r.tier==='NO' || r.best.net>1.95e6;
+    if(!label) return;
+    const above = r.best.ebitda >= state.A.ebitdaFull*0.7;
+    const dy = above ? -R(r.best.net)-5 : R(r.best.net)+12;
+    s+=`<text class="blabel" x="${X(r.best.payback)}" y="${Y(r.best.ebitda)+dy}" text-anchor="middle">${r.site.location}</text>`;
+  });
+  s+=`</svg>`;
+  const host=document.getElementById('scatter'); host.innerHTML=s;
+  host.querySelectorAll('.bubble').forEach(c=>{
+    const r=CURRENT.find(x=>x.site.location===c.dataset.loc);
+    c.onmousemove=e=>showTip(`<b>${r.site.location}</b> · ${r.tier}<br>EBITDA ${gbp(r.best.ebitda)} (${pct(r.best.ebitdaPct,0)})<br>Payback ${yrs(r.best.payback)}<br>Net sales ${gbp(r.best.net)}`,e.clientX,e.clientY);
+    c.onmouseleave=hideTip; c.onclick=()=>openSite(r.site.location);
+  });
+}
+
+function renderScoreChart(){
+  const rows=CURRENT;
+  const W=860, bh=20, gap=8, m={l:150,r:40,t:10,b:30};
+  const H=m.t+m.b+rows.length*(bh+gap);
+  const iw=W-m.l-m.r;
+  const xmax=100;
+  const X=v=>m.l+v/xmax*iw;
+  let s=svgEl(W,H);
+  // threshold lines
+  const gx=X(state.A.tierGo), wx=X(state.A.tierWatch);
+  s+=`<line class="quad" x1="${gx}" y1="${m.t}" x2="${gx}" y2="${H-m.b}" stroke="var(--go)"/><text x="${gx}" y="${H-m.b+16}" text-anchor="middle" fill="var(--go)">GO ${state.A.tierGo}</text>`;
+  s+=`<line class="quad" x1="${wx}" y1="${m.t}" x2="${wx}" y2="${H-m.b}" stroke="var(--watch)"/><text x="${wx}" y="${H-m.b+16}" text-anchor="middle" fill="var(--watch)">WATCH ${state.A.tierWatch}</text>`;
+  rows.forEach((r,i)=>{
+    const y=m.t+i*(bh+gap);
+    s+=`<text x="${m.l-10}" y="${y+bh-5}" text-anchor="end" fill="var(--ink)" style="font-size:11px">${i+1}. ${r.site.location}</text>`;
+    s+=`<rect x="${m.l}" y="${y}" width="${iw}" height="${bh}" fill="#20242c" rx="4"/>`;
+    s+=`<rect class="bubble" x="${m.l}" y="${y}" width="${X(r.total)-m.l}" height="${bh}" fill="${tierColor(r.tier)}" rx="4" data-loc="${r.site.location}"/>`;
+    s+=`<text x="${X(r.total)+6}" y="${y+bh-5}" fill="var(--muted)" style="font-size:11px">${r.total.toFixed(1)}</text>`;
+  });
+  s+=`</svg>`;
+  const host=document.getElementById('scoreChart');host.innerHTML=s;
+  host.querySelectorAll('.bubble').forEach(c=>{c.style.cursor='pointer';c.onclick=()=>openSite(c.dataset.loc);});
+}
+
+function renderOccChart(){
+  const rows=[...CURRENT].sort((a,b)=>a.best.occPct-b.best.occPct);
+  const W=860,H=430,m={l:120,r:50,t:16,b:40};
+  const iw=W-m.l-m.r, ih=H-m.t-m.b;
+  const bw=iw/rows.length;
+  const occMax=Math.max(...rows.map(r=>r.best.occPct))*1.1;
+  const ebMax=Math.max(...rows.map(r=>r.best.ebitda))*1.1;
+  const Yo=v=>m.t+ih-(v/occMax)*ih;
+  const Ye=v=>m.t+ih-(v/ebMax)*ih;
+  let s=svgEl(W,H);
+  for(let i=0;i<=4;i++){const yy=m.t+ih*i/4;const val=occMax-(occMax*i/4);
+    s+=`<line class="grid" x1="${m.l}" y1="${yy}" x2="${W-m.r}" y2="${yy}"/><text x="${m.l-8}" y="${yy+3}" text-anchor="end" fill="var(--muted)">${pct(val,0)}</text>`;}
+  s+=`<text x="18" y="${m.t+ih/2}" transform="rotate(-90 18 ${m.t+ih/2})" text-anchor="middle" fill="var(--muted)">Occupancy % of sales</text>`;
+  s+=`<text x="${W-6}" y="${m.t+8}" text-anchor="end" fill="var(--muted)">● = site EBITDA</text>`;
+  rows.forEach((r,i)=>{
+    const x=m.l+i*bw+2;
+    const h=ih - (Yo(r.best.occPct)-m.t);
+    s+=`<rect class="bubble" x="${x}" y="${Yo(r.best.occPct)}" width="${bw-4}" height="${h}" fill="${tierColor(r.tier)}" fill-opacity="0.7" rx="2" data-loc="${r.site.location}"/>`;
+    s+=`<circle cx="${x+(bw-4)/2}" cy="${Ye(r.best.ebitda)}" r="3.5" fill="#fff" stroke="#000" stroke-width="0.5"/>`;
+    s+=`<text x="${x+(bw-4)/2}" y="${H-m.b+14}" text-anchor="end" transform="rotate(-55 ${x+(bw-4)/2} ${H-m.b+14})" fill="var(--faint)" style="font-size:9.5px">${r.site.location}</text>`;
+  });
+  s+=`</svg>`;
+  const host=document.getElementById('occChart');host.innerHTML=s;
+  host.querySelectorAll('.bubble').forEach(c=>{const r=CURRENT.find(x=>x.site.location===c.dataset.loc);
+    c.onmousemove=e=>showTip(`<b>${r.site.location}</b><br>Occ ${pct(r.best.occPct,0)} · EBITDA ${gbp(r.best.ebitda)}`,e.clientX,e.clientY);
+    c.onmouseleave=hideTip;c.onclick=()=>openSite(r.site.location);});
+}
+
+function renderFootnote(){
+  document.getElementById('footnote').innerHTML=
+   `Capex set to <b>${gbp(state.A.capexFlat)} all-in per site</b> (your figure for the optimal 2,000–3,000 sq ft unit), replacing the £120/175/240-per-sq-ft industry benchmark in the source model. `+
+   `All revenue is bottom-up from public footfall — there is no Xero or Kobas feed. Rents are ~9 quoted, the rest reasoned estimates. `+
+   `Model &amp; assessment docs: Site_Assessments_Aug_2026. Open “Model notes” for the full health warnings.`;
+}
+
+/* ====================== WARNINGS ====================== */
+const WARNINGS=[
+ "Rents. Only nine of the ~fifty rent figures are quoted asking rents; the rest are reasoned estimates. Zone A prime rents are a retail construct, not an F&B overall rent — any rent above the £130 psf cap is treated as a misread Zone A figure. Get an agent rental-evidence pack before offering.",
+ "The Westfield Stratford benchmark fails its own model. At our standard 2,000–2,500 sq ft format and published rent tone, Stratford does not clear the hurdle — yet we trade there profitably. Loading the real Stratford lease terms and trading numbers is the single highest-value fix and would recalibrate every other line.",
+ "Capex is now your £300k all-in figure (was an industry benchmark). Replace with real Shoreditch, Southampton or Birmingham outturn and the payback column becomes genuinely decision-grade.",
+ "Absence of competition is not automatically whitespace. Where no Wagamama trades in a town the model discounts the whitespace score by 40% — their absence is a screening signal, not free space.",
+ "Drive times to the nearest existing Maki site are estimates, not routed. Dublin and Belfast carry manual market-entry friction rather than a drive score."
+];
+function buildWarnings(){
+  document.getElementById('warnList').innerHTML=WARNINGS.map(w=>`<li>${w}</li>`).join('');
+  document.getElementById('capexNote').innerHTML=`<b>On this build:</b> paybacks are computed at ${gbp(state.A.capexFlat)} all-in per site regardless of unit size — deliberately, per your instruction. If build cost genuinely scales with a 3,000 sq ft retail-park box vs a 1,600 sq ft street unit, raise capex on the left before trusting the retail-park paybacks.`;
+}
+
+/* ====================== TABS / NAV ====================== */
+function switchTab(t){
+  state.tab=t;
+  document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',b.dataset.tab===t));
+  document.querySelectorAll('.pane').forEach(p=>p.classList.toggle('active',p.id==='pane-'+t));
+  if(t==='charts')renderCharts();
+  if(t==='site')renderDeepDive();
+}
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>switchTab(b.dataset.tab));
+document.getElementById('viewSeg').querySelectorAll('button').forEach(b=>b.onclick=()=>{
+  state.view=b.dataset.view;
+  document.getElementById('viewSeg').querySelectorAll('button').forEach(x=>x.classList.toggle('active',x===b));
+  document.getElementById('rankTable').style.display=state.view==='table'?'':'none';
+  document.getElementById('rankBoard').style.display=state.view==='board'?'':'none';
+});
+document.getElementById('search').oninput=e=>{state.search=e.target.value;renderRankTable();renderBoard();};
+document.getElementById('railToggle').onclick=()=>document.getElementById('rail').classList.toggle('collapsed');
+document.getElementById('ddPrev').onclick=()=>{state.ddIndex=(state.ddIndex-1+CURRENT.length)%CURRENT.length;renderDeepDive();};
+document.getElementById('ddNext').onclick=()=>{state.ddIndex=(state.ddIndex+1)%CURRENT.length;renderDeepDive();};
+document.getElementById('notesBtn').onclick=()=>{buildWarnings();document.getElementById('notesModal').classList.add('open');};
+document.getElementById('notesClose').onclick=()=>document.getElementById('notesModal').classList.remove('open');
+document.getElementById('notesModal').onclick=e=>{if(e.target.id==='notesModal')e.target.classList.remove('open');};
+window.addEventListener('resize',()=>{if(state.tab==='charts')renderCharts();});
+
+/* ====================== INIT ====================== */
+buildControls();
+renderAll();
+
+</script>
+</body>
+</html>
