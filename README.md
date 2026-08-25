@@ -15,12 +15,46 @@ https://makiramen.github.io/site-pipeline/
 | `Maki_Ramen_Site_Pipeline_INTERACTIVE.html` | The model itself — self-contained, no dependencies. Open it in any browser. |
 | `index.html` | Redirect so the root URL above lands on the model. |
 
-## The six stages
+## The stages, and the town hub
 
 The page carries the whole search, not just the first pass. Switch stage with the
 segmented control above the tabs. On the four modelled stages the engine, the
-assumption sliders and the scorecard weights are shared — only the dataset under
-them changes. Two stages (Viewings, Agent book) are records, not models.
+assumption sliders and the scorecard weights are shared — only the dataset under them
+changes. Two stages (Viewings, Agent book) are records, not models. The hub sits in
+front of all of them and is where the page opens.
+
+### Towns — all in one (the landing page)
+
+The chronological stages each answer a different question and none of them answers
+*"what do we know about this town"*. The hub does. It joins every dataset on the page —
+the 05 Aug town model, the 10 Aug units, the 14 Aug Savills call, the 22 Aug visit, the
+field scorecard, the Exeter appraisal, the Bluewater heads of terms and the agent book —
+onto **one key per place**, and shows only the sections that exist.
+
+**43 towns.** Each card carries a row of signal chips (heads of terms · written
+appraisal · field score · visited · units and best score · live with Savills · agent
+book · desk tier) so you can see what exists before opening anything. Click a town and
+it expands full-width into the merged detail, ordered by what matters rather than by
+date:
+
+1. **Heads of terms** — if there is a live deal (Bluewater only, today)
+2. **The town** — the 05 Aug model inputs, score, tier and analyst verdict
+3. **Units offered here** — every unit with terms, occupancy, EBITDA, payback, plus the
+   Savills call and scheme trade on each
+4. **The visit** — what was viewed, terms that came back, competitive pressure, our
+   stated position, and the ten-criteria field score with the observations
+5. **Written appraisal** — where one exists, with the field-vs-desk disagreement flagged
+6. **On the agent book** — units introduced but not yet on a schedule
+
+Filter chips: at heads of terms · visited · live with an agent · has units · desk tier
+GO. Free-text search matches town, scheme and unit names. Every section ends with a
+button through to the stage that produced it.
+
+**Nothing is recalculated in the hub.** Every figure is read from the stage that
+produced it, so the hub and the stages can never disagree. The chronological stages are
+all still there.
+
+### The chronological stages
 
 | Stage | Date | What it is |
 | --- | --- | --- |
@@ -322,6 +356,12 @@ been read out, the card says so rather than leaving the field blank.
   unit.
 - **Capex** is the £300k all-in trading box plus a shell-off allowance per surplus
   sq ft (slider, default £40). Neither figure is a Maki outturn.
+- **The two occupancy columns are the same money twice.** *Occupancy cost £/yr* is the
+  total paid to hold the unit — rent + service charge + rates + insurance. *Occupancy %
+  of sales* is that figure divided by net turnover. The cost is close to fixed, so the
+  percentage falls as the box trades harder, and it is the percentage the industry
+  judges a site on. Under about 13% is comfortable; over 20% is where Bluewater starts
+  at our own modelled turnover.
 - **Street-level units use the street-level capacity spec.** The source workbook
   applied the shopping-centre front-of-house and cover ratios to every unit
   including the street ones; this build corrects that, so Cardiff 16 Working

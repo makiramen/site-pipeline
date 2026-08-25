@@ -405,6 +405,76 @@ svg .quad{stroke:#3a414d;stroke-width:1;stroke-dasharray:4 4}
 .dcl.open{border-color:rgba(88,166,255,.30)}
 
 
+/* ---- town hub ---- */
+#pane-hub{display:none;padding:18px 22px 80px;max-width:1180px}
+#pane-hub .vsec{margin:0 0 14px}
+#pane-hub .vsec h2{margin:0;font-size:15.5px;letter-spacing:.2px;font-weight:700;color:var(--ink);
+  display:flex;align-items:center;gap:10px}
+#pane-hub .vsec h2::after{content:"";flex:1;height:1px;background:var(--line)}
+#pane-hub .vlede{margin:7px 0 0;font-size:12.5px;color:var(--muted);max-width:880px;line-height:1.55}
+.hubctl{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:16px 0 4px}
+.hubctl .search{flex:0 1 300px;min-width:220px}
+.hubctl .seg{display:flex;border:1px solid var(--line);border-radius:9px;overflow:hidden;flex-wrap:wrap}
+.hubctl .seg button{background:var(--panel);border:none;border-right:1px solid var(--line);color:var(--muted);
+  padding:8px 12px;cursor:pointer;font-size:11.5px;font-weight:600}
+.hubctl .seg button:last-child{border-right:none}
+.hubctl .seg button.active{background:var(--panel2);color:var(--ink)}
+.hubcount{font-size:11.5px;color:var(--faint);margin-left:auto}
+.hubgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:12px;margin-top:14px;align-items:start}
+.hubcard{background:var(--card);border:1px solid var(--line);border-radius:11px;overflow:hidden;box-shadow:var(--shadow)}
+.hubcard.hasdeal{border-color:rgba(227,160,8,.34)}
+.hubcard.open{grid-column:1/-1;border-color:var(--red2)}
+.hubh{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:14px 15px 0;cursor:pointer}
+.hubh:hover h3{color:var(--red2)}
+.hubh h3{margin:0;font-size:16px;font-weight:700;letter-spacing:.2px;transition:color .12s}
+.hubh .vsub{font-size:11px;color:var(--faint);margin-top:3px}
+.hubtoggle{flex:0 0 22px;height:22px;border-radius:6px;background:var(--panel2);border:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--muted);line-height:1}
+.hubchips{display:flex;flex-wrap:wrap;gap:5px;padding:11px 15px 14px}
+.hubchip{font-size:9.5px;font-weight:700;letter-spacing:.5px;padding:4px 7px;border-radius:5px;
+  background:var(--panel2);border:1px solid var(--line);color:var(--muted);white-space:nowrap}
+.hubchip.deal{background:var(--watch-bg);color:var(--watch);border-color:rgba(227,160,8,.35)}
+.hubchip.appr{background:rgba(88,166,255,.11);color:#58a6ff;border-color:rgba(88,166,255,.32)}
+.hubchip.go{background:var(--go-bg);color:var(--go);border-color:rgba(63,185,80,.35)}
+.hubchip.watch{background:var(--watch-bg);color:var(--watch);border-color:rgba(227,160,8,.35)}
+.hubchip.no{background:var(--no-bg);color:var(--no);border-color:rgba(193,85,74,.35)}
+.hubchip.live{background:rgba(63,185,80,.10);color:var(--go);border-color:rgba(63,185,80,.28)}
+.hubchip.awaiting{background:var(--panel2);color:var(--faint)}
+.hubbody{border-top:1px solid var(--line);background:#0f1116;padding:4px 15px 15px}
+.hubsec{margin-top:15px;padding-top:14px;border-top:1px solid #1a1e25}
+.hubsec:first-child{border-top:none;padding-top:2px}
+.hubsec h4{margin:0 0 10px;font-size:11px;font-weight:800;letter-spacing:1.1px;text-transform:uppercase;
+  color:var(--faint);display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.hubsec.dealsec h4{color:var(--watch)}
+.hubsec.apprsec h4{color:#58a6ff}
+.hubtier{font-size:9.5px;font-weight:800;letter-spacing:.6px;padding:3px 7px;border-radius:5px;text-transform:none}
+.hubtier.go{background:var(--go-bg);color:var(--go);border:1px solid rgba(63,185,80,.35)}
+.hubtier.watch{background:var(--watch-bg);color:var(--watch);border:1px solid rgba(227,160,8,.35)}
+.hubtier.no{background:var(--no-bg);color:var(--no);border:1px solid rgba(193,85,74,.35)}
+.hubtier.awaiting,.hubtier.none{background:var(--panel2);color:var(--faint);border:1px solid var(--line)}
+.hubtier.warn{background:rgba(226,35,26,.11);color:var(--red2);border:1px solid rgba(226,35,26,.35)}
+.hubfacts{display:grid;grid-template-columns:repeat(auto-fill,minmax(178px,1fr));gap:7px 14px}
+.hubterms{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:7px 16px}
+.hubfact,.hubterm{display:flex;justify-content:space-between;gap:8px;font-size:11.5px;padding:4px 0;
+  border-bottom:1px solid #171b21}
+.hubfact span,.hubterm span{color:var(--faint)}
+.hubfact b,.hubterm b{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums;text-align:right}
+.hubverdict{margin:11px 0 0;font-size:12px;line-height:1.62;color:var(--muted)}
+.hubunit{margin-top:11px;padding:11px 12px;background:var(--panel);border:1px solid var(--line);border-radius:9px}
+.hubuh{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:13px}
+.hubuh b{font-weight:700}
+.hubusub{font-size:11px;color:var(--faint);margin-top:3px;margin-bottom:9px}
+.hubsav{margin-top:9px;font-size:11.5px;line-height:1.55;color:var(--muted);padding:8px 10px;border-radius:7px;
+  background:var(--panel2);border-left:2px solid var(--line)}
+.hubsav.live{border-left-color:var(--go)} .hubsav.rej{border-left-color:var(--red2)}
+.hubsav b{color:var(--ink)}
+.hubtrade{margin-top:8px;font-size:11.5px;line-height:1.55;color:var(--muted)}
+.hubtrade b{color:var(--ink)}
+.hubgo{margin-top:13px;background:var(--panel2);border:1px solid var(--line);color:var(--muted);
+  border-radius:7px;padding:7px 12px;font-size:11.5px;cursor:pointer;font-weight:600}
+.hubgo:hover{color:var(--ink);border-color:var(--red2)}
+@media (max-width:900px){ .hubgrid{grid-template-columns:1fr} }
+
 /* ---- field scorecard ---- */
 .fldrank{display:grid;grid-template-columns:repeat(auto-fit,minmax(178px,1fr));gap:10px;margin-top:14px}
 .fldr{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 13px;display:flex;
@@ -560,12 +630,13 @@ svg .quad{stroke:#3a414d;stroke-width:1;stroke-dasharray:4 4}
   <main>
     <div class="stagebar">
       <div class="seg" id="stageSeg">
+        <button data-stage="hub" class="active"><b>Towns · all in one</b><span class="sd">every place, every stage, merged</span></button>
         <button data-stage="towns"><b>05 Aug &middot; Towns</b><span class="sd">26 locations, format-led</span></button>
         <button data-stage="units"><b>10 Aug &middot; Units</b><span class="sd">24 live units, agent schedule</span></button>
         <button data-stage="savills"><b>14 Aug &middot; Savills call</b><span class="sd">25 units, status applied</span></button>
         <button data-stage="visits"><b>22 Aug &middot; Viewings</b><span class="sd">6 towns visited, terms &amp; decisions</span></button>
         <button data-stage="book"><b>Agent book</b><span class="sd">every live unit, terms &amp; documents</span></button>
-        <button data-stage="deal" class="active"><b>25 Aug &middot; Bluewater HOTs</b><span class="sd">SVL05 &middot; heads of terms against the margin gate</span></button>
+        <button data-stage="deal"><b>25 Aug &middot; Bluewater HOTs</b><span class="sd">SVL05 &middot; heads of terms against the margin gate</span></button>
       </div>
       <div class="stagenote" id="stageNote"></div>
     </div>
@@ -578,6 +649,7 @@ svg .quad{stroke:#3a414d;stroke-width:1;stroke-dasharray:4 4}
     <section id="pane-visits"></section>
     <section id="pane-book"></section>
     <section id="pane-deal"></section>
+    <section id="pane-hub"></section>
 
     <!-- RANKING -->
     <section class="pane active" id="pane-rank">
@@ -818,7 +890,7 @@ const DEFAULTS = {
   weights:{demand:20,whitespace:15,affluence:8,occupancy:18,ebitda:14,payback:15,network:10}
 };
 const state = {A: structuredClone(DEFAULTS), tab:'rank', view:'table', sort:{key:'total',dir:-1},
-  search:'', ddIndex:0, baseline:null, stage:'deal', statusFilter:'all'};
+  search:'', ddIndex:0, baseline:null, stage:'hub', statusFilter:'all'};
 
 /* ====================== STAGES ====================== */
 const STAGES = {
@@ -845,6 +917,12 @@ const STAGES = {
     sub:'every unit the agents have on us \u00b7 terms, incumbent trade, documents and where each one stands',
     note:'The full book across both Savills desks \u2014 Jessica Hill in London and Jack Wagland in Manchester \u2014 plus Time Retail Partners. Terms are quoted verbatim from the agent emails; nothing here is estimated and nothing here is scored. Trafford Centre R11A and the Manchester Oxford Street Pizza Express have never appeared on the Savills schedules and so are absent from every earlier stage of this model.',
     sites:()=>[], isUnits:false, isVisits:true, isBook:true,
+  },
+  hub: {
+    label:'Towns \u2014 everything in one place',
+    sub:'every town in the search \u00b7 the town model, the units, the Savills call, the visit, the appraisal and the deal, merged onto one card',
+    note:'One card per place rather than one stage per date. Open a town to see everything the search has produced about it, in the order it matters: the live deal first, then the town model, the units offered, the Savills call, the visit and field score, the written appraisal and the agent book. Nothing is recalculated \u2014 every figure is the one its own stage produced, and those stages are still there if you want the story chronologically.',
+    sites:()=>[], isUnits:false, isVisits:true, isHub:true,
   },
   deal: {
     label:'25 Aug \u2014 Bluewater SVL05, heads of terms',
@@ -1273,6 +1351,320 @@ function statusTone(s){
   if(/LEGALS|AGREED|PROCEED/.test(s))       return 'go';
   if(/NO REPLY|CONTESTED|OFFER DUE/.test(s))return 'warn';
   return 'watch';
+}
+
+/* ====================== TOWNS — EVERYTHING IN ONE PLACE ======================
+   The chronological stages each answer a different question and none of them answers
+   "what do we know about this town". This does. It joins every dataset on the page —
+   the 05 Aug town model, the 10 Aug units, the 14 Aug Savills call, the 22 Aug visit,
+   the field scorecard, the Exeter appraisal, the Bluewater heads of terms and the
+   agent book — onto one key per place, and shows only the sections that exist.
+   Nothing is recalculated here. Every number is read from the stage that produced it. */
+
+/* Agent-book entries carry a unit name, not a town, so the mapping is explicit. */
+const BOOK_TOWN = {
+  'Bluewater — SVL05, former GBK':'Bluewater',
+  'Trafford Centre — the Nimchi unit':'Trafford Centre',
+  'Manchester Oxford Street — the Pizza Express':'Manchester',
+  'St Davids, Cardiff — KUG03, former Café Rouge':'Cardiff',
+  'Touchwood, Solihull — SU50a, The Real Greek':'Solihull',
+  'Oxford — 59 George Street, the Zizzi':'Oxford',
+  'Oxford — Westgate RU10':'Oxford',
+  'Canary Wharf — Wood Wharf':'Canary Wharf',
+  'Canterbury — 3–5 Longmarket':'Canterbury',
+  'The Oracle, Reading':'Reading',
+  'Merry Hill — the Build A Bear unit':'Merry Hill',
+  'Brent Cross — S02, Marugame Udon':'Brent Cross',
+  'Kings Cross — Vermuteria':'Kings Cross',
+  'The Glades, Bromley — Pasta Remoli':'Bromley',
+  'Bromley — Marugame Udon':'Bromley',
+  'St Marks Square, Bromley — Unit 1':'Bromley',
+  'Southside, Wandsworth — 14 Garratt Lane':'Wandsworth',
+  'One Tower Bridge — Unit 1.3':'One Tower Bridge',
+  'Westfield':'Westfield'
+};
+
+function buildHub(A){
+  const idx = {};
+  const get = (t)=> (idx[t] = idx[t] || {town:t, desk:null, units:[], visit:null, field:null,
+                                          appraisal:null, deal:null, book:[], region:null});
+
+  /* 05 Aug — the town model */
+  runModel(DATA.sites, A).forEach(r=>{
+    const e = get(r.site.location);
+    e.desk = r; e.region = e.region || r.site.region;
+  });
+
+  /* 10 / 14 Aug — the units, with the Savills call attached */
+  runModel(UNITS.sites.filter(s=>!s.notModelled), A).forEach(r=>{
+    const e = get(r.site.town);
+    e.units.push(r); e.region = e.region || r.site.region;
+  });
+  UNITS.sites.filter(s=>s.notModelled).forEach(s=>{
+    const e = get(s.town); e.units.push({site:s, notModelled:true});
+  });
+
+  /* 22 Aug — the visit and the field score */
+  (typeof VISITS!=='undefined' ? VISITS.round : []).forEach(v=>{ get(v.town).visit = v; });
+  (typeof FIELD!=='undefined' ? FIELD.sites : []).forEach(f=>{ get(f.town).field = f; });
+
+  /* the written appraisal and the live deal */
+  if(typeof APPRAISAL!=='undefined') get(APPRAISAL.town).appraisal = APPRAISAL;
+  if(typeof DEAL!=='undefined') DEAL.sites.forEach(d=>{ get(d.town).deal = d; });
+
+  /* the agent book */
+  if(typeof BOOK!=='undefined') BOOK.groups.forEach(g=>{
+    g.units.forEach(u=>{
+      const t = BOOK_TOWN[u.name]; if(!t) return;
+      get(t).book.push({group:g.title, u});
+    });
+  });
+
+  /* rank: live deals first, then field score, then desk score */
+  const rows = Object.values(idx);
+  rows.forEach(e=>{
+    e.bestUnit = e.units.filter(u=>!u.notModelled).sort((a,b)=>b.score100-a.score100)[0] || null;
+    e.savills  = e.units.map(u=>u.site.savills).filter(Boolean);
+    e.live     = e.savills.some(s=>s.status==='LIVE');
+    e.sort = (e.deal?4000:0) + (e.appraisal?2000:0) + (e.field?1000+e.field.overall:0)
+           + (e.bestUnit?e.bestUnit.score100:0) + (e.desk?e.desk.score100/100:0);
+  });
+  return rows.sort((a,b)=> b.sort-a.sort);
+}
+
+const hubState = {open:null, q:'', filter:'all'};
+
+function hubChips(e){
+  const c = [];
+  if(e.deal)      c.push(['deal','Heads of terms']);
+  if(e.appraisal) c.push(['appr','Written appraisal']);
+  if(e.field)     c.push([fieldTone(e.field.overall),'Field '+e.field.overall+'%']);
+  if(e.visit)     c.push(['visit','Visited']);
+  if(e.units.length) c.push(['unit', e.units.length+' unit'+(e.units.length>1?'s':'')+(e.bestUnit?' · best '+e.bestUnit.score100.toFixed(0):'')]);
+  if(e.live)      c.push(['live','Live with Savills']);
+  if(e.book.length) c.push(['book', e.book.length+' on the agent book']);
+  if(e.desk)      c.push([e.desk.tier.toLowerCase(),'Desk '+e.desk.score100.toFixed(1)+' · '+e.desk.tier]);
+  return c;
+}
+
+function hubMatch(e){
+  const q = hubState.q.trim().toLowerCase();
+  if(q){
+    const hay = (e.town+' '+(e.region||'')+' '+e.units.map(u=>u.site.unit+' '+(u.site.scheme||'')).join(' ')
+              + ' ' + e.book.map(b=>b.u.name).join(' ')).toLowerCase();
+    if(!hay.includes(q)) return false;
+  }
+  const f = hubState.filter;
+  if(f==='all') return true;
+  if(f==='deal') return !!e.deal;
+  if(f==='visited') return !!(e.visit||e.field);
+  if(f==='live') return e.live || e.book.length>0;
+  if(f==='go') return e.desk && e.desk.tier==='GO';
+  if(f==='units') return e.units.length>0;
+  return true;
+}
+
+function renderHub(){
+  const el = document.getElementById('pane-hub');
+  if(!el) return;
+  const A = state.A;
+  const rows = buildHub(A);
+  const shown = rows.filter(hubMatch);
+
+  let h = '';
+  h += '<div class="vsec"><h2>Every town, everything we know</h2><p class="vlede">'
+     + 'One card per place, with every stage of the search folded into it — the 05 August town model, the units the agents have offered there, '
+     + 'the Savills call on each, what the visit found, the field score, the written appraisal and the heads of terms. '
+     + 'Click a town to open it. Nothing here is recalculated: every figure is the one produced by the stage it came from, and the chronological stages are still there if you want the story in order.'
+     + '</p></div>';
+
+  /* controls */
+  h += '<div class="hubctl"><input class="search" id="hubQ" placeholder="Filter by town, scheme or unit…" value="'+vEsc(hubState.q)+'"/>'
+     + '<div class="seg" id="hubSeg">';
+  [['all','Everything'],['deal','At heads of terms'],['visited','Visited'],['live','Live with an agent'],['units','Has units'],['go','Desk tier GO']].forEach(f=>{
+    h += '<button data-f="'+f[0]+'"'+(hubState.filter===f[0]?' class="active"':'')+'>'+vEsc(f[1])+'</button>';
+  });
+  h += '</div><span class="hubcount">'+shown.length+' of '+rows.length+' towns</span></div>';
+
+  h += '<div class="hubgrid">';
+  shown.forEach(e=>{
+    const open = hubState.open===e.town;
+    h += '<article class="hubcard'+(open?' open':'')+(e.deal?' hasdeal':'')+'" data-town="'+vEsc(e.town)+'">';
+    h += '<header class="hubh" data-town="'+vEsc(e.town)+'"><div><h3>'+vEsc(e.town)+'</h3>'
+       + '<div class="vsub">'+[e.region, (e.desk&&e.desk.site.nearest)?'nearest Maki '+e.desk.site.nearest:null].filter(Boolean).map(vEsc).join(' &middot; ')+'</div></div>'
+       + '<span class="hubtoggle">'+(open?'&minus;':'+')+'</span></header>';
+    h += '<div class="hubchips">';
+    hubChips(e).forEach(c=>{ h += '<span class="hubchip '+c[0]+'">'+vEsc(c[1])+'</span>'; });
+    h += '</div>';
+    if(open) h += hubDetail(e, A);
+    h += '</article>';
+  });
+  h += '</div>';
+  if(!shown.length) h += '<p class="vlede" style="margin-top:18px">Nothing matches that filter.</p>';
+
+  el.innerHTML = h;
+
+  /* wiring */
+  el.querySelectorAll('.hubh').forEach(x=>x.onclick=()=>{
+    hubState.open = (hubState.open===x.dataset.town) ? null : x.dataset.town;
+    renderHub();
+    if(hubState.open){
+      const c = el.querySelector('.hubcard.open');
+      if(c) c.scrollIntoView({block:'nearest', behavior:'smooth'});
+    }
+  });
+  const q = document.getElementById('hubQ');
+  if(q) q.oninput = ev=>{ hubState.q = ev.target.value; const p=ev.target.selectionStart; renderHub();
+    const n=document.getElementById('hubQ'); if(n){n.focus(); n.setSelectionRange(p,p);} };
+  el.querySelectorAll('#hubSeg button').forEach(b=>b.onclick=()=>{ hubState.filter=b.dataset.f; renderHub(); });
+  el.querySelectorAll('[data-goto]').forEach(b=>b.onclick=()=>{
+    state.stage = b.dataset.goto; state.ddIndex=0; state.baseline=null;
+    document.querySelectorAll('#stageSeg button').forEach(x=>x.classList.toggle('active',x.dataset.stage===state.stage));
+    if(!isVisits() || isDeal()) buildControls();
+    renderAll(); window.scrollTo({top:0});
+  });
+}
+
+function hubDetail(e, A){
+  let h = '<div class="hubbody">';
+
+  /* ---- the live deal, first because it is the only thing with a clock on it ---- */
+  if(e.deal){
+    const F = e.deal.formats[0];
+    h += '<div class="hubsec dealsec"><h4>Heads of terms &middot; issued 24 Aug</h4>';
+    h += '<table class="dpl">';
+    [['Unit', e.deal.unit+' — '+vEsc(e.deal.scheme)],['Demise', num(F.sqftDemised)+' sq ft'],
+     ['Base rent', gbp(F.rentPa)+' · £'+(F.rentPa/F.sqftDemised).toFixed(2)+' psf'],
+     ['Turnover rent', (F.rentTurnoverPct*100).toFixed(1)+'% capped at '+gbp(F.rentCapPa)],
+     ['Total occupancy', gbp(F.rentPa+F.scPa+F.ratesPa+(F.insPa||0))+' pa'],
+     ['Landlord', e.deal.landlord]
+    ].forEach(r=>{ h += '<tr><td>'+r[0]+'</td><td>'+r[1]+'</td></tr>'; });
+    h += '</table><button class="hubgo" data-goto="deal">Open the full heads-of-terms stage &rarr;</button></div>';
+  }
+
+  /* ---- the town model ---- */
+  if(e.desk){
+    const s = e.desk.site, b = e.desk.best;
+    h += '<div class="hubsec"><h4>The town &middot; 05 Aug model <span class="hubtier '+e.desk.tier.toLowerCase()+'">'+e.desk.score100.toFixed(1)+' · '+e.desk.tier+'</span></h4>';
+    h += '<div class="hubfacts">';
+    [['Scheme footfall', s.footfall_m?s.footfall_m+'m/yr'+(s.footfallTrend?' ('+s.footfallTrend+')':''):'—'],
+     ['Primary catchment', s.catchment?num(s.catchment):'—'],
+     ['Students', s.students?num(s.students):'0'],
+     ['Affluence 1–5', s.affluence!=null?s.affluence:'—'],
+     ['Whitespace 1–5', s.whitespace15!=null?s.whitespace15:'—'],
+     ['Evening economy 1–5', s.evening15!=null?s.evening15:'—'],
+     ['Delivery 1–5', s.delivery15!=null?s.delivery15:'—'],
+     ['Wagamama in town', s.wagamama?'yes':'no'],
+     ['Asian operators', s.asianOps!=null?s.asianOps:'—'],
+     ['Ramen specialists', s.ramenSpecialists!=null?s.ramenSpecialists:'—'],
+     ['Drive from nearest Maki', s.driveMin?s.driveMin+' min':'—'],
+     ['Modelled net sales', gbp(b.net)]
+    ].forEach(f=>{ h += '<div class="hubfact"><span>'+f[0]+'</span><b>'+f[1]+'</b></div>'; });
+    h += '</div>';
+    if(s.verdict) h += '<p class="hubverdict">'+vEsc(s.verdict)+'</p>';
+    h += '<button class="hubgo" data-goto="towns">Open this town on the 05 Aug stage &rarr;</button></div>';
+  }
+
+  /* ---- units offered ---- */
+  if(e.units.length){
+    h += '<div class="hubsec"><h4>Units offered here &middot; '+e.units.length+'</h4>';
+    e.units.forEach(u=>{
+      const s = u.site, sv = s.savills;
+      h += '<div class="hubunit">';
+      h += '<div class="hubuh"><b>'+vEsc(s.unit)+'</b>'
+         + (u.notModelled ? '<span class="hubtier none">not modelled — every term TBC</span>'
+                          : '<span class="hubtier '+u.tier.toLowerCase()+'">'+u.score100.toFixed(1)+' · '+u.tier+'</span>')+'</div>';
+      if(s.scheme) h += '<div class="hubusub">'+vEsc(s.scheme)+(s.handover?' · '+vEsc(s.handover):'')+'</div>';
+      if(!u.notModelled){
+        const b = u.best, f = b.meta;
+        h += '<div class="hubterms">';
+        [['Trading area', num(f.sqft)+' sq ft'],
+         ['Demise', f.sqftDemised?num(f.sqftDemised)+' sq ft':'—'],
+         ['Rent', f.rentPa!=null?gbp(f.rentPa)+' pa':'quoted TBC'],
+         ['Service charge', f.scPa!=null?gbp(f.scPa)+' pa':'quoted TBC'],
+         ['Occupancy cost', b.termsKnown?gbp(b.occ)+' pa · '+pct(b.occPct,1)+' of sales':'—'],
+         ['Modelled net sales', gbp(b.net)],
+         ['Site EBITDA', b.termsKnown?gbp(b.ebitda)+' · '+pct(b.ebitdaPct,1):'—'],
+         ['Payback', b.termsKnown?yrs(b.payback):'—']
+        ].forEach(t=>{ h += '<div class="hubterm"><span>'+t[0]+'</span><b>'+t[1]+'</b></div>'; });
+        h += '</div>';
+      }
+      if(sv){
+        h += '<div class="hubsav '+(sv.status==='LIVE'?'live':'rej')+'"><b>Savills, 14 Aug: '+vEsc(sv.status)+'.</b> '
+           + (sv.statusText?vEsc(sv.statusText.replace(/[.\s]*$/,''))+'. ':'')+(sv.reason?vEsc(sv.reason.replace(/[.\s]*$/,''))+'. ':'')+(sv.comment?vEsc(sv.comment):'')+'</div>';
+        if(sv.tradeRaw) h += '<div class="hubtrade"><b>Scheme trade:</b> '+vEsc(sv.tradeRaw)+'</div>';
+      }
+      h += '</div>';
+    });
+    h += '<button class="hubgo" data-goto="savills">Open the units on the 14 Aug stage &rarr;</button></div>';
+  }
+
+  /* ---- the visit + field score ---- */
+  if(e.visit || e.field){
+    h += '<div class="hubsec"><h4>The visit &middot; 18–20 Aug'
+       + (e.field?' <span class="hubtier '+fieldTone(e.field.overall)+'">Field '+e.field.overall+'% · feasibility '+e.field.lf+' · demographic '+e.field.df+'</span>':'')
+       + '</h4>';
+    if(e.visit){
+      h += '<div class="hubusub">'+vEsc(e.visit.scheme)+' &middot; '+vEsc(e.visit.date)+'</div>';
+      h += '<ul class="fldobs">';
+      e.visit.viewed.forEach(v=>{ h += '<li><b>'+vEsc(v.u)+'</b> — '+vEsc(v.how)+'. '+vEsc(v.note)+'</li>'; });
+      h += '</ul>';
+      if(e.visit.terms && e.visit.terms.length){
+        h += '<div class="hubterms">';
+        e.visit.terms.forEach(t=>{ h += '<div class="hubterm"><span>'+vEsc(t[0])+'</span><b>'+vEsc(t[1])+'</b></div>'; });
+        h += '</div>';
+      }
+      if(e.visit.pressure) h += '<div class="hubsav rej"><b>Competitive pressure.</b> '+vEsc(e.visit.pressure)+'</div>';
+      if(e.visit.michael) h += '<div class="hubtrade"><b>Our stated position.</b> '+vEsc(e.visit.michael)+'</div>';
+    }
+    if(e.field){
+      h += '<div class="fldquote">'+vEsc(e.field.quote)+'</div>';
+      h += '<div class="fldbars" style="margin-top:11px">';
+      Object.entries(e.field.scores).forEach(([k,v])=>{
+        h += '<div class="fldbar"><span>'+vEsc(k)+'</span><div class="fldtrack"><i style="width:'+(v*10)+'%" class="'+(v>=8?'hi':v>=5?'mid':'lo')+'"></i></div><b>'+v+'</b></div>';
+      });
+      h += '</div>';
+      h += '<ul class="fldobs">';
+      e.field.obs.forEach(o=>{ h += '<li>'+vEsc(o)+'</li>'; });
+      h += '</ul>';
+      if(e.field.paraphrased) h += '<div class="hubtrade" style="color:var(--watch)">Wording paraphrased for the public page; the form sheet is the record.</div>';
+    }
+    h += '<button class="hubgo" data-goto="visits">Open the 22 Aug viewing stage &rarr;</button></div>';
+  }
+
+  /* ---- the written appraisal ---- */
+  if(e.appraisal){
+    const a = e.appraisal;
+    h += '<div class="hubsec apprsec"><h4>Written appraisal <span class="hubtier watch">'+a.score+' / 100 · '+vEsc(a.call.split('—')[0].trim())+'</span></h4>';
+    h += '<div class="hubterms">';
+    a.headline.forEach(t=>{ h += '<div class="hubterm"><span>'+vEsc(t[0])+'</span><b>'+vEsc(t[1])+'</b></div>'; });
+    h += '</div>';
+    if(e.field) h += '<div class="hubsav rej"><b>These two disagree.</b> The field visit scored this '+e.field.overall
+       + '% and the desk appraisal '+a.score+'/100, on the same unit in the same week. They diverge on one question — is an adjacent Wagamama proof of demand or a cap on share.</div>';
+    h += '<p class="hubverdict">'+vEsc(a.bottom)+'</p>';
+    h += '<button class="hubgo" data-goto="visits">Read the appraisal in full &rarr;</button></div>';
+  }
+
+  /* ---- the agent book ---- */
+  if(e.book.length){
+    h += '<div class="hubsec"><h4>On the agent book &middot; '+e.book.length+'</h4>';
+    e.book.forEach(b=>{
+      h += '<div class="hubunit"><div class="hubuh"><b>'+vEsc(b.u.name)+'</b><span class="hubtier '+statusTone(b.u.status)+'">'+vEsc(b.u.status)+'</span></div>';
+      h += '<div class="hubusub">'+vEsc(b.u.sub)+' &middot; '+vEsc(b.u.agent||b.group)+'</div>';
+      if(b.u.terms && b.u.terms.length){
+        h += '<div class="hubterms">';
+        b.u.terms.slice(0,8).forEach(t=>{ h += '<div class="hubterm"><span>'+vEsc(t[0])+'</span><b>'+vEsc(t[1])+'</b></div>'; });
+        h += '</div>';
+      }
+      if(b.u.trade) h += '<div class="hubtrade"><b>Incumbent trade.</b> '+vEsc(b.u.trade)+'</div>';
+      if(b.u.flag) h += '<div class="hubsav rej">'+vEsc(b.u.flag)+'</div>';
+      h += '</div>';
+    });
+    h += '<button class="hubgo" data-goto="book">Open the agent book &rarr;</button></div>';
+  }
+
+  h += '</div>';
+  return h;
 }
 
 /* ====================== THE FIELD SCORECARD ======================
@@ -1915,7 +2307,8 @@ const VISITS = {
 };
 
 /* ====================== 22 AUG — VIEWING ROUND RENDER ====================== */
-function isVisits(){ return state.stage==='visits' || state.stage==='book' || state.stage==='deal'; }
+function isVisits(){ return ['visits','book','deal','hub'].includes(state.stage); }
+function isHub(){ return state.stage==='hub'; }
 function isDeal(){ return state.stage==='deal'; }
 function vEsc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
@@ -2302,7 +2695,11 @@ function renderDeal(){
   h += '<div class="vsec"><h2>Does it hit the mark?</h2><p class="vlede">'
      + 'The standard set on 21 August is an 18–20% net margin on new locations. It is applied here and nowhere else on this page. '
      + 'Margin is site EBITDA before the central recharge, with the post-central line alongside so the definition cannot be fudged. '
-     + 'The last column is the honest way to read the whole table: what share of Bluewater’s 18 million annual visits has to eat with us once, at the model’s £'
+     + '<br><br><b>Reading the two occupancy columns:</b> they are the same money twice. <b>Occupancy cost £/yr</b> is the total we pay the landlord and the council to hold the unit — '
+     + gbp(F.rentPa)+' rent plus '+gbp(F.scPa)+' service charge plus '+gbp(F.ratesPa)+' rates plus '+gbp(F.insPa)+' insurance. It barely moves down the table, because only the rent portion changes once turnover rent bites. '
+     + '<b>Occupancy % of sales</b> is that same figure divided by the turnover in the first column — the rent burden expressed as a share of what the restaurant takes. '
+     + 'That percentage is the number the industry judges a site on, and it is why the table improves as you read down: the cost is nearly fixed, so the more the box trades, the smaller a bite it is. Under about 13% is comfortable; over 20% is where this deal starts at our own modelled turnover.'
+     + '<br><br>The last column is the honest way to read the whole table: what share of Bluewater’s 18 million annual visits has to eat with us once, at the model’s £'
      + best.sph.toFixed(2) + ' spend per head, for that row to happen.'
      + '</p></div>';
 
@@ -2320,7 +2717,7 @@ function renderDeal(){
   tags[Math.round(capAt)] = [null,'turnover rent hits the £300k cap'];
 
   h += '<div class="dgate"><table><thead><tr>'
-     + '<th>Net turnover</th><th>Rent paid</th><th>Occupancy</th><th>Occ %</th>'
+     + '<th>Net turnover</th><th>Rent paid</th><th>Occupancy cost £/yr</th><th>Occupancy % of sales</th>'
      + '<th>Site EBITDA</th><th>Site %</th><th>After central</th><th>18%</th><th>20%</th><th>Share of footfall</th>'
      + '</tr></thead><tbody>';
   const seen = {};
@@ -2508,15 +2905,17 @@ function applyStageChrome(){
   document.querySelectorAll('.tabs').forEach(e=>e.style.display = on?'none':'');
   document.querySelectorAll('main > .pane').forEach(e=>{ if(e.id!=='pane-visits') e.style.display = on?'none':''; });
   const pv = document.getElementById('pane-visits');
-  if(pv) pv.style.display = (on && !isBook() && !isDeal())?'block':'none';
+  if(pv) pv.style.display = (on && !isBook() && !isDeal() && !isHub())?'block':'none';
   const pb = document.getElementById('pane-book');
   if(pb) pb.style.display = isBook()?'block':'none';
   const pd = document.getElementById('pane-deal');
   if(pd) pd.style.display = isDeal()?'block':'none';
+  const ph = document.getElementById('pane-hub');
+  if(ph) ph.style.display = isHub()?'block':'none';
   // The deal stage keeps the assumption rail: the whole point of it is to watch the
   // margin gate move when an assumption moves.
   const rail = document.getElementById('rail');
-  if(rail) rail.style.display = (on && !isDeal())?'none':'';
+  if(rail) rail.style.display = (on && !isDeal() && !isHub())?'none':'';
   const th = document.querySelector('.tophint');
   if(th) th.style.display = on?'none':'';
 }
@@ -2530,7 +2929,7 @@ function renderAll(){
     document.getElementById('stageNote').textContent = stage().note;
     document.getElementById('subtitle').innerHTML =
       'The record of the round &middot; '+stage().sub;
-    if(isBook()) renderBook(); else if(isDeal()) renderDeal(); else renderVisits();
+    if(isBook()) renderBook(); else if(isDeal()) renderDeal(); else if(isHub()) renderHub(); else renderVisits();
     return;
   }
   let rows = runModel(stage().sites(), state.A);
@@ -3152,7 +3551,7 @@ document.querySelectorAll('#stageSeg button').forEach(b=>b.onclick=()=>{
   state.stage=b.dataset.stage; state.ddIndex=0; state.baseline=null;
   state.sort={key:'total',dir:-1}; state.statusFilter='all';
   document.querySelectorAll('#statusSeg button').forEach(x=>x.classList.toggle('active',x.dataset.status==='all'));
-  if(!isVisits() || isDeal()) buildControls();
+  if(!isVisits() || isDeal() || isHub()) buildControls();
   renderAll();
 });
 document.querySelectorAll('#statusSeg button').forEach(b=>b.onclick=()=>{
