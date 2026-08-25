@@ -15,17 +15,294 @@ https://makiramen.github.io/site-pipeline/
 | `Maki_Ramen_Site_Pipeline_INTERACTIVE.html` | The model itself — self-contained, no dependencies. Open it in any browser. |
 | `index.html` | Redirect so the root URL above lands on the model. |
 
-## The three stages
+## The six stages
 
-The page now carries the whole search, not just the first pass. Switch stage with
-the segmented control above the tabs. The engine, the assumption sliders and the
-scorecard weights are shared — only the dataset under them changes.
+The page carries the whole search, not just the first pass. Switch stage with the
+segmented control above the tabs. On the four modelled stages the engine, the
+assumption sliders and the scorecard weights are shared — only the dataset under
+them changes. Two stages (Viewings, Agent book) are records, not models.
 
 | Stage | Date | What it is |
 | --- | --- | --- |
 | **Towns** | 05 Aug 2026 | The original run. 25 UK and Ireland towns plus Westfield Stratford as a benchmark, each scored on the best of up to three formats at our standard sizes. Rents are mostly reasoned estimates. |
 | **Units** | 10 Aug 2026 | 23 modelled units across 16 towns from the agent schedule, with quoted terms. Each is modelled as advertised, at Maki format with the surplus handed back, and — where the demise runs more than 15% over format — on full rent for a Maki-sized trading area. |
 | **Savills call** | 14 Aug 2026 | The same units with Savills' own status applied: live or rejected, their reason, and the incumbent trade they have quoted for each scheme. Adds Wandsworth, which is new on this schedule. |
+| **Viewings** | 22 Aug 2026 | The record of the 18–20 Aug viewing round — six towns, thirteen units — the seven scored field responses, the Princesshay Exeter appraisal reproduced in full, the per-town evidence register, the 2027 target-list decisions and the commercial rules set on 21 Aug. Not scored by the desk model (see below). |
+| **Agent book** | 22 Aug 2026 | Every live unit the agents currently have on us, from the email record: 19 units across both Savills desks plus Time Retail Partners, with quoted terms, incumbent trade, the plans and brochures on file, and where each one stands. Unscored. |
+| **Bluewater HOTs** | 25 Aug 2026 | SVL05 at Bluewater — the first unit in the pipeline to reach a heads of terms. Scored on the shared engine, run against the 18–20% margin standard, read clause by clause against what was agreed by email, and set against the six Landsec documents behind the deal. Opens by default. |
+
+## The 22 Aug viewings stage
+
+Matt Jenner visited Plymouth, Exeter, Portsmouth, Basingstoke, Oxford and
+Bracknell on 18–20 August. This stage carries, per town: the units actually
+viewed and how (internal, external, customer inspection, walk-past), the terms
+that came back, the competitive pressure on the unit, our stated position from
+the 18 Aug target-list reply, and the verdict where one has been written.
+
+It deliberately does **not** score. The assumption rail and the ranking board are
+hidden on this stage. Nothing here re-ranks the earlier three.
+
+### The field scorecard
+
+**Correction.** An earlier version of this README and of the page said the site-visit
+Google Form had no 2026 responses. That was wrong. The form carries **seven scored
+responses filed 19–21 August**, covering all six towns of the round plus Solihull.
+They are now the first thing on this stage.
+
+Method, reproduced from the sheet and verified against every row:
+
+- **Location feasibility** = mean of visibility, foot traffic, transport, ecosystem,
+  competition & synergy — each 1–10 — × 10.
+- **Demographic fit** = mean of audience density, consumer behaviour, cultural
+  receptiveness, spending power, social proof, × 10.
+- **Overall** = mean of the two.
+
+| Site | Overall | Feasibility | Demographic |
+| --- | --- | --- | --- |
+| **Exeter** — Princesshay | **86%** | 86 | 86 |
+| **Solihull** — Touchwood | **78%** | 80 | 76 |
+| Basingstoke — Festival Place | 68% | 74 | 62 |
+| Bracknell — The Lexicon | 67% | 72 | 62 |
+| Oxford — George Street | 66% | 66 | 66 |
+| Portsmouth — Gunwharf Quays | 57% | 50 | 64 |
+| Plymouth — The Barcode | 46% | 60 | **32** |
+
+**The calibration matters more than the ranking.** The form has taken fourteen real
+responses since July 2025. Shoreditch Fat Hippo scored **81% and we took it** — the only
+entry that became a trading Maki site, and so the closest thing to a pass mark the form
+has. Exeter at 86% scores above our own Shoreditch. At the other end Mikaku Glasgow
+scored 41% and Wagamama Edgware Road 43%, and neither proceeded; Plymouth's 32%
+demographic fit is level with Mikaku, the lowest the form has ever recorded.
+
+**Two findings that are not in any terms we hold:**
+
+- **Oxford George Street** — roughly 60% of the demise is basement that cannot be
+  customer-facing, ceiling under 6ft, damp. Large capex.
+- **Basingstoke Festival Place** — Las Iguanas and Pizza Express are both being made
+  vacant because they cannot hit trade figures, on top of the two units already empty.
+  The units shown were two floors and 150 covers, judged too large; a third 5,000 sq ft
+  retail unit is available.
+
+**Editorial note.** Two responses use language that should not appear on a public URL.
+Their substance is carried in full and the wording is paraphrased; those cards are
+marked *wording paraphrased* and the sheet remains the record. The `Team Member` field
+is unreliable — two rows carry the letting agent's name rather than the visitor's.
+
+### The Exeter appraisal, in full
+
+`Maki_Ramen_Site_Appraisal_Princesshay_Exeter.pdf` — 12 pages, prepared for the
+Property Investment Committee — is the **only** written appraisal produced from the
+round, and it is now reproduced in full on this stage rather than summarised in a
+line. It carries: the 61/100 strategic score against a 62 conditional threshold and
+the PROCEED WITH CAUTION call; a nine-attribute property read with Strong / Watch /
+TBC / Verify ratings; the full SWOT at three levels each (why it matters, commercial
+impact, long-term value); the competitor scoring matrix (Wagamama, YO! Sushi, Nando's,
+Luciano's and the independents, scored 1–5 on brand, price, loyalty, delivery, lunch,
+evening and composite threat); the partnership table with estimated annual customer
+acquisition by channel; the weekly trading-intensity heat map; the trading-hours
+recommendation; and the non-financial risk register with named owners.
+
+It is here because it is the **template the other six sites are missing**, not just a
+verdict. The defining finding stands: the unit is directly opposite Wagamama in a
+single-scheme, mid-sized, value-led market, and the University of Exeter — ~38,800
+students, close to 30% of the city — is the single lever that decides the head-to-head.
+
+**And it disagrees with the field.** Exeter scores **86% in the field and 61/100 on the
+desk**, on the same unit in the same week. The field visit scored cultural receptiveness
+10 and competition & synergy 9 — Wagamama next door proves the demand and we take share
+from it. The appraisal scored competitive position 4 and landed one point under its own
+threshold — Wagamama opposite splits the ramen occasion two ways in a value-led market.
+They diverge on exactly one question: **is an adjacent Wagamama proof of demand or a cap
+on share?** That question is live at Exeter, Basingstoke, Bracknell and Portsmouth, all
+of which have a Wagamama next door or opposite. Note too that the appraisal was written
+against a c.£100k rent with everything else TBC, while the field visit records seven
+live offers and a capital contribution on the table — they were not looking at the same
+deal.
+
+### The evidence register
+
+Media counted from the Drive folder on 25 August; form responses from the site-visit
+sheet.
+
+| Town | Media | Written work |
+| --- | --- | --- |
+| Exeter | 1 photo · 5 videos | Form response 86% **+ 12-page appraisal, 61/100** |
+| Solihull | not in the round folder | Form response 78% |
+| Basingstoke | 1 photo · 5 videos | Form response 68% |
+| Bracknell | 1 photo · 8 videos | Form response 67% |
+| Oxford | 7 videos | Form response 66% |
+| Portsmouth | 3 videos | Form response 57% |
+| Plymouth | 9 photos · 4 videos | Form response 46% |
+
+Every site now has a scored field response. What only Exeter has is a full written
+appraisal on top of it — that is the remaining gap.
+
+What it adds that the modelled stages did not have:
+
+- **Portsmouth Gunwharf now has terms.** R30, the former Hubbox: 2,846 sq ft,
+  £50 psf with turnover top-up, service charge £55,539, insurance £55,539, rates
+  TBC, handover as seen. That closes one of the four `AWAITING TERMS` units
+  carried on the 14 Aug stage.
+- **Plymouth Cosy Club is a new unit entirely.** GF 937 + 1F 5,800 = 6,737 sq ft,
+  £110,000 pa or turnover whichever is higher, service charge £62,603, rateable
+  value £147,000, new 10/15 year lease with incentive, fitted but some F&F may be
+  removed.
+- **Oxford George Street is a new street-level cluster**, and it is not the same
+  proposition as Oxford Westgate, which the 10 Aug model scored NO. 59 (fitted
+  Zizzi) at £120k with 6 months rent free; 61 and 67–69 at £100k with 12 months
+  incentive; 71 and 75 already under offer.
+- **The 2027 target list with our verdicts on all 23 Savills targets**, plus the
+  six we added: Trafford Centre, Manchester (final site), York, Bull Ring,
+  Solihull and Bluewater.
+- **The rules that now govern a viable site** — five years not two, six sites a
+  year maximum, one opening every two months, fitted / low rent / low SC / low
+  capex as the default profile, higher capex only at S-tier (Trafford, Bull Ring,
+  Bluewater, Dublin), and an 18–20% net margin standard with a 20% minimum on the
+  street-level search.
+- **The street-level value longlist** issued 21 Aug — 15 mid-to-north markets at
+  a c.£45k rent target.
+
+## The 25 Aug Bluewater stage
+
+Unit SVL05 in the Plaza, the former GBK — 3,951 sq ft on the ground floor, heads of
+terms dated 20 August 2026 and issued by Savills on 24 August. It is the first unit
+here that has terms in a document rather than an email, so it is the first one where
+the margin standard can actually be applied.
+
+It carries the whole deal: the terms, the margin gate, the scorecard, the scheme
+evidence, the corrected pitch, the clause-by-clause read, the marketing package, the
+launch window, the negotiating list and the document register.
+
+Five things on this stage that no earlier stage does:
+
+- **The margin standard is applied as a gate**, not recorded as policy. The ladder
+  runs net turnover from £1.5m to £4.5m and marks PASS / FAIL at 18% and at 20%.
+  Margin is shown twice — site EBITDA before the central recharge, and after it —
+  so the definition cannot be argued after the fact.
+- **The scorecard is the same engine as every other stage.** SVL05 scores **47.8,
+  tier NO**. The 05 Aug town record scored Bluewater 41.3 on a reasoned £58 psf
+  estimate; the quoted rent came in at £58.21 psf, so the estimate was right and the
+  tier has not moved. What drags it is network fit (0.5/10 — M17 Lakeside is 25
+  minutes away), whitespace (3.8/15 — Wagamama, Rosa's Thai and Chi already in the
+  scheme) and occupancy cost (3.1/18).
+- **The heads of terms are read against the email chain**, clause by clause: 3 points
+  as agreed, 2 changed, 6 new and never negotiated, 2 unresolved tracked changes still
+  sitting in the draft.
+- **The assumption rail stays live.** Move a slider and the gate moves with it. The
+  Viewings and Agent book stages hide the rail; this one does not.
+- **The six Landsec documents are read out**, not just listed — the March 2026 leasing
+  brochure, the January 2026 floor plans, the Spotlight media rate card, the Brand
+  Partner pack, the PLUS+ pack and the 2026/27 marketing calendar.
+
+The headline numbers, at the default assumptions:
+
+| | |
+| --- | --- |
+| Total occupancy | £422,828 pa — **£107.02 psf** all in |
+| Our capacity model | £1,942,973 net — **12.0%** site EBITDA, FAIL |
+| 18% gate clears at | **£2,682,592** net turnover |
+| 20% gate clears at | **£3,079,377** net turnover |
+| Turnover rent overtakes the base at | £3,066,667 |
+| Turnover rent hits the £300k cap at | £4,000,000 |
+| Same model, Plaza treated as an evening pitch | **£2,207,924** — 14.6%, still FAIL |
+| Landsec scheme sales density £569 psf × our demise | **£2,248,119** — 15.0%, still FAIL |
+| Area comparators (agent, 4 Aug) | Bill's £2.98m → 19.6% · Five Guys £3.3m → 20.4% |
+
+The gate table also carries a **share-of-footfall column**: what proportion of
+Bluewater's 18m annual visits has to eat with us once, at the model's £24.10 spend per
+head, for each row to happen. The 18% gate needs **0.62%**. Our capacity model delivers
+**0.45%**. That is the gap stated as a business problem rather than an argument about
+the model.
+
+So the deal works if and only if this box trades close to the Plaza incumbents. Four
+independent readings now sit under the gate rather than one, and they cluster around
+£2.2m rather than £1.9m — but none of them clears £2.68m. The comparator that would
+settle it, Wagamama's Bluewater turnover, has been quoted by Savills in every other
+scheme on this pipeline but not in this one — and the January plans show Wagamama
+trading directly above us on the upper floor of the same leg.
+
+### What the six documents changed
+
+- **The adjacency list in the agent's introduction email spans both floors.** SVL05 is
+  ground floor only. On our own floor the neighbours are Nando's, The Real Greek,
+  Browns, Gravity, Five Guys, Bella Italia, ASK, Pho and the Showcase cinema. Wagamama,
+  The Big Easy, Rosa's Thai, Pizza Express, TGI Fridays and Ballerz are all upstairs.
+  Bill's is not in the Plaza at all — it is in the Lower Rose Gallery. And Chi, the
+  ramen and sushi operator the 05 Aug record scored against us, is in The Village at the
+  opposite end of the scheme.
+- **Landsec zones the Plaza as "family dining and entertainment"**, anchored by the
+  Showcase cinema, the Gravity trampoline park and Dinotropolis soft play. The 05 Aug
+  record priced this site on a 21:00 mall close. That is the evidence for revisiting the
+  evening input — which has deliberately **not** been changed, so the score still stands
+  as scored.
+- **£569 psf scheme sales density** is the first scheme-level revenue anchor this model
+  has ever had for Bluewater.
+- **89 minutes dwell, not 82.** The brochure quotes 82 as Bluewater's own dwell time;
+  the Spotlight deck shows 82 is the benchmark across Landsec's full-price assets and
+  Bluewater is 89. Use 89 and say where it came from.
+- **The marketing package is a real commercial term the model does not price.** Clause
+  39 obliges us to agree a launch marketing budget with the landlord. The PLUS+ solus
+  email to 151,000 Bluewater members at a 50–55% open rate — the highest of the nine
+  Landsec destinations — is free to brand partners, as are the brand page, What's On
+  listings, 31.1m of annual social reach, PR and influencer support. The paid Spotlight
+  rates put the Plaza Screen that faces our own leg at £3,000 a fortnight. A credible
+  paid launch is £13,800, or 12% of the capital contribution.
+- **The launch window has a date.** January access plus the 16-week opening obligation
+  puts us open in the first half of May 2027, and The Kent Food Fest is 16–17 May. Ask
+  the marketing team to hold a slot before exchange, not after.
+- Two figures in the pack disagree with each other and one is stale: brand partners are
+  275+ in the brochure and 300+ in Spotlight, and the Spotlight deck still names House
+  of Fraser as an anchor when NEXT is opening in that space in 2026.
+
+### Engine changes
+
+Both are backwards compatible and the earlier stages were regression-tested
+row-for-row against the previous build — every score, tier, EBITDA and net-sales
+figure on the Towns, Units and Savills stages is byte-identical.
+
+- **Turnover rent.** `rentTurnoverPct` and `rentCapPa` on a format make rent the
+  higher of the quoted base and a percentage of net turnover, subject to a cap. Where
+  a unit carries no turnover terms this collapses to the quoted base rent.
+- **Turnover override.** `netOverride` sets net sales directly instead of deriving
+  them from capacity, scaling dine-in and delivery pro rata so the aggregator
+  commission still lands on the delivery share only. This is what lets the same unit
+  be tested at an agent-quoted or incumbent turnover rather than only at the model's.
+- Also added: `ratesPa` and `insPa` so rates and insurance can be taken as quoted in
+  £ pa rather than rebuilt from a psf figure.
+
+## The agent book stage
+
+Built from the Gmail record rather than from an agent schedule, because a large
+part of the book has never appeared on one. Five groups:
+
+- **In legals or under negotiation** — Westfield (board approved 3 Aug, final HOTs
+  with Brodies), Bluewater SVL05 (rent and turnover agreed, open on the incentive),
+  One Tower Bridge (two competing offers, our offer never sent).
+- **Manchester and Trafford** — the two units from Jack Wagland at Savills
+  Manchester. Neither has ever been on a Savills schedule, so neither appears on
+  any earlier stage of this model.
+  - **Trafford Centre — the Nimchi unit** (supersedes R11A): ground 2,659 +
+    mezzanine 1,492 = 4,151 sq ft, c.£225k base rent, service charge £94,036,
+    rates £79,550, vacant possession likely Q1 2027. Total occupancy £398,586 pa
+    at £96.02 psf. Wagamama on the scheme does £6.89m net of VAT; Wingstop £175k
+    a week. Terms came by WhatsApp on 18 Aug 2026 and have no document behind
+    them. R11A — proposed on in August 2025 — has never been formally closed out.
+  - **Manchester Oxford Street** (Unit B, St James Building, the Pizza Express):
+    3,150 sq ft on a single ground floor, c.£130k rent at £41.3 psf, RV £75,000,
+    service charge £3.26 psf. Scores 74/100, the highest in the pipeline. Blocked
+    on the MAF2 Northern Quarter franchise radius, not on the market.
+- **Introduced with terms, no decision taken** — Cardiff St Davids, Touchwood
+  Solihull, Oxford 59 George Street, Oxford Westgate, Canary Wharf Wood Wharf,
+  Canterbury, The Oracle Reading.
+- **Declined** — Merry Hill (size), Brent Cross (rent), Kings Cross Vermuteria
+  (size), each with the reason recorded so it does not come back round.
+- **Franchisee track** — The Glades Pasta Remoli, Bromley Marugame Udon,
+  St Marks Square Bromley, Southside Wandsworth.
+
+Each card lists the plans, brochures and particulars on file for that unit — 42
+entries in total. Trafford is the one unit whose terms rest on a WhatsApp message
+rather than a document. Where a figure lives only inside an attachment and has never
+been read out, the card says so rather than leaving the field blank.
 
 ## How the unit stages differ from the town stage
 
@@ -93,11 +370,40 @@ stands in. Two things to hold on to:
 8. **One unit is listed but not modelled:** Pasta Remoli, The Glades (Bromley) —
    every term is quoted TBC. It is named on the page rather than silently
    dropped.
+9. **Every site has a field score; only Exeter has a full appraisal.** The seven form
+   responses are on the page and the Exeter appraisal is reproduced in full. The gap is
+   no longer "no verdict" — it is that six sites have a ten-criteria field score and no
+   catchment, competitive or partnership analysis behind it.
+9b. **The field score and the desk appraisal disagree on Exeter by 25 points**, and the
+   disagreement is not reconciled anywhere. Neither instrument is weighted, combined or
+   ranked against the other on this page, deliberately.
+10. **The new terms on the 22 Aug stage are not yet in the model.** Gunwharf R30,
+    Plymouth Cosy Club and the George Street units are recorded, not scored.
+    Loading them into the units dataset is the next update.
+11. **The 18–20% net margin standard is recorded as policy, not applied as a
+    gate.** The GO / WATCH / NO tiers on the earlier stages are unchanged. If it
+    were applied it would very likely re-rank the board.
+12. **Nothing on the agent book stage is scored**, and the two Manchester units
+    have never been in the model at all. Trafford R11A and Oxford Street are the
+    obvious next additions to the units dataset.
+13. **Three sets of figures sit inside attachments and have never been read out:**
+    the Westfield heads of terms, the Canterbury particulars and The Oracle trade
+    stats (an inline image). The Bluewater heads of terms have now been read out in
+    full on the 25 Aug stage.
+14. **The Bluewater fit-out is unpriced.** The landlord will not strip out, a new
+    shopfront to Bluewater specification is required, and the kitchen extract and
+    grease-trap system is on us. None of that is inside the flat £300k capex the
+    model carries, and it is the largest unquantified number in the only deal on the
+    board with a document behind it.
+15. **The margin gate applies on the 25 Aug stage only.** Applying it across the
+    Towns, Units and Savills stages would very likely re-rank the whole board; that
+    remains a deliberate decision not taken.
 
 ## Notes
 
 - The model is a single self-contained HTML file; there is no build step.
 - To update it, replace `Maki_Ramen_Site_Pipeline_INTERACTIVE.html` and commit.
 - This repository is **public** — anything added here is readable by anyone.
-  The 10 Aug and 14 Aug stages carry quoted rents, agent status and third-party
-  trade figures. Consider whether that belongs on a public URL.
+  The 10 Aug, 14 Aug and 22 Aug stages carry quoted rents, agent status,
+  third-party trade figures, named competing bidders and internal margin targets.
+  Consider whether that belongs on a public URL.

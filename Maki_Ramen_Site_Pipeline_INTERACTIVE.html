@@ -24,6 +24,143 @@ body{
 a{color:var(--red2)}
 button{font-family:inherit}
 
+/* ---- 22 Aug viewing round ---- */
+#pane-visits{display:none;padding:18px 22px 80px;max-width:1180px}
+body.visits-on .stagebar{padding:14px 22px 0}
+body.visits-on .stagenote{max-width:860px}
+#pane-visits .vsec{margin:34px 0 14px}
+#pane-visits .vsec:first-child{margin-top:8px}
+#pane-visits .vsec h2{margin:0;font-size:15.5px;letter-spacing:.2px;font-weight:700;color:var(--ink);
+  display:flex;align-items:center;gap:10px}
+#pane-visits .vsec h2::after{content:"";flex:1;height:1px;background:var(--line)}
+#pane-visits .vlede{margin:7px 0 0;font-size:12.5px;color:var(--muted);max-width:820px;line-height:1.55}
+
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(400px,1fr));gap:14px;margin-top:14px}
+.vcard{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:15px 16px 0;overflow:hidden;
+  display:flex;flex-direction:column;box-shadow:var(--shadow)}
+.vcard.has-verdict{border-color:#3a3324}
+.vch{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.vch h3{margin:0;font-size:16px;font-weight:700;letter-spacing:.2px}
+.vch .vsub{font-size:11.5px;color:var(--faint);margin-top:2px}
+.vbadge{flex:0 0 auto;font-size:11px;font-weight:700;padding:5px 9px;border-radius:6px;white-space:nowrap;letter-spacing:.3px}
+.vbadge.watch{background:var(--watch-bg);color:var(--watch);border:1px solid rgba(227,160,8,.35)}
+.vbadge.go{background:var(--go-bg);color:var(--go);border:1px solid rgba(63,185,80,.35)}
+.vbadge.no{background:var(--no-bg);color:var(--no);border:1px solid rgba(193,85,74,.35)}
+.vbadge.open{background:#20242c;color:var(--faint);border:1px dashed #3a414d}
+
+.vsecth{font-size:10.5px;text-transform:uppercase;letter-spacing:1.2px;color:var(--red2);font-weight:700;margin:14px 0 7px}
+ul.vunits{list-style:none;margin:0;padding:0}
+ul.vunits li{padding:8px 0;border-bottom:1px dotted #262b34}
+ul.vunits li:last-child{border-bottom:none}
+ul.vunits b{font-size:12.5px;display:inline-block;margin-right:8px}
+.vhow{font-size:10.5px;color:var(--faint);background:#20242c;padding:2px 6px;border-radius:4px}
+.vnote{font-size:12px;color:var(--muted);margin-top:3px;line-height:1.5}
+
+table.vterms{width:100%;border-collapse:collapse;font-size:12px}
+table.vterms th{text-align:left;font-weight:500;color:var(--faint);padding:5px 10px 5px 0;white-space:nowrap;vertical-align:top;width:38%}
+table.vterms td{padding:5px 0;color:var(--ink);font-variant-numeric:tabular-nums;text-align:left;white-space:normal;border-bottom:none}
+table.vterms th{border-bottom:none}
+
+.vpressure,.vmichael{font-size:12px;line-height:1.55;color:var(--muted);margin-top:12px;padding:9px 11px;border-radius:8px;background:var(--panel2)}
+.vpressure b,.vmichael b{color:var(--ink)}
+.vmichael{border-left:2px solid var(--red)}
+
+.vverdict{margin-top:13px;padding:12px 13px;border-radius:9px;background:rgba(227,160,8,.07);border:1px solid rgba(227,160,8,.28)}
+.vvhead{font-size:11.5px;font-weight:800;letter-spacing:.6px;color:var(--watch);text-transform:uppercase}
+.vverdict p{margin:7px 0 0;font-size:12px;line-height:1.6;color:var(--muted)}
+.vcomp{margin-top:11px;display:flex;flex-direction:column;gap:5px}
+.vcrow{display:grid;grid-template-columns:130px 1fr 28px;align-items:center;gap:9px;font-size:11.5px;color:var(--muted)}
+.vcrow b{color:var(--ink);text-align:right;font-variant-numeric:tabular-nums}
+.vbar{height:5px;border-radius:3px;background:#2c313b;overflow:hidden}
+.vbar i{display:block;height:100%;background:linear-gradient(90deg,var(--red),var(--watch))}
+.vbreak{margin-top:11px;font-size:11.5px;color:var(--muted)}
+.vbreak b{color:var(--ink);display:block;margin-bottom:4px}
+.vbreak ol{margin:0;padding-left:17px}
+.vbreak li{margin:3px 0;line-height:1.5}
+
+.vaction{margin-top:12px;padding:9px 11px;border-radius:8px;font-size:12px;line-height:1.55;
+  background:rgba(226,35,26,.08);border:1px solid rgba(226,35,26,.3);color:#f0d7d5}
+.vcf{margin:14px -16px 0;margin-top:auto;padding:9px 16px;border-top:1px solid var(--line);background:#13161b;
+  display:flex;justify-content:space-between;gap:10px;font-size:10.5px;color:var(--faint)}
+.vcf .vdoc{color:var(--go)}
+.vcf .vdoc.none{color:#5a616d;font-style:italic}
+
+.vtargets{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:16px;margin-top:14px}
+.vtcol h4{margin:0 0 8px;font-size:10.5px;text-transform:uppercase;letter-spacing:1.2px;color:var(--red2);font-weight:700}
+.vtrow{display:flex;justify-content:space-between;gap:10px;padding:7px 10px;border-radius:7px;background:var(--card);
+  border:1px solid var(--line);border-left-width:3px;margin-bottom:5px;font-size:12px}
+.vtrow.go{border-left-color:var(--go)} .vtrow.watch{border-left-color:var(--watch)} .vtrow.no{border-left-color:var(--no)}
+.vtn{font-weight:600}
+.vtv{color:var(--muted);text-align:right;font-size:11.5px}
+.vadded{margin-top:12px;padding:11px 13px;border-radius:9px;background:var(--panel2);font-size:12px;color:var(--muted);line-height:1.6}
+.vadded b{color:var(--ink)}
+
+.vrules{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:11px;margin-top:14px}
+.vrule{background:var(--card);border:1px solid var(--line);border-radius:9px;padding:12px 13px}
+.vrule b{font-size:12.5px;display:block;margin-bottom:5px}
+.vrule p{margin:0;font-size:12px;color:var(--muted);line-height:1.55}
+
+.vll{display:grid;grid-template-columns:2fr 1fr;gap:16px;margin-top:14px}
+.vllcol h4{margin:0 0 8px;font-size:10.5px;text-transform:uppercase;letter-spacing:1.2px;color:var(--red2);font-weight:700}
+.vpills{display:flex;flex-wrap:wrap;gap:6px}
+.vpills span{font-size:12px;padding:6px 10px;border-radius:20px;background:var(--card);border:1px solid var(--line)}
+.vpills.alt span{border-style:dashed;color:var(--muted)}
+.vcaveat{margin-top:12px;font-size:12px;color:var(--muted);line-height:1.6;max-width:900px;
+  padding-left:11px;border-left:2px solid var(--line)}
+
+table.vactions{width:100%;border-collapse:collapse;margin-top:14px;font-size:12.5px}
+table.vactions th{text-align:left;font-size:10.5px;text-transform:uppercase;letter-spacing:1.1px;color:var(--faint);
+  font-weight:700;padding:0 12px 8px 0;border-bottom:1px solid var(--line)}
+table.vactions td{padding:10px 12px 10px 0;border-bottom:1px solid #21252d;color:var(--muted);vertical-align:top;line-height:1.5;text-align:left;white-space:normal}
+table.vactions td b{color:var(--ink)}
+
+ol.vgaps{margin:14px 0 0;padding-left:18px;max-width:900px}
+ol.vgaps li{margin:9px 0;font-size:12.5px;color:var(--muted);line-height:1.65}
+
+@media (max-width:900px){
+  .vtargets,.vll{grid-template-columns:1fr}
+  .vgrid{grid-template-columns:1fr}
+}
+
+/* ---- Agent book stage ---- */
+#pane-book{display:none;padding:18px 22px 80px;max-width:1180px}
+#pane-book .vsec{margin:34px 0 14px}
+#pane-book .vsec:first-child{margin-top:8px}
+#pane-book .vsec h2{margin:0;font-size:15.5px;letter-spacing:.2px;font-weight:700;color:var(--ink);
+  display:flex;align-items:center;gap:10px}
+#pane-book .vsec h2::after{content:"";flex:1;height:1px;background:var(--line)}
+#pane-book .vlede{margin:7px 0 0;font-size:12.5px;color:var(--muted);max-width:840px;line-height:1.55}
+
+.bgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(420px,1fr));gap:14px;margin-top:14px;align-items:start}
+.bcard{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:15px 16px 0;overflow:hidden;
+  display:flex;flex-direction:column;box-shadow:var(--shadow)}
+.bcard.has-verdict{border-color:#24361f}
+.bch{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.bch h3{margin:0;font-size:15.5px;font-weight:700;letter-spacing:.2px;line-height:1.3}
+.bch .vsub{font-size:11.5px;color:var(--faint);margin-top:3px}
+.bstatus{flex:0 0 auto;font-size:9.5px;font-weight:800;letter-spacing:.8px;padding:5px 8px;border-radius:5px;
+  white-space:nowrap;text-transform:uppercase}
+.bstatus.go{background:var(--go-bg);color:var(--go);border:1px solid rgba(63,185,80,.35)}
+.bstatus.watch{background:var(--watch-bg);color:var(--watch);border:1px solid rgba(227,160,8,.35)}
+.bstatus.warn{background:rgba(226,35,26,.11);color:var(--red2);border:1px solid rgba(226,35,26,.35)}
+.bstatus.no{background:var(--no-bg);color:var(--no);border:1px solid rgba(193,85,74,.35)}
+.bagent{font-size:10.5px;color:var(--faint);margin:9px 0 11px;padding-bottom:11px;border-bottom:1px solid var(--line);
+  letter-spacing:.3px}
+.btrade{font-size:12px;line-height:1.55;color:var(--muted);margin-top:12px;padding:9px 11px;border-radius:8px;
+  background:var(--panel2);border-left:2px solid var(--watch)}
+.btrade b{color:var(--ink)}
+.bnote{margin:12px 0 0;font-size:12px;line-height:1.62;color:var(--muted)}
+.bdocs{margin:14px -16px 0;padding:10px 16px;border-top:1px solid var(--line);background:#13161b}
+.bdl{font-size:9.5px;text-transform:uppercase;letter-spacing:1.2px;color:var(--faint);font-weight:700;
+  display:block;margin-bottom:6px}
+.bdocwrap{display:flex;flex-wrap:wrap;gap:5px}
+.bdoc{font-size:10.5px;color:#8fa8b8;background:#191d24;border:1px solid #252b34;border-radius:4px;padding:3px 7px;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+#pane-book .vverdict.go{background:rgba(63,185,80,.06);border-color:rgba(63,185,80,.28)}
+#pane-book .vverdict.go .vvhead{color:var(--go)}
+#pane-book .vbar i{background:linear-gradient(90deg,var(--watch),var(--go))}
+@media (max-width:900px){ .bgrid{grid-template-columns:1fr} }
+
 /* ---- Layout ---- */
 header.top{
   position:sticky; top:0; z-index:40; background:linear-gradient(180deg,#101216,#0d0e11);
@@ -214,6 +351,165 @@ svg .quad{stroke:#3a414d;stroke-width:1;stroke-dasharray:4 4}
 .stagebar .seg button span.sd{font-size:10.5px;font-weight:500;color:var(--faint)}
 .stagebar .seg button.active span.sd{color:var(--muted)}
 .stagebar .stagenote{font-size:12px;color:var(--muted);max-width:640px}
+
+/* ---- 25 Aug Bluewater deal stage ---- */
+#pane-deal{display:none;padding:18px 22px 80px;max-width:1180px}
+#pane-deal .vsec{margin:34px 0 14px}
+#pane-deal .vsec:first-child{margin-top:8px}
+#pane-deal .vsec h2{margin:0;font-size:15.5px;letter-spacing:.2px;font-weight:700;color:var(--ink);
+  display:flex;align-items:center;gap:10px}
+#pane-deal .vsec h2::after{content:"";flex:1;height:1px;background:var(--line)}
+#pane-deal .vlede{margin:7px 0 0;font-size:12.5px;color:var(--muted);max-width:860px;line-height:1.55}
+.dhero{display:grid;grid-template-columns:repeat(auto-fit,minmax(158px,1fr));gap:11px;margin-top:15px}
+.dtile{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 13px}
+.dtile .dl{font-size:9.5px;text-transform:uppercase;letter-spacing:1.1px;color:var(--faint);font-weight:700}
+.dtile .dv{font-size:19px;font-weight:700;margin-top:5px;letter-spacing:-.3px}
+.dtile .dn{font-size:10.5px;color:var(--muted);margin-top:3px;line-height:1.45}
+.dtile.warn{border-color:rgba(226,35,26,.32)} .dtile.warn .dv{color:var(--red2)}
+.dtile.good .dv{color:var(--go)}
+.dgate{margin-top:15px;background:var(--card);border:1px solid var(--line);border-radius:11px;overflow-x:auto}
+.dgate table{width:100%;border-collapse:collapse;font-size:12.5px}
+.dgate th{background:var(--panel2);font-size:9.5px;text-transform:uppercase;letter-spacing:1px;color:var(--faint);
+  font-weight:700;padding:9px 11px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}
+.dgate th:first-child{text-align:left}
+.dgate td{padding:9px 11px;text-align:right;border-bottom:1px solid #1a1e25;font-variant-numeric:tabular-nums;white-space:normal}
+.dgate td:first-child{text-align:left;color:var(--muted)}
+.dgate tr:last-child td{border-bottom:none}
+.dgate tr.mark td{background:rgba(63,185,80,.05)}
+.dgate tr.here td{background:rgba(227,160,8,.07)}
+.dgate tr.here td:first-child{color:var(--ink);font-weight:700}
+.dgate b.pass{color:var(--go)} .dgate b.fail{color:var(--red2)}
+.dgate .src{font-size:10.5px;color:var(--faint);display:block;margin-top:2px;white-space:normal}
+.dgate table{min-width:100%}
+.dgate tbody td:first-child{min-width:112px}
+.dcap{font-size:11.5px;color:var(--faint);padding:9px 12px;background:#13161b;line-height:1.55}
+.dsplit{display:grid;grid-template-columns:1.15fr 1fr;gap:14px;margin-top:15px;align-items:start}
+@media (max-width:980px){ .dsplit{grid-template-columns:1fr} }
+.dpanel{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:15px 16px}
+.dpanel h3{margin:0 0 11px;font-size:13px;font-weight:700;letter-spacing:.2px}
+.dpl{width:100%;border-collapse:collapse;font-size:12.5px}
+.dpl td{padding:6px 0;border-bottom:1px solid #1a1e25;font-variant-numeric:tabular-nums;white-space:normal}
+.dpl td:first-child{color:var(--muted)} .dpl td:last-child{text-align:right}
+.dpl tr.tot td{border-top:1px solid var(--line);border-bottom:none;font-weight:700;padding-top:9px}
+.dpl tr.sub td{color:var(--faint);font-size:11.5px}
+.dcomp{display:flex;flex-direction:column;gap:7px;margin-top:4px}
+.dcrow{display:flex;align-items:center;gap:10px;font-size:12px}
+.dcrow span{flex:0 0 118px;color:var(--muted)}
+.dcrow .dbar{flex:1;height:7px;background:var(--panel2);border-radius:4px;overflow:hidden}
+.dcrow .dbar i{display:block;height:100%;background:linear-gradient(90deg,var(--watch),var(--go))}
+.dcrow b{flex:0 0 74px;text-align:right;font-variant-numeric:tabular-nums}
+.dclause{margin-top:14px;display:grid;grid-template-columns:repeat(auto-fill,minmax(400px,1fr));gap:12px;align-items:start}
+.dcl{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:13px 14px}
+.dcl.changed{border-color:rgba(227,160,8,.34)}
+.dcl.new{border-color:rgba(226,35,26,.30)}
+.dcl.open{border-color:rgba(88,166,255,.30)}
+
+
+/* ---- field scorecard ---- */
+.fldrank{display:grid;grid-template-columns:repeat(auto-fit,minmax(178px,1fr));gap:10px;margin-top:14px}
+.fldr{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 13px;display:flex;
+  flex-direction:column;gap:6px;border-top:3px solid var(--line)}
+.fldr.go{border-top-color:var(--go)} .fldr.watch{border-top-color:var(--watch)} .fldr.no{border-top-color:var(--red2)}
+.fldr .fldn{font-size:26px;font-weight:800;letter-spacing:-1px;line-height:1}
+.fldr .fldn span{font-size:13px;font-weight:600;margin-left:1px}
+.fldr.go .fldn{color:var(--go)} .fldr.watch .fldn{color:var(--watch)} .fldr.no .fldn{color:var(--red2)}
+.fldr .fldt b{display:block;font-size:13px}
+.fldr .fldt span{display:block;font-size:10.5px;color:var(--faint);line-height:1.4;margin-top:2px}
+.fldr .fldsplit{font-size:10.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+.fldgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(430px,1fr));gap:14px;margin-top:16px;align-items:start}
+.fldcard{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:15px 16px 0;
+  display:flex;flex-direction:column;overflow:hidden;box-shadow:var(--shadow)}
+.fldcard.go{border-color:rgba(63,185,80,.30)} .fldcard.no{border-color:rgba(226,35,26,.28)}
+.fldh{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding-bottom:12px;
+  border-bottom:1px solid var(--line)}
+.fldh h3{margin:0;font-size:15.5px;font-weight:700;letter-spacing:.2px}
+.fldbig{font-size:28px;font-weight:800;letter-spacing:-1px;line-height:1}
+.fldbig span{font-size:14px;font-weight:600}
+.fldcard.go .fldbig{color:var(--go)} .fldcard.watch .fldbig{color:var(--watch)} .fldcard.no .fldbig{color:var(--red2)}
+.fldbars{display:grid;grid-template-columns:1fr 1fr;gap:5px 16px;margin:12px 0 0}
+.fldbar{display:flex;align-items:center;gap:7px;font-size:10.5px;color:var(--muted)}
+.fldbar span{flex:0 0 96px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fldbar b{flex:0 0 14px;text-align:right;color:var(--ink);font-variant-numeric:tabular-nums}
+.fldtrack{flex:1;height:6px;background:var(--panel2);border-radius:3px;overflow:hidden}
+.fldtrack i{display:block;height:100%}
+.fldtrack i.hi{background:var(--go)} .fldtrack i.mid{background:var(--watch)} .fldtrack i.lo{background:var(--red2)}
+.fldquote{margin:13px 0 0;padding:10px 12px;background:var(--panel2);border-left:2px solid var(--watch);
+  border-radius:0 7px 7px 0;font-size:12px;line-height:1.6;color:var(--ink);font-style:italic}
+.fldobs{margin:12px 0 0;padding-left:17px;font-size:11.5px;line-height:1.62;color:var(--muted)}
+.fldobs li{margin-bottom:5px}
+.fldf{margin:13px -16px 0;padding:9px 16px;border-top:1px solid var(--line);background:#13161b;
+  display:flex;justify-content:space-between;gap:10px;font-size:10px;color:var(--faint);letter-spacing:.3px}
+.fldpara{color:var(--watch)}
+@media (max-width:900px){ .fldgrid{grid-template-columns:1fr} .fldbars{grid-template-columns:1fr} }
+
+/* ---- Exeter appraisal, full ---- */
+.apphead{display:flex;gap:18px;align-items:stretch;margin-top:15px}
+.appscore{flex:0 0 168px;background:var(--card);border:1px solid rgba(227,160,8,.32);border-radius:11px;
+  padding:16px 18px;display:flex;flex-direction:column;justify-content:center}
+.appscore .appn{font-size:46px;font-weight:800;letter-spacing:-2px;color:var(--watch);line-height:1}
+.appscore .appd{font-size:11.5px;color:var(--muted);margin-top:5px}
+.appscore .appd span{display:block;font-size:10px;color:var(--faint);margin-top:2px}
+.appcall{flex:1;background:var(--card);border:1px solid var(--line);border-radius:11px;padding:16px 18px}
+.appcall b{font-size:14px;letter-spacing:.2px;color:var(--watch)}
+.appcall p{margin:8px 0 0;font-size:12.5px;line-height:1.65;color:var(--muted)}
+.appsub{margin:26px 0 0;font-size:12px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:var(--faint)}
+.apprate{display:inline-block;font-size:9.5px;font-weight:800;letter-spacing:.7px;text-transform:uppercase;
+  padding:4px 7px;border-radius:5px;white-space:nowrap}
+.apprate.go{background:var(--go-bg);color:var(--go);border:1px solid rgba(63,185,80,.35)}
+.apprate.watch{background:var(--watch-bg);color:var(--watch);border:1px solid rgba(227,160,8,.35)}
+.apprate.no{background:rgba(226,35,26,.11);color:var(--red2);border:1px solid rgba(226,35,26,.35)}
+.apprate.faint{background:var(--panel2);color:var(--faint);border:1px solid var(--line)}
+.appswot{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px;margin-top:13px;align-items:start}
+.appsw{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:13px 14px}
+.appsw.strength{border-left:3px solid var(--go)} .appsw.weakness{border-left:3px solid var(--watch)}
+.appsw.opportunity{border-left:3px solid #58a6ff} .appsw.threat{border-left:3px solid var(--red2)}
+.appswk{font-size:9px;font-weight:800;letter-spacing:1.1px;color:var(--faint)}
+.appsw h4{margin:5px 0 8px;font-size:13px;font-weight:700;letter-spacing:.2px}
+.appsw p{margin:0 0 6px;font-size:11.5px;line-height:1.55;color:var(--muted)}
+.appsw p b{color:var(--ink);font-weight:600}
+.appdot{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:6px;
+  font-size:11.5px;font-weight:700;color:#0d0e11}
+.appdot.s1{background:#2d3138;color:var(--faint)} .appdot.s2{background:#3f4a55;color:#cfd8e0}
+.appdot.s3{background:#6c7f8f;color:#0d0e11} .appdot.s4{background:#c9a227} .appdot.s5{background:#c1554a;color:#fff}
+.appdot.t{outline:1px solid rgba(255,255,255,.14)}
+.appheat{width:100%;border-collapse:separate;border-spacing:3px}
+.appheat th{font-size:10px;color:var(--faint);font-weight:700;letter-spacing:.6px;text-align:center;padding:2px}
+.appheat tbody th{text-align:left;color:var(--muted);font-size:11.5px;letter-spacing:0;padding-right:6px;white-space:nowrap}
+.appcell{display:block;text-align:center;font-size:10.5px;font-weight:700;border-radius:5px;padding:6px 0;color:#0d0e11}
+.appcell.L{background:#262b33;color:var(--faint)} .appcell.M{background:#4a5a66;color:#dbe4ea}
+.appcell.H{background:#c9a227} .appcell.P{background:var(--go);color:#08210e}
+.appleg{margin-top:10px;display:flex;align-items:center;gap:6px;font-size:10.5px;color:var(--faint)}
+.appleg .appcell{display:inline-block;width:22px;padding:3px 0;margin-left:6px}
+@media (max-width:900px){ .apphead{flex-direction:column} .appswot{grid-template-columns:1fr} }
+
+.dcl.good{border-color:rgba(63,185,80,.30)}
+.dcl.good .dnow{color:var(--ink)}
+.dclh{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.dclh h4{margin:0;font-size:13px;font-weight:700;letter-spacing:.2px;line-height:1.35}
+.dtag{flex:0 0 auto;font-size:9px;font-weight:800;letter-spacing:.8px;padding:4px 7px;border-radius:5px;text-transform:uppercase}
+.dtag.agreed{background:var(--go-bg);color:var(--go);border:1px solid rgba(63,185,80,.35)}
+.dtag.changed{background:var(--watch-bg);color:var(--watch);border:1px solid rgba(227,160,8,.35)}
+.dtag.new{background:rgba(226,35,26,.11);color:var(--red2);border:1px solid rgba(226,35,26,.35)}
+.dtag.open{background:rgba(88,166,255,.11);color:#58a6ff;border:1px solid rgba(88,166,255,.35)}
+.dcl .dwas{font-size:11.5px;color:var(--faint);margin:8px 0 0;line-height:1.5}
+.dcl .dnow{font-size:12px;color:var(--ink);margin:5px 0 0;line-height:1.55}
+.dcl .dwhy{font-size:11.5px;color:var(--muted);margin:9px 0 0;padding-top:9px;border-top:1px solid #1a1e25;line-height:1.55}
+.dcl .dcost{font-size:11.5px;color:var(--watch);margin-top:7px;font-weight:600}
+.dask{margin-top:14px;counter-reset:ask}
+.daskrow{display:flex;gap:13px;background:var(--card);border:1px solid var(--line);border-radius:10px;
+  padding:13px 15px;margin-bottom:10px;align-items:flex-start}
+.daskrow .dnum{flex:0 0 26px;height:26px;border-radius:50%;background:var(--panel2);border:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--ink)}
+.daskrow .dtxt{flex:1}
+.daskrow .dtxt b{display:block;font-size:13px;margin-bottom:4px}
+.daskrow .dtxt p{margin:0;font-size:12px;color:var(--muted);line-height:1.6}
+.daskrow .dworth{flex:0 0 120px;text-align:right;font-size:11.5px;color:var(--faint);line-height:1.45}
+.daskrow .dworth b{display:block;font-size:14px;color:var(--ink);font-variant-numeric:tabular-nums}
+.dverdict{margin-top:16px;background:rgba(227,160,8,.06);border:1px solid rgba(227,160,8,.30);border-radius:11px;padding:15px 17px}
+.dverdict .dvh{font-size:11px;font-weight:800;letter-spacing:1.1px;text-transform:uppercase;color:var(--watch)}
+.dverdict p{margin:9px 0 0;font-size:13px;line-height:1.68;color:var(--ink)}
+.dverdict p+p{margin-top:9px;color:var(--muted);font-size:12.5px}
+
 .pill.AWAITING{background:rgba(152,160,172,.14);color:var(--muted)}
 .pill.LIVE{background:var(--go-bg);color:var(--go)}
 .pill.REJECTED{background:var(--no-bg);color:var(--no)}
@@ -266,7 +562,10 @@ svg .quad{stroke:#3a414d;stroke-width:1;stroke-dasharray:4 4}
       <div class="seg" id="stageSeg">
         <button data-stage="towns"><b>05 Aug &middot; Towns</b><span class="sd">26 locations, format-led</span></button>
         <button data-stage="units"><b>10 Aug &middot; Units</b><span class="sd">24 live units, agent schedule</span></button>
-        <button data-stage="savills" class="active"><b>14 Aug &middot; Savills call</b><span class="sd">25 units, status applied</span></button>
+        <button data-stage="savills"><b>14 Aug &middot; Savills call</b><span class="sd">25 units, status applied</span></button>
+        <button data-stage="visits"><b>22 Aug &middot; Viewings</b><span class="sd">6 towns visited, terms &amp; decisions</span></button>
+        <button data-stage="book"><b>Agent book</b><span class="sd">every live unit, terms &amp; documents</span></button>
+        <button data-stage="deal" class="active"><b>25 Aug &middot; Bluewater HOTs</b><span class="sd">SVL05 &middot; heads of terms against the margin gate</span></button>
       </div>
       <div class="stagenote" id="stageNote"></div>
     </div>
@@ -275,6 +574,10 @@ svg .quad{stroke:#3a414d;stroke-width:1;stroke-dasharray:4 4}
       <button class="tab" data-tab="site">Site deep-dive</button>
       <button class="tab" data-tab="charts">Compare &amp; charts</button>
     </div>
+
+    <section id="pane-visits"></section>
+    <section id="pane-book"></section>
+    <section id="pane-deal"></section>
 
     <!-- RANKING -->
     <section class="pane active" id="pane-rank">
@@ -374,9 +677,16 @@ function computeFormat(site, f, A){
   const util = clamp((A.utilFloor + (A.utilCeil-A.utilFloor)*site.demandIndex) * evf, 0, 1);
   const covers = seats * spec.sit * 7 * util;             // per week
   const sph = A.sphBase + A.sphSlope * site.affluence;
-  const dineIn = covers * sph * 52;
-  const delivery = dineIn * A.delPerPoint * site.delivery15;
-  const net = dineIn + delivery;
+  let dineIn = covers * sph * 52;
+  let delivery = dineIn * A.delPerPoint * site.delivery15;
+  let net = dineIn + delivery;
+  // Turnover override (25.08 deal stage): where a real or agent-quoted turnover is
+  // being tested rather than the capacity-derived one, scale dine-in and delivery
+  // pro rata so the aggregator commission still lands on the delivery share only.
+  if(f.netOverride != null && net > 0){
+    const k = f.netOverride / net;
+    dineIn *= k; delivery *= k; net = f.netOverride;
+  }
   // Unit mode (10.08 / 14.08 stages): rent and service charge are quoted in £ pa on a
   // specific demise, so they are used as quoted rather than rebuilt from a psf estimate.
   // f.sqft is the TRADING area (drives seats and sales); f.sqftDemised is what we pay on.
@@ -385,10 +695,18 @@ function computeFormat(site, f, A){
   if(unitMode){
     const dem = f.sqftDemised;
     termsKnown = (f.rentPa != null) && (f.scPa != null);
+    // Turnover rent (25.08 deal stage): rent is the HIGHER of the base and a
+    // percentage of net turnover, subject to any cap. Where no turnover terms are
+    // carried this collapses to the quoted base rent, so every earlier stage is
+    // arithmetically unchanged.
     rent  = f.rentPa;
-    sc    = f.scPa;
-    rates = (f.ratesPsf ?? 0) * dem;
-    occ   = termsKnown ? (rent + sc + rates) : null;
+    if(rent != null && f.rentTurnoverPct != null){
+      rent = Math.max(rent, f.rentTurnoverPct * net);
+      if(f.rentCapPa != null) rent = Math.min(rent, f.rentCapPa);
+    }
+    sc    = (f.scPa != null && f.scUncapped) ? f.scPa * (A.scStress ?? 1) : f.scPa;
+    rates = (f.ratesPa != null) ? f.ratesPa : (f.ratesPsf ?? 0) * dem;
+    occ   = termsKnown ? (rent + sc + rates + (f.insPa ?? 0)) : null;
   } else {
     const rentPsf = Math.min(f.rentPsf ?? 0, A.rentCap);
     rent = rentPsf * f.sqft;
@@ -500,7 +818,7 @@ const DEFAULTS = {
   weights:{demand:20,whitespace:15,affluence:8,occupancy:18,ebitda:14,payback:15,network:10}
 };
 const state = {A: structuredClone(DEFAULTS), tab:'rank', view:'table', sort:{key:'total',dir:-1},
-  search:'', ddIndex:0, baseline:null, stage:'savills', statusFilter:'all'};
+  search:'', ddIndex:0, baseline:null, stage:'deal', statusFilter:'all'};
 
 /* ====================== STAGES ====================== */
 const STAGES = {
@@ -521,6 +839,24 @@ const STAGES = {
     sub:'25 units · agent has now called each one live or rejected',
     note:'Savills has added a status to every unit and quoted incumbent trade in most schemes. Our score is unchanged; what is new is their call against it, and the divergences are the point of this view.',
     sites:()=>UNITS.sites.filter(s=>!s.notModelled), isUnits:true, hasStatus:true,
+  },
+  book: {
+    label:'Agent book \u2014 live opportunities',
+    sub:'every unit the agents have on us \u00b7 terms, incumbent trade, documents and where each one stands',
+    note:'The full book across both Savills desks \u2014 Jessica Hill in London and Jack Wagland in Manchester \u2014 plus Time Retail Partners. Terms are quoted verbatim from the agent emails; nothing here is estimated and nothing here is scored. Trafford Centre R11A and the Manchester Oxford Street Pizza Express have never appeared on the Savills schedules and so are absent from every earlier stage of this model.',
+    sites:()=>[], isUnits:false, isVisits:true, isBook:true,
+  },
+  deal: {
+    label:'25 Aug \u2014 Bluewater SVL05, heads of terms',
+    sub:'Landsec heads of terms dated 20 Aug, issued 24 Aug \u00b7 scored, and tested against the 18\u201320% margin standard',
+    note:'The first unit in this pipeline to reach a heads of terms. SVL05 is scored on the same engine as every other stage, then run against the margin standard set on 21 August \u2014 which the earlier stages record as policy but do not apply. The assumption rail is live here: move a slider and the gate moves with it.',
+    sites:()=>DEAL.sites, isUnits:true, isDeal:true,
+  },
+  visits: {
+    label:'22 Aug \u2014 viewing round',
+    sub:'6 towns visited 18\u201320 Aug \u00b7 seven scored field responses, terms, the Exeter appraisal in full, decisions and what is still open',
+    note:'Matt Jenner visited Plymouth, Exeter, Portsmouth, Basingstoke, Oxford and Bracknell on 18\u201320 August. This stage records what was seen, the terms that came back, the 2027 target-list decisions taken alongside them, and the commercial rules set on 21 August. The scorecard is deliberately unchanged \u2014 nothing here re-ranks the earlier stages.',
+    sites:()=>[], isUnits:false, isVisits:true,
   },
 };
 function stage(){ return STAGES[state.stage]; }
@@ -640,9 +976,1563 @@ function updateWsum(){
 }
 function indexByLoc(rows){const m={};rows.forEach((r,i)=>m[r.site.location]={rank:i+1,total:r.total,tier:r.tier});return m;}
 
+/* ====================== AGENT BOOK — LIVE OPPORTUNITIES ====================== */
+/* Every figure below is quoted from an agent email. Nothing is estimated. */
+const BOOK = {
+  groups: [
+    {
+      key:'legals',
+      title:'In legals or under negotiation',
+      lede:'Three deals are past the introduction stage. These are the ones with a clock on them.',
+      units:[
+        {
+          name:'Westfield', sub:'Final heads of terms issued', status:'LEGALS', agent:'John Menzies · Savills',
+          terms:[['Board approval','Granted — confirmed 3 Aug 2026'],['Heads of terms','Final version issued'],['Our solicitors','Brodies LLP — John Young, with Colin Morrison'],['Landlord solicitor','Has made contact; drafts under review']],
+          note:'Commercial terms sit inside the HOTs document rather than the email, so nothing further is recorded here. Design was agreed in July with two minor points outstanding; those have now closed.',
+          docs:['Maki and Ramen - Westfield HOTs FINAL.pdf','Maki and Ramen - Westfield HOTs FINAL.docx']
+        },
+        {
+          name:'Bluewater — SVL05, former GBK', sub:'Landsec · ground floor of the Plaza · heads of terms issued 24 Aug', status:'HEADS OF TERMS', agent:'Jessica Hill · Savills',
+          terms:[
+            ['Size','3,951 sq ft, ground floor only'],
+            ['Quoted rent','£65 psf = £256,815 pa, 10% turnover top-up'],
+            ['Base rent','£230,000 pa — agreed 4 Aug, £58.21 psf'],
+            ['Turnover rent','Higher of; 7.5% of net turnover, total capped at £300,000 pa'],
+            ['Service charge','£90,000 pa cap, CPI 1–3% (cl.19 as drafted)'],
+            ['SC history','23/24 £77,027 · 24/25 £81,211 · 25/26 £80,557 · 26/27 £86,575'],
+            ['Rates','£99,900 pa. Insurance £2,927.64 pa'],
+            ['Total occupancy','£422,828 pa — £107.02 psf all in'],
+            ['Term','15 years outside the Act, mutual year-10 break; landlord break if 3-year average turnover is below £2.5m'],
+            ['Incentive','15 months rent free plus £115,000 capital contribution — 21 months of value'],
+            ['Review','CPI 1–4% annually, compounded at years 5 and 10 — but sitting UNDER a 5-yearly upwards-only open-market review'],
+            ['Deposit','£115,000 plus VAT on exchange (cl.13 — the covering email says this was removed)'],
+            ['Handover','As is, no strip-out by the landlord. Access Date left blank']
+          ],
+          note:'Heads of terms received 24 Aug and modelled in full on the 25 Aug stage of this page. The incentive point has closed at 15 months rent free plus a six-month capital contribution. Three points did not close the way the email chain left them: the open-market rent review has been reinstated above the CPI review, the £115,000 deposit is still in the draft, and the fit-out obligations (no strip-out, new shopfront, full extract system) are new. Earlier position, for the record: the open point was the incentive. Michael, 4 Aug: "Either 2 years rent free or 1 RF and C/C — i think this is going to be a deal breaker. So min 18 month package, optimal is 24 months," and separately "Cash is preferred." Scheme trade quoted: Five Guys £3.3m, Bill\'s £2.98m pa. Bluewater took over 18 million visitors in 2025 on £1.2bn of sales, 13,000 free spaces. Tenant entity proposed as Maki Property Ltd.',
+          docs:['Bluewater Maki  Ramen 240826.doc — heads of terms, 20 Aug','Bluewater - March 2026 - Brochure.pdf','Bluewater_Kent_Plans.pdf','PLUS Opportunities Pack 2025.pdf','Brand Partner Marketing Support Pack APRIL 2026.pdf','BW x Marketing Calendar 2026-27 v6.pdf','Landsec Spotlight Media Rate Card - Feb 2026.pdf']
+        },
+        {
+          name:'One Tower Bridge — Unit 1.3', sub:'Two competing offers already in', status:'OFFER DUE', agent:'Jessica Hill · Savills',
+          terms:[['Position','Two offers on the site as at 16 July'],['Our position','Savills to send a draft offer; nothing submitted in the email record']],
+          note:'Flagged on 16 July as needing a quick offer if of interest. There is a site appraisal on file from 23 July. No terms have come through by email and no offer has been recorded since.',
+          docs:['Maki_Ramen_Site_Appraisal_One_Tower_Bridge.pdf (our own, 23 Jul)']
+        }
+      ]
+    },
+    {
+      key:'manchester',
+      title:'Manchester and Trafford — Jack Wagland',
+      lede:'The two Michael asked to have added. Both come through the Savills Manchester office rather than the London restaurants team, which is why neither appears on the Savills opportunity schedules or on the earlier stages of this model. Trafford now runs on WhatsApp rather than email, so the terms below have no document behind them.',
+      units:[
+        {
+          name:'Trafford Centre — the Nimchi unit', sub:'Supersedes R11A · terms 18 Aug 2026', status:'TERMS RECEIVED', agent:'Jack Wagland · Savills',
+          terms:[
+            ['Ground floor','2,659 sq ft'],
+            ['Mezzanine','1,492 sq ft'],
+            ['Total','4,151 sq ft'],
+            ['Rent','c. £225,000 base — £54.2 psf'],
+            ['Service charge','£94,036 pa — £22.65 psf'],
+            ['Rates payable','£79,550 pa — £19.16 psf'],
+            ['Total occupancy','£398,586 pa — £96.02 psf'],
+            ['Vacant possession','Likely Q1 2027'],
+            ['Landlord','Pradera Lateral — Kitty Vaughan']
+          ],
+          note:'This replaces R11A. The unit we chased through 2025 was one half of the Wetherspoons split — ground 2,692 + mezzanine 1,387 = 4,079 sq ft at a £200,000 quoting base — and Michael picked it on 4 July 2025 with "We like r11a." Our financials went in on 7 Aug 2025, Savills offered in November to take the whole demise if that unlocked it, and the landlord set a preferred-parties board meeting for 19 February 2026. Nothing came back. What has come back instead is a different unit at a similar size on a firmer footing: real rates rather than an estimate, a service charge that confirms the £22 psf expectation, and a vacant possession date. Savills also flagged a read-across risk that still stands — Lakeside heads were agreed at £120,000 pa with an 8% top-up capped at £160,000, implying a £2m turnover estimate, while Trafford was being projected at £5.5–6m. The line held with the landlord is that Trafford is a bigger site in a stronger scheme and the brand is already known in Manchester.',
+          trade:'Wagamama £6.89m net of VAT to April 2025 — believed second best in the UK. Wingstop £175k per week — best trading in the UK.',
+          docs:['WhatsApp from Jack Wagland, 18 Aug 2026 — the only source for these terms','LRW_D_3_09_158A - R11 Split Area Plan - Ground.pdf (R11A, superseded)','LRW_D_3_09_158C - R11 Split Area Plan - Mezz.pdf (R11A, superseded)','Scheme Plan.pdf','Final_ Ext_ Trafford Centre (1).xlsx — our 2025 proposal on R11A'],
+          flag:'Occupancy runs at £96 psf against £58.70 at Oxford Street — the same brand, the same city, 63% more per square foot to trade. On our own 2025 projection of £5.5–6m the £398,586 total sits at 6.6–7.2% of sales, which is defensible; on anything under £4m it is not. That projection was built for R11A and has never been revisited. Nothing has come through in writing beyond the WhatsApp: no plan for this unit, no lease term, no incentive, no handover spec, and no confirmation of where the 2025 proposal now stands. Ask for a marketing pack and a floor plan before it goes any further.'
+        },
+        {
+          name:'Manchester Oxford Street — the Pizza Express', sub:'Unit B, St James Building, 61–95 Oxford Street, M1 6FQ', status:'PROCEED · 74/100', agent:'Jack Wagland · Savills',
+          terms:[
+            ['Size','3,150 sq ft, single ground floor'],
+            ['Rent','c. £130,000 pa — £41.3 psf. Confirmed unchanged, 22 Aug 2026'],
+            ['Rateable value','£75,000. Rates estimated at £41,625'],
+            ['Service charge','£3.26 psf — c. £10,269 pa'],
+            ['Total occupancy','£184,894 pa, £58.7 psf including estimated insurance'],
+            ['Covers','c. 130 on one floor after kitchen and back of house'],
+            ['Term / incentive / review','To be confirmed'],
+            ['Building','Grade II* listed St James Building, beside the 1,900-seat Palace Theatre']
+          ],
+          note:'The highest strategic score anywhere in the pipeline. The service charge is the standout number — £3.26 psf against £22 at Trafford and £86,576 a year at Bluewater — and a single efficient trading floor avoids the dead upper level carried by most of the mall units. The Oxford Road corridor puts 81,000 students, 42,000 residents and 7,100 businesses past the door on one of the busiest bus routes in Europe.',
+          verdict:{
+            score:'74 / 100', call:'PROCEED — subject to financials', tone:'go',
+            components:[['Strategic importance',8],['Commercial potential',8],['Delivery potential',8],['Lunch trade',8],['Evening trade',7],['Competitive position',5],['Property suitability',8]],
+            breakers:['M9 data shows material cannibalisation with little net-new trade','Listed-building consent prevents viable kitchen extraction or A3 use','Terms return with open-market upward-only reviews and no incentive','The separate financial appraisal does not clear once benchmarked to M9']
+          },
+          docs:['PE Plans.pdf','St James Tower, Manchester GOAD.pdf','Maki_Ramen_Site_Appraisal_St_James_Manchester_No_PnL.pdf (ours)','Maki_Ramen_Manchester_Overlap_Impact.pdf (ours)'],
+          flag:'The binding constraint is not the market, it is the franchise. MAF2 in the Northern Quarter sits about a mile away and its agreement is likely to carry radius or exclusivity protection. Delivery overlap is assessed as HIGH — aggregators route to the nearest kitchen, and the franchisee feels that first. Pull the MAF2 agreement and check the territory terms before this advances. Cannibalisation of our own M9 is the second check and is answerable from our own numbers.'
+        }
+      ]
+    },
+    {
+      key:'open',
+      title:'Introduced with terms, no decision taken',
+      lede:'Units where Savills has sent plans, brochures and figures and we have not yet given an answer.',
+      units:[
+        {
+          name:'St Davids, Cardiff — KUG03, former Café Rouge', sub:'Landsec · the only F&B unit left in the scheme', status:'VIEWING 22 SEP', agent:'Jessica Hill · Savills',
+          terms:[['Size','4,431 sq ft over two levels'],['Target rent','£155,000'],['Service charge','£57,935.34. Insurance £1,321.32'],['Rates','£58,800 — rateable value £112,000'],['Total occupancy cost','£273,057'],['Handover','Fitted']],
+          note:'Up near Nando\'s, Shake Shack, Prezzo and Pizza Express. Escape Hunt is about to exchange on KUG02 and Bunsik is taking KGU01, shifting the mix toward grab-and-go and leisure on the first floor; Hollywood Bowl opens this year. No Wagamama turnover available — they trade outside the centre. Michael, 18 Aug: "Like this site a lot." The 14 Aug intel had it dealing at c.£120k against £155k quoted with two years incentive.',
+          docs:['St Davids Leasing Plan - June 2026.pdf']
+        },
+        {
+          name:'Touchwood, Solihull — SU50a, The Real Greek', sub:'Ground floor of the shopping centre', status:'TEAM VIEWING AGREED', agent:'Jessica Hill · Savills',
+          terms:[['Size','3,679 sq ft'],['Rent','£90,000 or a percentage'],['Service charge','£43,462'],['Rates','£44,678']],
+          note:'Scheme is 650,000 sq ft anchored by John Lewis, Next, Apple, River Island, H&M, Mango, Zara, Superdrug, Cineworld and Spinners. 12 million annual footfall, 86-minute average dwell, £104 average transaction value, £3.5bn of available catchment spend, 76% of visitors in the top three ACORN profiles and 49% affluent achievers, five universities within five miles. Michael agreed on 17 Aug to send someone; no date has been fixed and Savills has asked twice.',
+          trade:'Wagamama £62,500 per week. Nando\'s £50,000 per week.',
+          docs:['Touchwood Leasing Plan (Feb26).pdf','45 46 47 48.pdf']
+        },
+        {
+          name:'Oxford — 59 George Street, the Zizzi', sub:'Savills\' recommended Oxford unit', status:'CONTESTED', agent:'Jessica Hill · Savills',
+          terms:[['Size','Ground 2,750 sq ft + basement 750 sq ft = 3,500 sq ft'],['Covers','162 — 104 ground, 58 basement'],['Existing lease','Expires October 2026 at £110,000 pa'],['New lease quoted 17 Aug','£120,000 pa with 6 months rent free'],['Handover','Fully fitted to a high standard, open and trading']],
+          note:'Marked highly confidential — Zizzi staff are unaware. George Street is the primary F&B pitch in Oxford and Black Sheep Coffee, Marugame Udon, Noodle Inn and Burn Out BBQ are all under offer on the same stretch. Jess: "This would be my preferred unit for you." Two offers were already in as at 17 August and Savills say an offer would need to move quickly. Matt viewed it on 20 August; the verdict is still outstanding and a peak-dinner observation is owed before any offer.',
+          docs:['Oxford - 59 George Street.pdf','Z732O 100A GA.pdf','Z732O 102A FURNITURE PLAN.pdf']
+        },
+        {
+          name:'Oxford — Westgate RU10', sub:'The mall alternative to George Street', status:'OPEN', agent:'Jessica Hill · Savills',
+          terms:[['Size','3,158 sq ft'],['Rent','£200,000 pa or 10% of turnover'],['Service charge','£60,519 pa. Insurance £2,122.68 pa'],['Rates','£59,385 pa'],['Frontage','Benefits from external seating']],
+          note:'Westgate divides opinion because all the F&B sits on the rooftop. Our own 10 Aug model scored Oxford Westgate NO; there is a separate ground-floor unit with no extract potential that would need to be done by reco. Nando\'s trade both here and on George Street.',
+          trade:'Scheme sales quoted: Victors £4m · Stick N Sushi £3.1m · Flight Club £3.1m · Dirty Bones £2.3m · Sixty By Nico £2m · Beefy Boys £2m forecast.',
+          docs:['Westgate Oxford - Brochure.pdf']
+        },
+        {
+          name:'Canary Wharf — Wood Wharf', sub:'Two units on the residential side of the estate', status:'NO REPLY SENT', agent:'Jessica Hill · Savills',
+          terms:[
+            ['Unit 4, E3/E4, 40 Charter Street','Ground 2,422 + first 5,263 = 7,685 sq ft, plus outdoor seating. Great view of the dock'],
+            ['Rent','The higher of £435,000 pa or 10% of turnover'],
+            ['Unit G3, 30 Harbord Square','Ground 1,984 + first 4,501 = 6,485 sq ft'],
+            ['Rent','The higher of £200,000 pa or 10% of turnover'],
+            ['Service charge','Building SC to be confirmed on both. G3 estate charge £13,619 and promo fund £11,932'],
+            ['Rates','To be advised, subject to verification']
+          ],
+          note:'Wood Wharf is the residential side of the estate, mostly completed with residents moving in and the retail largely let. Jess noted we had previously wanted somewhere closer to the offices and asked whether it was worth revisiting given how much has changed. The email is still unread and no reply has gone back. Note the model carries a placeholder Canary Wharf footfall that must not be quoted externally.',
+          docs:['Wood Wharf Retail Brochure 2026.pdf']
+        },
+        {
+          name:'Canterbury — 3–5 Longmarket', sub:'Former Las Iguanas, fitted', status:'NO REPLY SENT', agent:'Jessica Hill · Savills',
+          terms:[['Size / rent / charges','Not stated in the email — the figures are in the attached brochure only'],['Position','Adjacent to Côte and The Ivy, and to Whitefriars shopping centre'],['Handover','Fitted']],
+          note:'Sent on 6 July and never answered. Michael\'s 18 Aug verdict on the town was "Needs more research", and Jess is now including Canterbury in the September search alongside Brighton, Cambridge and Bournemouth. The unit terms have never been extracted from the brochure.',
+          docs:['Canterbury_3_5_Longmarket.pdf']
+        },
+        {
+          name:'The Oracle, Reading', sub:'Deprioritised, trade stats now available', status:'PARKED', agent:'Jessica Hill · Savills',
+          terms:[['Status','Not a priority per the last call'],['Agent view','Wait for a fitted restaurant option'],['Trade stats','Supplied 19 Aug as an embedded image — the figures are not in the email text and have not been read']],
+          note:'Savills killed the Oracle on shell condition at the 14 Aug stage, which took out one of our five GO units. The trade stats have now arrived and Jess has asked whether they change the view. No answer has gone back, and the numbers themselves have not been opened.',
+          docs:['The Oracle - Reading.pdf','The Oracle- Reading- Leasing Plan.pdf']
+        }
+      ]
+    },
+    {
+      key:'declined',
+      title:'Declined',
+      lede:'Recorded so the same units do not come back round without the reason attached.',
+      units:[
+        {
+          name:'Merry Hill — the Build A Bear unit', sub:'Upper Mall, next to the food court', status:'DECLINED', agent:'Jessica Hill · Savills',
+          terms:[['Size','2,306 sq ft'],['Rent','£160,000 or a percentage — landlord confirmed room on the base'],['Service charge','£43,885. Rates £39,127'],['Handover','Not a fitted restaurant — a retail unit'],['Incumbent lease expiry','November 2026'],['Cash contribution','Confirmed available, no figure quoted']],
+          note:'Michael, 17 Aug: "Because of sizing restrictions and retail space for Merryhill, we will not move forward with Merryhill." A second option on the floor above — the Soho Coffee unit at 1,200 sq ft plus 1,000 sq ft of mall seating — was raised and is smaller again.',
+          trade:'Nando\'s £3.5m pa. Wagamama £3.2m pa.',
+          docs:['Redical - Merry Hill leasing plans - Apr 2026.pdf']
+        },
+        {
+          name:'Brent Cross — S02, Marugame Udon', sub:'Food court level · introduced for a franchisee', status:'DECLINED ON RENT', agent:'Jessica Hill · Savills',
+          terms:[['Size','c. 3,800 sq ft, splittable to c. 3,000 with the rent adjusted'],['Rent','£250,000 pa with a 10% turnover top-up — flex indicated'],['Service charge','£87,260 pa. Rates £123,650 pa'],['Handover','Expect as is']],
+          note:'Michael, 14 July: "Rent seems high for what it is sadly." Scheme footfall was c.10.5 million in 2025 with March up 7%, 4,000 free parking spaces, 81-minute dwell against a 74-minute UK benchmark and 88% conversion against 74%. Described as the second wealthiest catchment demographic in Europe. Ballerz has exchanged on 150,000 sq ft opening early 2027.',
+          trade:'Nando\'s £2.3m pa. Wagamama £2.1m pa.',
+          docs:['Brent Cross Marketing Brochure 2026.pdf','Brent Cross - May 26.pdf','3271BX S2 S2 Unit Plan.pdf']
+        },
+        {
+          name:'Kings Cross — Vermuteria', sub:'Fitted retail unit with vacant possession available', status:'DECLINED ON SIZE', agent:'Jessica Hill · Savills',
+          terms:[['Size','Ground 1,114 sq ft plus 400 sq ft outside seating'],['Rent','£70,000 pa or 10% of turnover'],['Service charge','£20 psf. Rateable value £50,500'],['Extract','Potential for low-level extract only']],
+          note:'Michael, 2 July: "It is sadly too small." Savills came back with unmarketed shell-and-core alternatives at the top of the scheme near Alma Café and Bubala — 883, 2,326, 1,692, 603 and 1,752 sq ft — and noted it is not as busy as further south. That follow-up was never answered; the 2,326 sq ft unit is the only one at a workable size.',
+          docs:['Marketing Datasheet - WY8 WY9.pdf','CDY 33-39 - Yard Level (00) GA.pdf','KX Fold Out Map - 2025.pdf']
+        }
+      ]
+    },
+    {
+      key:'franchise',
+      title:'Franchisee track',
+      lede:'Introduced for a franchisee rather than the company, so these sit outside the company-owned pipeline the model scores.',
+      units:[
+        {
+          name:'The Glades, Bromley — Pasta Remoli', sub:'Fitted · agent\'s recommended Bromley option', status:'VIEWING 24 SEP', agent:'Jessica Hill · Savills',
+          terms:[['Size','3,750 sq ft'],['Rent','£75,000 pa or 10% of turnover'],['Service charge','£50,000 pa. Rates £17,000 pa'],['Handover','Fitted']],
+          note:'The main retail scheme in Bromley, at the top of the High Street. The Debenhams has been repurposed for Hollywood Bowl and The Gym Group. The F&B pitch sits at the rear and is slightly tucked away, with Wagamama and Kaizen trading. This unit is listed but not modelled on the 14 Aug stage because every term was quoted TBC at that point — the figures above now close that gap. Wagamama trading figures were promised and never arrived.',
+          docs:['Photos supplied by the agent — four image files, no particulars']
+        },
+        {
+          name:'Bromley — Marugame Udon', sub:'Disposal at the top of the High Street', status:'VIEWING 24 SEP', agent:'Jessica Hill · Savills',
+          terms:[['Size','3,456 sq ft, ground floor only'],['Rent','Not stated'],['Position','Traditional F&B pitch — Pizza Express, Popeyes, Wingstop, Slim Chickens, Nando\'s, McDonald\'s, Five Guys and Iro Sushi']],
+          note:'Marugame Udon have closed and are disposing of the unit. Jess: "I think this could be quite interesting as an option." One of her two recommended Bromley options.',
+          docs:['Marugame Udon, Bromley - Particulars.pdf']
+        },
+        {
+          name:'St Marks Square, Bromley — Unit 1', sub:'Landsec · the last unit in the scheme', status:'AGENT STEERS AWAY', agent:'Jessica Hill · Savills',
+          terms:[['Size','3,378 sq ft'],['Rent','£85,000 pax or 8% of turnover'],['Handover','Shell and core']],
+          note:'Landsec had been looking to sell or redevelop the scheme after a long period of weak activity and are now reinvesting. Unit 5 is under offer to a pottery-class operator and Unit 8 to a vet. Jess: "The only attractive element here is the soft deal available. I would suggest focusing on The Glades or Marugame." Savills also rejected this unit as too secondary at the 14 Aug stage, killing one of our GO units.',
+          trade:'Nando\'s high £30k per week with £11k of that delivery. Pizza Express c.£24k per week.',
+          docs:['Unit 1 - St Mark\'s Square, Bromley - Marketing Particulars.pdf','St Mark\'s Square - Bromley General Pack.pdf']
+        },
+        {
+          name:'Southside, Wandsworth — 14 Garratt Lane', sub:'Former Halifax · introduced by Time Retail Partners', status:'FRANCHISE ONLY', agent:'Will Stone · Time Retail Partners',
+          terms:[['Size','Ground 2,192 sq ft + first 2,942 sq ft'],['Rent','£125,000 pax or a percentage'],['Service charge','£38,028.25 pa. Rates £39,560 pa']],
+          note:'Jess, 24 July: "I don\'t think Southside feels quite right at this stage for main co — however if the trade stats support it, perhaps it could work for a franchisee." The scheme has had a £5m refurbishment with Rituals, Dunelm, Lovisa and Mango joining Uniqlo, Waitrose, H&M and Decathlon. Wingstop is fitting out next door and Gravity is adjacent. Trade stats were promised by WhatsApp and never came through by email — only the brands were named. This is the unit carried as Wandsworth on the 14 Aug stage, where its footfall input is Landsec marketing copy and its score is provisional.',
+          docs:['Southside Wandsworth.pdf','Brewdog Southside.pdf']
+        }
+      ]
+    }
+  ],
+
+  september:{
+    note:'Savills proposed three dates for Michael\'s September trip on 19 August. None has been confirmed.',
+    rows:[
+      ['22 September, 12:00','Cardiff — St Davids','The unit Michael rates most highly on the target list'],
+      ['23 September, 10:00','Norwich — Chantry Place','Scored NO on the 10 Aug run; Michael\'s target-list call is "Yes"'],
+      ['24 September, 10:00','Bromley — Pasta Remoli at The Glades, and Marugame Udon','Both franchisee options']
+    ],
+    extra:'Savills is also working up Brighton, Cambridge, Bournemouth and Canterbury off the back of the target-list exchange, with the hope of adding further viewings to the same trip.'
+  },
+
+  gaps:[
+    'Trafford has moved unit without moving forward. The Nimchi terms arrived by WhatsApp on 18 August with no plan, no lease term, no incentive and no handover spec, and R11A — which we proposed on in August 2025 — has never been formally closed out. Two live threads on the same scheme with no written position on either.',
+    'Trafford terms exist only in a WhatsApp message. Every other unit on this stage has a document behind it. If these figures are going to drive a decision they need putting in writing by the agent.',
+    'Manchester Oxford Street is blocked on the MAF2 franchise agreement, not on the market. The Northern Quarter site is about a mile away, delivery overlap is assessed as high, and the radius or exclusivity terms have not been checked. That is the first action, ahead of any negotiation.',
+    'Four sets of figures sit inside attachments and have never been read out: the Westfield heads of terms, the Canterbury particulars, the Oracle trade stats and the 10 Aug opportunity schedule. Canterbury in particular has been open since 6 July with no terms extracted.',
+    'Three introductions have had no reply at all — Canary Wharf, Canterbury and Oxford Westgate. The Canary Wharf email is still unread.',
+    'Touchwood and Cardiff both need a team member on site and both are waiting on us for a date. Savills has asked twice about Touchwood.',
+    'None of the units on this stage is scored. They carry quoted terms but have not been put through the model, and the two Manchester units have never been in it at all.'
+  ]
+};
+
+/* ====================== AGENT BOOK RENDER ====================== */
+function isBook(){ return state.stage==='book'; }
+
+function renderBook(){
+  const el = document.getElementById('pane-book');
+  if(!el) return;
+  const B = BOOK;
+  let h = '';
+
+  B.groups.forEach(g=>{
+    h += '<div class="vsec"><h2>'+vEsc(g.title)+'</h2><p class="vlede">'+vEsc(g.lede)+'</p></div>';
+    h += '<div class="bgrid">';
+    g.units.forEach(u=>{
+      h += '<article class="bcard'+(u.verdict?' has-verdict':'')+'">';
+      h += '<header class="bch"><div class="bcht"><h3>'+vEsc(u.name)+'</h3><div class="vsub">'+vEsc(u.sub)+'</div></div>';
+      h += '<span class="bstatus '+statusTone(u.status)+'">'+vEsc(u.status)+'</span></header>';
+      h += '<div class="bagent">'+vEsc(u.agent)+'</div>';
+
+      h += '<table class="vterms">';
+      u.terms.forEach(r=>{ h += '<tr><th>'+vEsc(r[0])+'</th><td>'+vEsc(r[1])+'</td></tr>'; });
+      h += '</table>';
+
+      if(u.trade) h += '<div class="btrade"><b>Incumbent trade.</b> '+vEsc(u.trade)+'</div>';
+      if(u.note)  h += '<p class="bnote">'+vEsc(u.note)+'</p>';
+
+      if(u.verdict){
+        const vd = u.verdict;
+        h += '<div class="vverdict go"><div class="vvhead">'+vEsc(vd.call)+' &middot; '+vEsc(vd.score)+'</div>';
+        h += '<div class="vcomp">';
+        vd.components.forEach(c=>{
+          h += '<div class="vcrow"><span>'+vEsc(c[0])+'</span><div class="vbar"><i style="width:'+Math.round(c[1]*10)+'%"></i></div><b>'+c[1].toFixed(1)+'</b></div>';
+        });
+        h += '</div><div class="vbreak"><b>Withdraw if</b><ol>';
+        vd.breakers.forEach(b=>{ h += '<li>'+vEsc(b)+'</li>'; });
+        h += '</ol></div></div>';
+      }
+
+      if(u.flag) h += '<div class="vaction">'+vEsc(u.flag)+'</div>';
+
+      h += '<footer class="bdocs"><span class="bdl">On file</span><div class="bdocwrap">';
+      u.docs.forEach(d=>{ h += '<span class="bdoc">'+vEsc(d)+'</span>'; });
+      h += '</div></footer>';
+      h += '</article>';
+    });
+    h += '</div>';
+  });
+
+  /* September */
+  h += '<div class="vsec"><h2>September viewings — proposed, not confirmed</h2><p class="vlede">'+vEsc(B.september.note)+'</p></div>';
+  h += '<table class="vactions"><thead><tr><th>When</th><th>Where</th><th>Why it matters</th></tr></thead><tbody>';
+  B.september.rows.forEach(r=>{ h += '<tr><td><b>'+vEsc(r[0])+'</b></td><td>'+vEsc(r[1])+'</td><td>'+vEsc(r[2])+'</td></tr>'; });
+  h += '</tbody></table>';
+  h += '<div class="vcaveat">'+vEsc(B.september.extra)+'</div>';
+
+  /* Gaps */
+  h += '<div class="vsec"><h2>What is outstanding</h2></div><ol class="vgaps">';
+  B.gaps.forEach(g=>{ h += '<li>'+vEsc(g)+'</li>'; });
+  h += '</ol>';
+
+  el.innerHTML = h;
+}
+
+function statusTone(s){
+  s = String(s).toUpperCase();
+  if(/DECLINED|STEERS AWAY|PARKED/.test(s)) return 'no';
+  if(/LEGALS|AGREED|PROCEED/.test(s))       return 'go';
+  if(/NO REPLY|CONTESTED|OFFER DUE/.test(s))return 'warn';
+  return 'watch';
+}
+
+/* ====================== THE FIELD SCORECARD ======================
+   Google Form "An analysis of the restaurant scene sites (Responses)", sheet id
+   1KrKUdjjFHUVtsrczGU_9vTevCJ511nwU60EE1Bt7UZI. Seven scored responses were filed
+   19–21 Aug 2026 covering the viewing round plus Solihull. An eighth submission at
+   12:52 on 19 Aug is blank and scores 0%.
+
+   Method, reproduced from the sheet and verified against every row:
+     Location feasibility = mean of visibility, foot traffic, transport, ecosystem,
+                            competition & synergy — each scored 1–10 — times 10.
+     Demographic fit      = mean of audience density, consumer behaviour, cultural
+                            receptiveness, spending power, social proof, times 10.
+     Overall              = mean of the two.
+
+   EDITORIAL NOTE: some of the free-text answers use language that should not go on a
+   public URL. Where that is the case the substance is carried and the wording is
+   paraphrased; the sheet remains the record. Paraphrased entries are marked. */
+const FIELD = {
+  sheet:'An analysis of the restaurant scene sites (Responses) · Google Sheets',
+  sites:[
+    {town:'Exeter', unit:'Princesshay — Coal unit, Margaux and Café Rouge', date:'19 Aug 2026', sqft:'3,500',
+     overall:86, lf:86, df:86, member:'“Jacob” in the form — the Savills Exeter agent’s name; the visitor was ours',
+     scores:{Visibility:9,'Foot traffic':8,Transport:8,Ecosystem:9,'Competition & synergy':9,
+             'Audience density':8,'Consumer behaviour':9,'Cultural receptiveness':10,'Spending power':9,'Social proof':7},
+     quote:'“Across the two days this was by far my fav location — the units were in OK condition but would need some capex; Jacob mentioned a reasonable cap con is on the table.”',
+     obs:[
+       'Queues out the door at every F&B on a Wednesday lunchtime; “busy af… our ideal demo”.',
+       'One direct competitor — Wagamama next door. Average bowl £19, 100+ seats. Three vacancies, all available.',
+       'Seven offers already on the unit viewed.',
+       'Spend per head observed at £20–25. Dwell over an hour. Consumers 16–45, groups of three on average.',
+       'On fit: “yes easily — we would fit in and compete for the same competition. YO would not have fun.”'
+     ], paraphrased:false},
+    {town:'Solihull', unit:'Touchwood — The Real Greek', date:'19 Aug 2026', sqft:'drawings and footfall reports inbound',
+     overall:78, lf:80, df:76, member:'Ross',
+     scores:{Visibility:7,'Foot traffic':7,Transport:10,Ecosystem:9,'Competition & synergy':7,
+             'Audience density':6,'Consumer behaviour':8,'Cultural receptiveness':8,'Spending power':10,'Social proof':6},
+     quote:'“Maki & Ramen would be at home around the usual suspects of Nando’s, Wagas and other big brands, with family focus in mind.”',
+     obs:[
+       'Three direct competitors: Yakinori, Wagamama and KIBOU. Average bowl £14–19, c.80 seats.',
+       'Spend per head £20–25 — the joint highest observed on the round, and the only site scoring 10 on spending power.',
+       'Wagamama’s local reviews are weak on food quality and service — read as a share-taking opportunity.',
+       '90% of food-court customers dine in; Deliveroo still doing decent volume per the centre.',
+       'Part of a BID with 457 member businesses; outdoor seating faces the road to the town-centre car parks, hotels and station.',
+       'Five food festivals a year in the area. Older and family-weighted on a Wednesday lunchtime.'
+     ], paraphrased:false},
+    {town:'Basingstoke', unit:'Festival Place', date:'20 Aug 2026', sqft:'5,000+',
+     overall:68, lf:74, df:62, member:'“Kathryn” in the form — the agent’s name',
+     scores:{Visibility:7,'Foot traffic':6,Transport:8,Ecosystem:8,'Competition & synergy':8,
+             'Audience density':6,'Consumer behaviour':7,'Cultural receptiveness':6,'Spending power':6,'Social proof':6},
+     quote:'“The units I was shown were too large — two floors, 150 covers, so wages will be hard and rent could be high. There was a third 5,000 sq ft retail unit up for grabs; with the right cap con deal this could be worth a discussion.”',
+     obs:[
+       'Two units already empty and two more being made vacant — Las Iguanas and Pizza Express — because they cannot hit trade figures.',
+       'One direct competitor, Wagamama opposite, £20 a bowl, c.100 seats.',
+       'Weekend-weighted trade; average lunch, but dinner reported strong.',
+       'Viewed at 10am so the F&B area was quiet; the retail mall was busier.',
+       'Spend per head £16–20. Grab-and-go weighted, low spending power — the centre has three Greggs.'
+     ], paraphrased:false},
+    {town:'Bracknell', unit:'The Lexicon', date:'20 Aug 2026', sqft:'3,500',
+     overall:67, lf:72, df:62, member:'not recorded',
+     scores:{Visibility:7,'Foot traffic':7,Transport:7,Ecosystem:8,'Competition & synergy':7,
+             'Audience density':6,'Consumer behaviour':8,'Cultural receptiveness':6,'Spending power':6,'Social proof':5},
+     quote:'“I was not too sold on the area. The footfall figures look good but could just be 18m people that pass us up for a Nando’s.”',
+     obs:[
+       'One direct competitor, Wagamama, and it was quiet at the time of the visit. £20 a bowl, 85+ seats.',
+       'No vacancies at all — the only site on the round with none.',
+       '90% dine-in. Spend per head £20–25.',
+       'Consumers 14–40, families and groups of children, two to six per group. “A mix of leisure and casual — could be a good demo for us but not ideal.”',
+       'Full signage scope: planters, A-boards, the usual.',
+       'On fit, scored “5/10 — would be a risk”.'
+     ], paraphrased:true},
+    {town:'Oxford', unit:'George Street', date:'20 Aug 2026', sqft:'4,000+',
+     overall:66, lf:66, df:66, member:'not recorded',
+     scores:{Visibility:5,'Foot traffic':6,Transport:8,Ecosystem:7,'Competition & synergy':7,
+             'Audience density':8,'Consumer behaviour':7,'Cultural receptiveness':6,'Spending power':7,'Social proof':5},
+     quote:'“The units themselves were shoddy, bad condition so large capex. They are also like 60% basement and these basements cannot be customer-facing — ceiling is 6ft high if that, damp and old.”',
+     obs:[
+       'THE FIT-OUT FINDING: roughly 60% of the demise is basement that cannot be used for customers, at a ceiling height under 6ft, damp. That is not in any terms we hold.',
+       'No direct competitors on the street. Three vacancies, all closed on poor trade.',
+       'Described by the agent as the third busiest street in Oxford — but we are on the lower-footfall side. Flagged as potentially Northern-Quarter-like if not handled carefully.',
+       'Commuter throughfare: “commuters don’t stop for a ramen at 8:30am.”',
+       'Tourists, families, some young demographic, groups of two to four. Spend per head £20–25, dwell 40 minutes, 12–15 social posts an hour.',
+       'On fit: “yes almost — if we were closer to the main high street, where Wagas are.”'
+     ], paraphrased:false},
+    {town:'Portsmouth', unit:'Gunwharf Quays', date:'19 Aug 2026', sqft:'4,000',
+     overall:57, lf:50, df:64, member:'not recorded',
+     scores:{Visibility:3,'Foot traffic':3,Transport:6,Ecosystem:6,'Competition & synergy':7,
+             'Audience density':5,'Consumer behaviour':6,'Cultural receptiveness':7,'Spending power':7,'Social proof':7},
+     quote:'“Unit is too far out — not visible, high capex.”',
+     obs:[
+       'Lowest visibility and lowest foot-traffic scores on the entire round, both 3 out of 10.',
+       '“Outside the unit was dead — we are placed on the furthest spot away from the main area Wagas have.”',
+       'Signage: “not easily, tucked away.” Passers-by head straight for the car park or the toilets.',
+       'TWO direct competitors next door: Wagamama and Pho. £20 a bowl, 100+ seats.',
+       'Dwell 1.5 hours and spend £16–20 — the demographic reads better than the pitch does.',
+       'On fit: “no, not keen on this.”'
+     ], paraphrased:false},
+    {town:'Plymouth', unit:'The Barcode', date:'19 Aug 2026', sqft:'3,500',
+     overall:46, lf:60, df:32, member:'Greg',
+     scores:{Visibility:7,'Foot traffic':6,Transport:8,Ecosystem:4,'Competition & synergy':5,
+             'Audience density':4,'Consumer behaviour':5,'Cultural receptiveness':2,'Spending power':3,'Social proof':2},
+     quote:'“I would pass on this unit. It was alright, but there were operational flow issues — the place would better suit a generic Wingstop than us.”',
+     obs:[
+       'The lowest score of the round and the lowest demographic fit ever recorded on this form at 32% — level with Mikaku Glasgow, which we passed on.',
+       'Cultural receptiveness 2, social proof 2, spending power 3. Zero social posts an hour observed.',
+       'Live cover counts taken 18 Aug at 18:40: Las Iguanas 50% of 100, Nando’s 80% of 125, Zizzi 70% of 100, Cosy Club half full, Kaspa’s 25% of 75, the Tap Room empty at 120 covers, Boom Battle Bar empty, Turtle Bay quiet.',
+       'No direct competitors — but read as an absence of demand rather than whitespace.',
+       'Two vacancies, both the units viewed, empty on poor trade.',
+       'Assessed as a low-spend catchment where a £30 sushi-and-drinks ticket would be out of place.'
+     ], paraphrased:true}
+  ],
+  bench:[
+    ['181 Wardour Street, Soho','20 Aug 2025','Michael Salvador',90],
+    ['Princesshay, Exeter','19 Aug 2026','the round',86],
+    ['Shoreditch — Fat Hippo','20 Aug 2025','Michael',81],
+    ['Touchwood, Solihull','19 Aug 2026','Ross',78],
+    ['190 Kensington High Street','20 Aug 2025','Michael Salvador',72],
+    ['Basingstoke','20 Aug 2026','the round',68],
+    ['Bracknell','20 Aug 2026','the round',67],
+    ['Oxford','20 Aug 2026','the round',66],
+    ['181 Wardour Street (2nd visit)','23 Aug 2025','Qiao-Er (Gigi)',65],
+    ['Gunwharf Quays, Portsmouth','19 Aug 2026','the round',57],
+    ['Shoreditch 5–9 Great Eastern St','25 Aug 2025','Qiao-Er (Gigi)',46],
+    ['Plymouth — The Barcode','19 Aug 2026','Greg',46],
+    ['Wagamama Edgware Road','23 Aug 2025','Qiao-Er (Gigi)',43],
+    ['Mikaku — Glasgow Queen St','26 Aug 2025','Matthew',41]
+  ]
+};
+
+function fieldFor(town){ return FIELD.sites.find(s=>s.town===town) || null; }
+function fieldTone(n){ return n>=75 ? 'go' : n>=62 ? 'watch' : 'no'; }
+
+function renderField(){
+  const F = FIELD;
+  let h = '';
+  h += '<div class="vsec"><h2>The field scorecard</h2><p class="vlede">'
+     + 'Seven scored responses were filed to the site-visit form on 19–21 August, covering the whole round plus Solihull. '
+     + 'Each site is scored on ten criteria out of ten, in two halves: <b>location feasibility</b> (visibility, foot traffic, transport, ecosystem, competition and synergy) '
+     + 'and <b>demographic fit</b> (audience density, consumer behaviour, cultural receptiveness, spending power, social proof). The overall is the mean of the two. '
+     + 'This is a separate instrument from the desk model on the other stages and from the Exeter appraisal below — it is what the person standing in the unit thought.'
+     + '</p></div>';
+
+  /* ranked strip */
+  h += '<div class="fldrank">';
+  F.sites.slice().sort((a,b)=>b.overall-a.overall).forEach(s=>{
+    h += '<div class="fldr '+fieldTone(s.overall)+'"><div class="fldn">'+s.overall+'<span>%</span></div>'
+       + '<div class="fldt"><b>'+vEsc(s.town)+'</b><span>'+vEsc(s.unit)+'</span></div>'
+       + '<div class="fldsplit">LF '+s.lf+' · DF '+s.df+'</div></div>';
+  });
+  h += '</div>';
+
+  /* per-site cards */
+  h += '<div class="fldgrid">';
+  F.sites.slice().sort((a,b)=>b.overall-a.overall).forEach(s=>{
+    h += '<article class="fldcard '+fieldTone(s.overall)+'">';
+    h += '<header class="fldh"><div><h3>'+vEsc(s.town)+'</h3><div class="vsub">'+vEsc(s.unit)+' &middot; '+vEsc(s.date)+(/^[\d,]+\+?$/.test(s.sqft)?' &middot; '+vEsc(s.sqft)+' sq ft':' &middot; size '+vEsc(s.sqft))+'</div></div>'
+       + '<div class="fldbig">'+s.overall+'<span>%</span></div></header>';
+    h += '<div class="fldbars">';
+    Object.entries(s.scores).forEach(([k,v])=>{
+      h += '<div class="fldbar"><span>'+vEsc(k)+'</span><div class="fldtrack"><i style="width:'+(v*10)+'%" class="'+(v>=8?'hi':v>=5?'mid':'lo')+'"></i></div><b>'+v+'</b></div>';
+    });
+    h += '</div>';
+    h += '<div class="fldquote">'+vEsc(s.quote)+'</div>';
+    h += '<ul class="fldobs">';
+    s.obs.forEach(o=>{ h += '<li>'+vEsc(o)+'</li>'; });
+    h += '</ul>';
+    h += '<footer class="fldf"><span>Recorded by: '+vEsc(s.member)+'</span>'
+       + (s.paraphrased?'<span class="fldpara">wording paraphrased</span>':'')+'</footer>';
+    h += '</article>';
+  });
+  h += '</div>';
+
+  /* calibration */
+  h += '<div class="appsub">Every response the form has ever taken — the calibration</div>';
+  h += '<div class="dgate"><table><thead><tr><th style="text-align:left">Site</th><th>Visited</th>'
+     + '<th style="text-align:left">Recorded by</th><th>Overall</th><th style="text-align:left;width:34%">Scale</th></tr></thead><tbody>';
+  F.bench.forEach(b=>{
+    const is26 = /2026/.test(b[1]);
+    h += '<tr'+(is26?' class="here"':'')+'><td style="text-align:left;color:'+(is26?'var(--ink);font-weight:600':'var(--muted)')+'">'+vEsc(b[0])+'</td>'
+       + '<td>'+vEsc(b[1])+'</td><td style="text-align:left;color:var(--muted)">'+vEsc(b[2])+'</td>'
+       + '<td style="color:'+(b[3]>=75?'var(--go)':b[3]>=62?'var(--watch)':'var(--red2)')+';font-weight:700">'+b[3]+'%</td>'
+       + '<td><div class="fldtrack" style="max-width:220px"><i style="width:'+b[3]+'%" class="'+(b[3]>=75?'hi':b[3]>=62?'mid':'lo')+'"></i></div></td></tr>';
+  });
+  h += '</tbody></table><div class="dcap">'
+     + 'The 2025 rows are the calibration and they matter. <b>Shoreditch Fat Hippo scored 81% and we took it</b> — that is the only entry on this list that became a trading Maki site, so it is the closest thing to a pass mark the form has. '
+     + '<b>Exeter at 86% scores above our own Shoreditch.</b> At the other end, Mikaku Glasgow scored 41% and Wagamama Edgware Road 43%, and neither proceeded. '
+     + 'Plymouth’s 32% demographic fit is level with Mikaku — the lowest the form has ever recorded. The 30 July 2025 O2 row at 100% is a test submission, not a site.'
+     + '</div></div>';
+
+  /* the divergence */
+  h += '<div class="dverdict" style="border-color:rgba(88,166,255,.32);background:rgba(88,166,255,.05)">'
+     + '<div class="dvh" style="color:#58a6ff">The one thing to reconcile — Exeter scores 86 in the field and 61 on the desk</div>'
+     + '<p>Both instruments assessed the same unit in the same week and reached materially different answers. The field visit made it the best site of the round — '
+     + '“by far my fav location” — scoring 10 on cultural receptiveness and 9 on competition and synergy, on the reasoning that Wagamama next door proves the demand and we would take share from it. '
+     + 'The written appraisal scored competitive position 4 out of 10 and landed at 61, one point under its own conditional threshold, on the reasoning that Wagamama opposite splits the ramen occasion two ways in a value-led, mid-sized market.</p>'
+     + '<p>Neither is wrong on its own terms. The field score reads footfall, queues and demographic in the room on the day; the appraisal reads the economy, the wage data and the share ceiling over a lease term. '
+     + 'They diverge on exactly one question — <b>is an adjacent Wagamama proof of demand or a cap on share</b> — and that is the question the Committee actually has to answer, on Exeter and on Basingstoke, Bracknell and Portsmouth too, all of which have a Wagamama next door or opposite. '
+     + 'Note also that the desk appraisal was written against a c.£100k rent with everything else TBC, while the field visit records seven live offers and a cap con on the table. The two were not looking at the same deal.</p>'
+     + '</div>';
+
+  return h;
+}
+
+/* ====================== THE EXETER APPRAISAL, IN FULL ======================
+   Maki_Ramen_Site_Appraisal_Princesshay_Exeter.pdf — 12 pages, prepared for the
+   Property Investment Committee, in the Exeter folder of "BDM Site Viewings (Aug 26)".
+   It is the only written appraisal produced from the 18-20 Aug round. Reproduced here
+   in full because it is the template the other five towns are missing, not just a
+   verdict. Strictly private and confidential; decision-support only, not a valuation. */
+const APPRAISAL = {
+  town:'Exeter', scheme:'Princesshay, Exeter EX1 1QA',
+  score:61, threshold:62, call:'PROCEED WITH CAUTION — subject to financial appraisal',
+  scope:'Market, catchment, footfall, competition and strategic case only. No revenue model, P&L, EBITDA or occupancy-affordability analysis — the financial appraisal is separate, per instruction, and the recommendation is conditional on it.',
+  prepared:'Prepared for M. Salvador, COO · Maki & Ramen Group Property Investment Committee',
+  headline:[
+    ['Annual footfall','10m+','Princesshay'],
+    ['Students','~38,800','c.30% of the city, 25% international'],
+    ['City growth 2014–24','+15.5%','fastest of England’s 63 largest cities'],
+    ['Rent','c.£100,000 pa','demise, SC, rates and incentives all TBC'],
+    ['Scheme','530k sq ft · c.70 stores','John Lewis, Zara, Next · opened 2007'],
+    ['Landlord','Frasers Group','acquired Oct 2024 — a retailer-owner']
+  ],
+  property:[
+    ['Pitch & frontage','In Princesshay’s established dining destination in the heart of Exeter — high in-centre visibility to a 10m-visitor flow. A proven eating pitch.','Strong'],
+    ['Position vs Wagamama','Directly opposite the direct ramen rival: a captive shared audience, but head-to-head visibility invites constant like-for-like comparison. The defining commercial question.','Watch'],
+    ['Accessibility','Central, walkable Exeter near the Cathedral; Exeter Central & St Davids rail, bus links and the university within reach — feeds walk-in without car dependence.','Strong'],
+    ['Unit configuration','Size and layout to be confirmed. Ideally a single efficient floor; verify the demise, frontage and any dining-terrace externality on inspection.','TBC'],
+    ['Potential covers','To be confirmed on the demise; the pitch supports a strong city-centre unit given the footfall and student density.','TBC'],
+    ['Kitchen & throughput','A single-pass kitchen with AAHQ broth supply supports a high-volume student lunch and heavy delivery — key to competing on quality-for-price opposite Wagamama.','Strong'],
+    ['Delivery operation','A ~30%-student city is a top-tier delivery catchment; ground-floor dispatch should be a design priority — a genuine second engine.','Strong'],
+    ['Takeaway operation','Student and shopper grab-and-go at lunch is a high-margin layer suited to a compact, walkable city centre.','Good'],
+    ['Landlord','Frasers Group (acquired Oct 2024) — a retailer-owner; confirm scheme strategy, incentives appetite and F&B plans at Heads of Terms.','Verify']
+  ],
+  swot:[
+    {k:'STRENGTH', t:'Exceptional student density', w:'~38,800 students (~30% of the city) place the brand’s core customer in rare concentration.', c:'Strong dine-in frequency and a top-tier delivery catchment at low acquisition cost.', l:'England’s fastest-growing city compounds demand.'},
+    {k:'STRENGTH', t:'Dominant scheme, modest rent', w:'A 10m-footfall, John Lewis-anchored destination at a c.£100k rent.', c:'Low customer-acquisition cost; a keen headline rent for a prime pitch.', l:'The dominant Exeter destination, reinforced by city-centre regeneration.'},
+    {k:'WEAKNESS', t:'Value-led, weak-wage economy', w:'Exeter ranks among the worst of 63 cities on growth and living standards.', c:'Price-sensitive spend; a keen, delivery-led model, not a premium one.', l:'A lower ATV ceiling than an affluent-city pitch.'},
+    {k:'WEAKNESS', t:'Unconfirmed terms & small market', w:'Size, SC, rates and incentives are TBC; Exeter is a mid-sized market.', c:'The deal cannot be finalised until terms and financials are known.', l:'A lower absolute ceiling than a major-city site.'},
+    {k:'OPPORTUNITY', t:'Own the student ramen value play', w:'A huge student base that responds to keen price-value and loyalty.', c:'A low-cost student engine (Student Tuesday, TTJ) and strong delivery.', l:'First-choice brand equity among a renewing young population.'},
+    {k:'OPPORTUNITY', t:'Growth & regeneration tailwind', w:'The fastest-growing city plus a £300m city-centre scheme — 500 homes, offices, hotels, leisure.', c:'A widening resident, worker and visitor base over the term.', l:'Improving out-years as the centre densifies.'},
+    {k:'THREAT', t:'Wagamama directly opposite', w:'The direct ramen rival, face-to-face, in a mid-sized market.', c:'The ramen occasion split two ways from day one.', l:'A hard ceiling on share without a clear, sustained edge.'},
+    {k:'THREAT', t:'Seasonality & landlord strategy', w:'Summer student exodus; Frasers Group is a new retailer-owner.', c:'A summer trough; uncertain scheme and F&B strategy.', l:'Manageable with tourism trade and confirmed landlord intent.'}
+  ],
+  competitors:{
+    cols:['Brand','Price','Loyalty','Delivery','Lunch','Evening','Threat'],
+    rows:[
+      ['Wagamama','Opposite (in-scheme)',5,3,4,5,5,4,5],
+      ['YO! Sushi','Princesshay',3,3,2,3,4,2,3],
+      ["Nando's",'Princesshay',5,3,5,5,4,4,3],
+      ["Luciano's & scheme dining",'Princesshay',3,3,3,2,3,4,3],
+      ['Exeter independents','Gandy St / Cathedral',3,2,4,2,3,4,3]
+    ],
+    note:'Scored 1 (weak) to 5 (strong); "Threat" is composite risk to Maki & Ramen. Wagamama, YO!, Nando’s and Luciano’s are confirmed Princesshay tenants; the independent row is a category benchmark. Analyst judgement, not third-party revenue data.'
+  },
+  partnerships:{
+    rows:[
+      ['University','University of Exeter','~38,800','Easy','Student Tuesday, freshers, society tie-ups, TTJ loyalty','~5,000','HIGH'],
+      ['Retail','Princesshay retail staff (c.70 stores)','~3,000','Easy','Staff discount card (weekday off-peak)','~1,200','MED'],
+      ['Entertainment','Vue cinema / Corn Exchange / Northcott','high','Medium','Pre-film and pre-show set menus','~1,500','MED'],
+      ['Hotels & tourism','City-centre hotels; Cathedral visitor trade','~100k rm-nts','Medium','Guest dine/delivery voucher; visitor offers','~1,500','MED'],
+      ['Healthcare','RD&E Hospital & city NHS','~8,000','Medium','Staff lunch accounts; shift-friendly delivery','~1,200','MED'],
+      ['Gyms','PureGym / university sport','~9,000','Medium','Post-workout high-protein bowl offer','~1,200','MED'],
+      ['Residential','City-centre regeneration residents','growing','Medium','New-resident delivery offers','~800','LOW']
+    ],
+    note:'Acquisition estimates assume targeted-offer redemption benchmarked to Maki & Ramen’s student and city-centre activity. The University of Exeter is by far the standout channel — and the most direct way to out-manoeuvre the Wagamama opposite, which competes for the same students.'
+  },
+  heat:{
+    days:['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
+    rows:[
+      ['Lunch',    ['M','M','M','H','H','P','H']],
+      ['Afternoon',['L','L','M','M','H','P','H']],
+      ['Evening',  ['M','M','M','H','H','H','M']],
+      ['Delivery', ['H','H','H','P','P','P','H']]
+    ],
+    note:'A student-city pattern: strong delivery all week, weekend and Thursday-to-Saturday evening peaks, softening in the summer vacation. Roster to delivery and the weekend; flex labour to term dates.'
+  },
+  hours:[
+    ['Restaurant (dine-in)','Aligned to scheme hours; later Fri–Sat with the student evening','Captures shopper and student lunch and a young-city evening within Princesshay’s trading hours.'],
+    ['Lunch strategy','Sub-£12 express set, under a 12-minute ticket','Converts student and shopper footfall into fast, high-frequency covers — and answers Wagamama opposite on value.'],
+    ['Delivery','11:00–23:00 daily, subject to scheme','A ~30%-student city orders late; delivery is a genuine second engine and less contested than the shared dine-in floor.'],
+    ['Events','Flex around graduations, festivals and fixtures','Event and visitor spikes are a real, if lumpy, layer.'],
+    ['Late night','Fri–Sat if scheme access permits','Viable in a young city; confirm Princesshay trading hours and access.']
+  ],
+  risks:[
+    ['Wagamama opposite splits the market','High','High','Clear differentiation on product, value, delivery and loyalty; validate trade vs Wagamama Exeter pre-signing.','Becca Cuthbertson (Mktg)'],
+    ['Value-led / weak-wage spend','High','Med','Keen student pricing; strong express-lunch and delivery layers; manage ATV expectations.','Becca Cuthbertson (Mktg)'],
+    ['Unconfirmed terms (size / SC / rates)','Med','Med','Confirm demise, SC, rates and incentives; feed the separate financial appraisal.','Monica Lee (FD)'],
+    ['Student seasonality (summer)','High','Low','Lean on tourism, RD&E, offices and delivery; flex labour to term dates.','Ka Ho (AM Scot & N.)'],
+    ['Frasers Group scheme strategy','Med','Med','Confirm landlord F&B plans, incentives appetite and scheme investment intent.','Matthew Jenner (BDM)'],
+    ['Financials unassessed here','Med','High','Full financial appraisal to follow separately; be willing to walk if it doesn’t clear.','Monica Lee (FD)']
+  ],
+  proceed:'A credible, evidenced differentiation plan — chef-led AAHQ broth quality made visible, a sharp sub-£12 student lunch, strong delivery execution (the less-contested channel), and a TTJ loyalty mechanic Wagamama cannot match — plus a financial appraisal, validated against Wagamama Exeter, that clears the group’s thresholds on confirmed terms.',
+  bottom:'Exeter’s youth, growth and footfall make this a market Maki & Ramen should want a presence in — but the specific unit, face-to-face with Wagamama in a value-conscious city, is a site to pursue only with a clear plan to win the head-to-head and a financial appraisal that confirms it. The rent is modest, so the negotiation is about de-risking the head-to-head, not rescuing affordability.',
+  breakers:[
+    'There is no credible, evidenced edge over the Wagamama opposite',
+    'The separate financial appraisal does not clear once benchmarked to Wagamama Exeter',
+    'Terms return with an open-market upward-only review and no incentive',
+    'The demise or scheme strategy proves unsuitable on inspection'
+  ],
+  sources:'Princesshay / Frasers Group (530k sq ft, c.70 stores, 10m+ footfall, 2024 acquisition, dining incl. Wagamama, YO!, Nando’s, Luciano’s); Exeter City Council / Exeter Observer / Centre for Cities Outlook 2026 (population, 15.5% growth, students c.30%, economy and living standards); University of Exeter (student numbers, international share).'
+};
+
+/* What evidence actually exists per town from the 18–20 Aug round. Counted from the
+   Drive folder "BDM Site Viewings (Aug 26)" on 25 Aug 2026. */
+const EVIDENCE = {
+  folder:'BDM Site Viewings ( Aug 26) · Google Drive · owner matthew@makiramen.com',
+  rows:[
+    ['Exeter','1 photo · 5 videos','Scored form response 86% + 12-page appraisal, 61/100','done'],
+    ['Solihull','not in the round folder','Scored form response 78% (Ross, 19 Aug)','done'],
+    ['Basingstoke','1 photo · 5 videos','Scored form response 68%','part'],
+    ['Bracknell','1 photo · 8 videos','Scored form response 67%','part'],
+    ['Oxford','7 videos','Scored form response 66%','part'],
+    ['Portsmouth','3 videos','Scored form response 57%','part'],
+    ['Plymouth','9 photos · 4 videos','Scored form response 46%','part']
+  ],
+  note:'CORRECTED 25 Aug. An earlier version of this page said the site-visit Google Form had no 2026 responses. That was wrong — it carries SEVEN scored responses filed 19–21 August, covering all six towns of the round plus Solihull, and they are the field scorecard above. What remains true is that only Exeter has a full written appraisal on top of its form response. Matt’s WC 17/08 weekly report records the week as itinerary rather than assessment, which is what the form is for.'
+};
+
+function renderAppraisal(){
+  const A = APPRAISAL;
+  let h = '';
+  h += '<div class="vsec"><h2>The Exeter appraisal, in full</h2><p class="vlede">'
+     + 'The only written appraisal from the round, reproduced in full because it is the template the other five towns are missing. '
+     + 'Twelve pages prepared for the Property Investment Committee. <b>Scope note:</b> ' + vEsc(A.scope)
+     + '</p></div>';
+
+  /* header band */
+  h += '<div class="apphead"><div class="appscore"><div class="appn">'+A.score+'</div><div class="appd">out of 100<span>strategic score, ex-financials</span></div></div>'
+     + '<div class="appcall"><b>'+vEsc(A.call)+'</b><p>One point under the '+A.threshold+' conditional threshold — a cautious call, defined by the Wagamama opposite. '+vEsc(A.prepared)+'</p></div></div>';
+
+  h += '<div class="dhero" style="margin-top:12px">';
+  A.headline.forEach(t=>{ h += '<div class="dtile"><div class="dl">'+vEsc(t[0])+'</div><div class="dv">'+vEsc(t[1])+'</div><div class="dn">'+vEsc(t[2])+'</div></div>'; });
+  h += '</div>';
+
+  /* property read */
+  h += '<div class="appsub">Property analysis — commercial read</div>';
+  h += '<div class="dgate"><table><thead><tr><th style="width:180px">Attribute</th><th style="text-align:left">Why it matters</th><th style="width:80px">Rating</th></tr></thead><tbody>';
+  A.property.forEach(r=>{
+    const tone = /Strong|Good/.test(r[2]) ? 'go' : /Watch|Verify/.test(r[2]) ? 'watch' : 'faint';
+    h += '<tr><td style="color:var(--ink);font-weight:600">'+vEsc(r[0])+'</td>'
+       + '<td style="text-align:left;color:var(--muted);line-height:1.6">'+vEsc(r[1])+'</td>'
+       + '<td><span class="apprate '+tone+'">'+vEsc(r[2])+'</span></td></tr>';
+  });
+  h += '</tbody></table></div>';
+
+  /* SWOT */
+  h += '<div class="appsub">SWOT</div><div class="appswot">';
+  A.swot.forEach(s=>{
+    h += '<div class="appsw '+s.k.toLowerCase()+'"><div class="appswk">'+vEsc(s.k)+'</div><h4>'+vEsc(s.t)+'</h4>'
+       + '<p><b>Why it matters.</b> '+vEsc(s.w)+'</p>'
+       + '<p><b>Commercial impact.</b> '+vEsc(s.c)+'</p>'
+       + '<p><b>Long-term value.</b> '+vEsc(s.l)+'</p></div>';
+  });
+  h += '</div>';
+
+  /* competitor matrix */
+  h += '<div class="appsub">Competitor scoring matrix</div>';
+  h += '<div class="dgate"><table><thead><tr><th style="width:190px">Competitor</th><th style="text-align:left">Location</th>';
+  A.competitors.cols.forEach(c=>{ h += '<th style="width:62px">'+vEsc(c)+'</th>'; });
+  h += '</tr></thead><tbody>';
+  A.competitors.rows.forEach(r=>{
+    const threat = r[8];
+    h += '<tr'+(threat>=5?' class="here"':'')+'><td style="color:var(--ink);font-weight:600">'+vEsc(r[0])+'</td>'
+       + '<td style="text-align:left;color:var(--muted)">'+vEsc(r[1])+'</td>';
+    for(let i=2;i<=8;i++){
+      const v=r[i], last=(i===8);
+      h += '<td><span class="appdot s'+v+(last?' t':'')+'">'+v+'</span></td>';
+    }
+    h += '</tr>';
+  });
+  h += '</tbody></table><div class="dcap">'+vEsc(A.competitors.note)+'</div></div>';
+
+  /* partnerships */
+  h += '<div class="appsub">Partnership opportunities — customer acquisition</div>';
+  h += '<div class="dgate"><table><thead><tr><th style="width:112px">Category</th><th style="text-align:left">Target</th><th>Reach</th><th>Ease</th>'
+     + '<th style="text-align:left">Campaign concept</th><th>Acq / yr</th><th>Priority</th></tr></thead><tbody>';
+  A.partnerships.rows.forEach(r=>{
+    h += '<tr'+(r[6]==='HIGH'?' class="mark"':'')+'><td style="color:var(--ink);font-weight:600">'+vEsc(r[0])+'</td>'
+       + '<td style="text-align:left;color:var(--muted)">'+vEsc(r[1])+'</td><td>'+vEsc(r[2])+'</td><td>'+vEsc(r[3])+'</td>'
+       + '<td style="text-align:left;color:var(--muted)">'+vEsc(r[4])+'</td><td style="color:var(--ink);font-weight:600">'+vEsc(r[5])+'</td>'
+       + '<td><span class="apprate '+(r[6]==='HIGH'?'go':r[6]==='MED'?'watch':'faint')+'">'+vEsc(r[6])+'</span></td></tr>';
+  });
+  h += '</tbody></table><div class="dcap">'+vEsc(A.partnerships.note)+'</div></div>';
+
+  /* heat map + hours */
+  h += '<div class="dsplit">';
+  h += '<div class="dpanel"><h3>Weekly trading intensity</h3><table class="appheat"><thead><tr><th></th>';
+  A.heat.days.forEach(d=>{ h += '<th>'+vEsc(d)+'</th>'; });
+  h += '</tr></thead><tbody>';
+  A.heat.rows.forEach(r=>{
+    h += '<tr><th>'+vEsc(r[0])+'</th>';
+    r[1].forEach(c=>{ h += '<td><span class="appcell '+c+'">'+c+'</span></td>'; });
+    h += '</tr>';
+  });
+  h += '</tbody></table><div class="appleg"><span class="appcell L">L</span> low <span class="appcell M">M</span> medium '
+     + '<span class="appcell H">H</span> high <span class="appcell P">P</span> peak</div>'
+     + '<p style="font-size:11.5px;color:var(--muted);line-height:1.6;margin:11px 0 0">'+vEsc(A.heat.note)+'</p></div>';
+
+  h += '<div class="dpanel"><h3>Trading hours recommendation</h3><table class="dpl">';
+  A.hours.forEach(r=>{
+    h += '<tr><td style="width:32%;color:var(--ink);font-weight:600;vertical-align:top;padding-right:12px">'+vEsc(r[0])
+       + '<span style="display:block;font-weight:400;color:var(--watch);font-size:11px;margin-top:3px">'+vEsc(r[1])+'</span></td>'
+       + '<td style="text-align:left;color:var(--muted);font-size:11.5px;line-height:1.55">'+vEsc(r[2])+'</td></tr>';
+  });
+  h += '</table></div></div>';
+
+  /* risk register */
+  h += '<div class="appsub">Non-financial risk register</div>';
+  h += '<div class="dgate"><table><thead><tr><th style="width:230px">Risk</th><th>Likelihood</th><th>Impact</th>'
+     + '<th style="text-align:left">Mitigation</th><th style="text-align:left;width:170px">Owner</th></tr></thead><tbody>';
+  A.risks.forEach(r=>{
+    const tone = v => v==='High'?'no':v==='Med'?'watch':'faint';
+    h += '<tr><td style="color:var(--ink);font-weight:600">'+vEsc(r[0])+'</td>'
+       + '<td><span class="apprate '+tone(r[1])+'">'+vEsc(r[1])+'</span></td>'
+       + '<td><span class="apprate '+tone(r[2])+'">'+vEsc(r[2])+'</span></td>'
+       + '<td style="text-align:left;color:var(--muted);line-height:1.6">'+vEsc(r[3])+'</td>'
+       + '<td style="text-align:left;color:var(--muted)">'+vEsc(r[4])+'</td></tr>';
+  });
+  h += '</tbody></table></div>';
+
+  /* what would make it a proceed */
+  h += '<div class="dsplit"><div class="dpanel" style="border-color:rgba(63,185,80,.28)"><h3 style="color:var(--go)">What would make it a proceed</h3>'
+     + '<p style="font-size:12.5px;line-height:1.68;color:var(--muted);margin:0">'+vEsc(A.proceed)+'</p></div>'
+     + '<div class="dpanel" style="border-color:rgba(226,35,26,.28)"><h3 style="color:var(--red2)">Withdraw if</h3><ol style="margin:0;padding-left:18px;font-size:12.5px;line-height:1.7;color:var(--muted)">';
+  A.breakers.forEach(b=>{ h += '<li>'+vEsc(b)+'</li>'; });
+  h += '</ol></div></div>';
+
+  h += '<div class="dverdict" style="margin-top:15px"><div class="dvh">The commercial bottom line</div><p>'+vEsc(A.bottom)+'</p></div>';
+  h += '<div class="dcap" style="border:1px solid var(--line);border-radius:11px;margin-top:12px"><b>Sources.</b> '+vEsc(A.sources)+'</div>';
+
+  /* evidence register */
+  h += '<div class="vsec"><h2>What evidence exists per town</h2><p class="vlede">'
+     + 'Media counted from the Drive folder on 25 August; form responses from the site-visit sheet. Every town now has a scored field response. What only Exeter has is a full written appraisal on top of it — that is the remaining gap, and the Exeter document above is the shape the other six need to be in.'
+     + '</p></div>';
+  h += '<div class="dgate"><table><thead><tr><th style="width:150px">Town</th><th style="text-align:left">Media on file</th>'
+     + '<th style="text-align:left">Written appraisal</th></tr></thead><tbody>';
+  EVIDENCE.rows.forEach(r=>{
+    h += '<tr'+(r[3]==='done'?' class="mark"':'')+'><td style="color:var(--ink);font-weight:600">'+vEsc(r[0])+'</td>'
+       + '<td style="text-align:left;color:var(--muted)">'+vEsc(r[1])+'</td>'
+       + '<td style="text-align:left;color:'+(r[3]==='done'?'var(--go)':r[3]==='part'?'var(--watch)':'var(--red2)')+'">'+vEsc(r[2]==='—'?'None':r[2])+'</td></tr>';
+  });
+  h += '</tbody></table><div class="dcap">'+vEsc(EVIDENCE.note)+'<br><span style="color:var(--faint)">'+vEsc(EVIDENCE.folder)+'</span></div></div>';
+
+  return h;
+}
+
+/* ====================== 22 AUG — VIEWING ROUND DATA ====================== */
+/* Everything below is sourced. Where a verdict has not been written down, it says so. */
+const VISITS = {
+  round: [
+    {
+      town:'Plymouth', scheme:'The Barcode', date:'Wed 19 Aug · 09:45',
+      media:'15 files (11 photos, 4 videos)', appraisal:null,
+      viewed:[
+        {u:'Franco Manca', how:'Internal, via centre management', note:'At HOTs. Agent quoted £65k pa on the 14 Aug schedule.'},
+        {u:'BrewDog', how:'External only — tenant in occupation', note:'At HOTs and about to instruct solicitors, so potentially gone. £125k pa on the 14 Aug schedule.'},
+        {u:'Cosy Club', how:'Customer inspection, unit trading', note:'First floor, with a ground-floor entrance on Bretonside facing Cineworld and opposite Zizzi.'}
+      ],
+      terms:[
+        ['Cosy Club demise','GF 937 sq ft + 1F 5,800 sq ft = 6,737 sq ft'],
+        ['Rent','£110,000 pa or turnover, whichever is higher'],
+        ['Service charge','£62,603 pa'],
+        ['Rateable value','£147,000 pa'],
+        ['Lease','New 10 / 15 year with incentive'],
+        ['Handover','Fully fitted — but some F&F may be removed']
+      ],
+      pressure:'Savills: act very fast on Franco Manca or BrewDog if either is of interest — both at HOTs.',
+      michael:'"Confirmation after viewing" — 18 Aug target list.',
+      verdict:null, action:null
+    },
+    {
+      town:'Exeter', scheme:'Princesshay', date:'Wed 19 Aug · 12:45',
+      media:'8 files (1 photo, 6 videos) + written appraisal', appraisal:'Maki_Ramen_Site_Appraisal_Princesshay_Exeter.pdf',
+      viewed:[
+        {u:'Two fitted restaurant units', how:'With agent Jacob, meeting outside Wagamama next to Costa', note:'The available unit sits directly opposite Wagamama in the scheme dining area.'}
+      ],
+      terms:[
+        ['Rent','c. £100,000 pa'],
+        ['Demise / SC / rates','To be confirmed'],
+        ['Landlord','Frasers Group (acquired Oct 2024)'],
+        ['Scheme','530,000 sq ft · c.70 stores · 10m+ footfall · John Lewis, Zara, Next']
+      ],
+      pressure:'Offers in on all units, progressing imminently. Competing bidders named by the agent: Flat Iron, Dishoom (premium) and Wingstop (fast casual). Landlord has not decided which route to take.',
+      michael:'"Yes" — 18 Aug target list.',
+      verdict:{
+        score:'61 / 100', call:'PROCEED WITH CAUTION — subject to financials',
+        tone:'watch',
+        body:'The only town in this round with a written appraisal. Catchment is exceptional for the brand — fastest-growing of England’s 63 largest cities (+15.5% to c.138,000), c.38,800 students at close to 30% of the population, 25% international. Against that: the unit is face-to-face with Wagamama in a single-scheme, mid-sized market, and Centre for Cities 2026 ranks Exeter among the worst of the 63 on growth and living standards, so spend is value-led. Score lands one point under the 62 conditional threshold.',
+        components:[['Strategic importance',6],['Commercial potential',6],['Delivery potential',7],['Lunch trade',6],['Evening trade',6],['Competitive position',4],['Property suitability',6]],
+        breakers:['No credible, evidenced edge over the Wagamama opposite','Financials do not clear once benchmarked to Wagamama Exeter','Terms return with an open-market upward-only review and no incentive','Demise or scheme strategy proves unsuitable on inspection']
+      },
+      action:null
+    },
+    {
+      town:'Portsmouth', scheme:'Gunwharf Quays', date:'Wed 19 Aug · 16:30',
+      media:'3 videos', appraisal:null,
+      viewed:[
+        {u:'R30 — former Hubbox', how:'Internal, via centre management', note:'Fitted, handover as seen.'},
+        {u:'New-build unit', how:'Shell and core', note:'Second option on the same visit.'}
+      ],
+      terms:[
+        ['Unit size','2,846 sq ft'],
+        ['Rent','£50 psf (c. £142,300 pa) with turnover top-up'],
+        ['Service charge','£55,539'],
+        ['Insurance','£55,539'],
+        ['Rates','TBC'],
+        ['Handover','As seen'],
+        ['Scheme footfall','8.5m+ and growing']
+      ],
+      pressure:'Waterfront redevelopment has planning consent. Landsec is likely to take on management of the Spinnaker Tower, which would reshuffle that space and may bring a new bridge link from the podium to outside Pho — directly increasing circulation past this unit. Existing F&B: Pho, Cosy Club, Wagamama.',
+      michael:'"Confirmation after viewing, but looking good" — 18 Aug target list.',
+      verdict:null,
+      action:'Closes one of the four AWAITING TERMS units carried on the 14 Aug stage — Gunwharf now has quoted rent, service charge and size.'
+    },
+    {
+      town:'Basingstoke', scheme:'Festival Place', date:'Thu 20 Aug · 10:00',
+      media:'7 files (1 photo, 6 videos)', appraisal:null,
+      viewed:[
+        {u:'Las Iguanas', how:'Internal, agent Kathryn', note:'Available, but two offers already on it which the landlord may progress.'},
+        {u:'Pizza Express', how:'Internal', note:'Not available now — may become an option next year.'}
+      ],
+      terms:[
+        ['Côte','Still not an option — and it is the space we actually want'],
+        ['BrewDog','Under offer to a national fried chicken brand'],
+        ['Deal expectation (14 Aug)','Would transact at c.£135–140k against £185k quoted, with 12–18 months incentive']
+      ],
+      pressure:'Two live offers on the Las Iguanas. The two units we rate most — Côte and BrewDog — are both unavailable.',
+      michael:'"Yes but the optimal space is Cote." Earlier: "Keener for Brewdog, Cote. What is Pizza Express trading at vs Wags there?"',
+      verdict:null,
+      action:'That trading question to Savills — Pizza Express versus Wagamama at Festival Place — has not been answered. It is the piece that decides whether the Pizza Express unit is worth waiting a year for.'
+    },
+    {
+      town:'Oxford', scheme:'George Street', date:'Thu 20 Aug · 12:00',
+      media:'7 videos', appraisal:null,
+      viewed:[
+        {u:'59 George Street — existing Zizzi', how:'Internal', note:'Fitted. Quoting £120k pa with 6 months rent free. A lot of interest precisely because it is fitted — Savills say an offer would need to move quickly.'},
+        {u:'61 George Street — former Pizza Hut', how:'Internal', note:'Quoting £100k pa with 12 months incentive.'},
+        {u:'67–69 George Street — former Opium Den', how:'Internal', note:'Quoting £100k pa with 12 months incentive.'},
+        {u:'71 George Street', how:'Not available', note:'Under offer to a London Asian brand.'},
+        {u:'75 George Street', how:'Not available', note:'Under offer to a local BBQ / burger operator.'},
+        {u:'Wendy’s, Magdalen Street', how:'Walk-past only', note:'They may exit for a premium.'},
+        {u:'Westgate ground floor unit', how:'Not viewed', note:'No extract potential — would have to be done by reco.'}
+      ],
+      terms:[
+        ['Cheapest route','£100k pa + 12 months incentive (61, or 67–69) — both unfitted'],
+        ['Fastest route','£120k pa + 6 months rent free (59, fitted Zizzi) — but competitive'],
+        ['Model position','Oxford Westgate scored NO on the 10 Aug run. George Street is a different, street-level pitch and is not in the model.']
+      ],
+      pressure:'Two offers already on the Zizzi. Two of the five George Street units have gone under offer since the schedule was issued.',
+      michael:'"Confirmation after viewing" — 18 Aug target list. Earlier: "This is fine."',
+      verdict:null,
+      action:'Send a team member to observe George Street at peak dinner before any offer — agreed 21 Aug. The daytime viewing does not tell us what the evening trade looks like.'
+    },
+    {
+      town:'Bracknell', scheme:'The Lexicon', date:'Thu 20 Aug · 14:30',
+      media:'9 files (1 photo, 8 videos)', appraisal:null,
+      viewed:[
+        {u:'The Real Greek', how:'Internal, met at centre management', note:'Second unit on the scheme.'},
+        {u:'Las Iguanas — Unit 11 Eagle Lane', how:'Internal', note:'Savills: there is already an offer on this which the landlord is minded to progress.'}
+      ],
+      terms:[
+        ['Rent','Still not quoted — the open question on this unit'],
+        ['Service charge','8.19 psf'],
+        ['Handover','Fitted, so capex should land below the 175 psf base'],
+        ['Scheme trade','Wagamama £70k pw · Nando’s £72k pw'],
+        ['Ownership','Realty Income bought the scheme Nov 2025 for c.£150m — its first UK shopping centre']
+      ],
+      pressure:'An offer is already on the Las Iguanas and the landlord is minded to take it.',
+      michael:'"Confirmation after viewing" — 18 Aug target list. Earlier: "Understood."',
+      verdict:null,
+      action:'A follow-up visit was agreed on 21 Aug — the first viewing did not settle it. Rent is still unquoted, which is the whole question on this unit.'
+    }
+  ],
+
+  targets:{
+    note:'Savills issued a 2027 priority target list on 18 Aug against a stated goal of 50 sites. Michael’s verdicts below are verbatim from the reply the same day.',
+    england:[
+      ['Bristol (in town + Cribbs)','Possible but need the right location','watch'],
+      ['Cardiff (St Davids)','Like this site a lot','go'],
+      ['Brighton','Very possible','go'],
+      ['Portsmouth (Gunwharf Quays)','Confirmation after viewing, but looking good','watch'],
+      ['Plymouth','Confirmation after viewing','watch'],
+      ['Bournemouth','Yes','go'],
+      ['Exeter','Yes','go'],
+      ['Leicester (Fosse Park)','No','no'],
+      ['Norwich','Yes','go'],
+      ['Basingstoke (Festival Place)','Yes, but the optimal space is Côte','watch'],
+      ['Bracknell (The Lexicon)','Confirmation after viewing','watch'],
+      ['Oxford','Confirmation after viewing','watch'],
+      ['Cambridge','Yes','go'],
+      ['Canterbury','Needs more research','watch'],
+      ['Liverpool','Possible but franchised','watch']
+    ],
+    scotland:[
+      ['Glasgow — Silverburn','Yes','go'],
+      ['Glasgow — Glasgow Fort','Possible but not this year','watch'],
+      ['Dundee','Yes','go'],
+      ['Livingston','Possible but not this year','watch'],
+      ['St Andrews','Possible but not this year','watch']
+    ],
+    ireland:[
+      ['Belfast','Possible but not this year','watch'],
+      ['Dublin','Yes','go']
+    ],
+    added:['Trafford Centre','Manchester (final site)','York','Bull Ring','Solihull','Bluewater — a better site than the one currently offered']
+  },
+
+  rules:[
+    {h:'Five years, not two', b:'The 50-site goal runs over a five-year period. Maximum six sites a year.'},
+    {h:'One opening every two months', b:'Openings staggered while internal systems consolidate through 2027. This is an operational ceiling, not an ambition.'},
+    {h:'Fitted, low rent, low SC, low capex', b:'The default acquisition profile. Deviation needs a reason.'},
+    {h:'S-tier exception', b:'Higher capex is acceptable only at Trafford, Bull Ring, Bluewater or Dublin.'},
+    {h:'18–20% net margin', b:'The standard set on 21 Aug for new locations. A minimum of 20% net profit on the street-level search.'},
+    {h:'Portfolio balance', b:'Rebalance towards street-level sites alongside high-revenue shopping centres. Shopping-centre submissions to be tested against profitability with Savills.'}
+  ],
+
+  longlist:{
+    note:'Issued 21 Aug as the street-level workstream: 15 mid-to-north value markets at a c.£45k rent target, £1.2–1.6m revenue potential, implied rent-to-sales near 3% against a 6–9% norm. Screening list for prioritisation — not site recommendations, and every figure needs verification.',
+    a:['Preston','Middlesbrough','Sunderland','Hull','Stoke-on-Trent (Hanley)','Huddersfield','Bradford','Bolton','Wolverhampton','Derby'],
+    b:['Bury','Doncaster','Wakefield','Warrington','Barnsley'],
+    caveat:'Derby is the one contested market on the list — Wagamama already trades at Derbion. The other fourteen are flagged as probable ramen whitespace, which is upside and a warning at once: whitespace in a value market means price and delivery execution carry the model, not ticket.'
+  },
+
+  actions:[
+    ['Bracknell revisit','Matt Jenner','Rent still unquoted; first viewing did not settle it'],
+    ['Oxford peak-dinner observation','Matt Jenner','Before any offer on George Street'],
+    ['Pizza Express vs Wagamama trade, Festival Place','Matt Jenner / Savills','Question asked 16 Aug, still unanswered'],
+    ['Norwich, Cardiff and Bromley viewings','Michael Salvador','Offered 22–24 Aug, not yet confirmed with Savills'],
+    ['Landlord pack refresh','Michael Salvador','Savills want the latest version with current stats and openings to recirculate'],
+    ['Value-market longlist verification','Matt Jenner','Live rents, delivery density and ramen presence per town; shortlist 4–5 for full appraisals'],
+    ['Shopping-centre profitability discussion','Michael Salvador','Raise with Jess so submissions align with the margin standard']
+  ],
+
+  gaps:[
+    'Five of the six towns have no written verdict. The Drive folder holds 48 photos and videos and one appraisal — Exeter. Plymouth, Portsmouth, Basingstoke, Oxford and Bracknell are recorded here as visited, terms captured, verdict outstanding.',
+    'The site-visit scoring form ("An analysis of the restaurant scene sites") has no 2026 responses. The last completed rows are August 2025 and the 19 Aug 2026 row is blank, so none of this round has been scored on the visit scorecard.',
+    'No scoring change has been made at this stage. The 18–20% net margin standard is recorded as policy but is not applied as a gate — the GO / WATCH / NO tiers on the earlier stages are untouched.',
+    'Bracknell, Basingstoke and Oxford all have live third-party offers on the units we rate. Several of these decisions have a shorter fuse than our appraisal cycle.'
+  ]
+};
+
+/* ====================== 22 AUG — VIEWING ROUND RENDER ====================== */
+function isVisits(){ return state.stage==='visits' || state.stage==='book' || state.stage==='deal'; }
+function isDeal(){ return state.stage==='deal'; }
+function vEsc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function renderVisits(){
+  const el = document.getElementById('pane-visits');
+  if(!el) return;
+  const V = VISITS;
+  let h = '';
+
+  /* --- the round --- */
+  h += '<div class="vsec"><h2>The viewing round</h2><p class="vlede">Six towns, thirteen units, 18–20 August. What follows is what was seen and what came back in writing — terms, competitive position, and the verdict where one exists.</p></div>';
+
+  h += '<div class="vgrid">';
+  V.round.forEach(t=>{
+    const vd = t.verdict;
+    const fs = fieldFor(t.town);
+    const badge = fs
+      ? '<span class="vbadge '+fieldTone(fs.overall)+'">Field '+fs.overall+'%'+(vd?' &middot; desk '+vEsc(vd.score):'')+'</span>'
+      : vd ? '<span class="vbadge '+vd.tone+'">'+vEsc(vd.score)+'</span>'
+      : '<span class="vbadge open">Verdict outstanding</span>';
+    h += '<article class="vcard'+(vd?' has-verdict':'')+'">';
+    h += '<header class="vch"><div><h3>'+vEsc(t.town)+'</h3><div class="vsub">'+vEsc(t.scheme)+' &middot; '+vEsc(t.date)+'</div></div>'+badge+'</header>';
+
+    h += '<div class="vsecth">Units viewed</div><ul class="vunits">';
+    t.viewed.forEach(u=>{
+      h += '<li><b>'+vEsc(u.u)+'</b><span class="vhow">'+vEsc(u.how)+'</span><div class="vnote">'+vEsc(u.note)+'</div></li>';
+    });
+    h += '</ul>';
+
+    h += '<div class="vsecth">Terms on the table</div><table class="vterms">';
+    t.terms.forEach(r=>{ h += '<tr><th>'+vEsc(r[0])+'</th><td>'+vEsc(r[1])+'</td></tr>'; });
+    h += '</table>';
+
+    if(fs){
+      h += '<div class="vpressure" style="border-left-color:'+(fs.overall>=75?'var(--go)':fs.overall>=62?'var(--watch)':'var(--red2)')+'">'
+         + '<b>Field verdict &middot; '+fs.overall+'% (feasibility '+fs.lf+', demographic '+fs.df+').</b> '+vEsc(fs.quote)+'</div>';
+    }
+    h += '<div class="vpressure"><b>Competitive pressure.</b> '+vEsc(t.pressure)+'</div>';
+    h += '<div class="vmichael"><b>Our stated position.</b> '+vEsc(t.michael)+'</div>';
+
+    if(vd){
+      h += '<div class="vverdict"><div class="vvhead">'+vEsc(vd.call)+'</div><p>'+vEsc(vd.body)+'</p>';
+      h += '<div class="vcomp">';
+      vd.components.forEach(c=>{
+        const w = Math.round(c[1]*10);
+        h += '<div class="vcrow"><span>'+vEsc(c[0])+'</span><div class="vbar"><i style="width:'+w+'%"></i></div><b>'+c[1].toFixed(1)+'</b></div>';
+      });
+      h += '</div>';
+      h += '<div class="vbreak"><b>Withdraw if</b><ol>';
+      vd.breakers.forEach(b=>{ h += '<li>'+vEsc(b)+'</li>'; });
+      h += '</ol></div></div>';
+    }
+
+    if(t.action) h += '<div class="vaction">'+vEsc(t.action)+'</div>';
+    h += '<footer class="vcf"><span>Evidence: '+vEsc(t.media)+(fs?' + scored form response':'')+'</span>'+(t.appraisal?'<span class="vdoc">'+vEsc(t.appraisal)+'</span>':'<span class="vdoc none">no written appraisal</span>')+'</footer>';
+    h += '</article>';
+  });
+  h += '</div>';
+
+  /* --- the field scorecard, then the Exeter appraisal in full --- */
+  h += renderField();
+  h += renderAppraisal();
+
+  /* --- target list --- */
+  h += '<div class="vsec"><h2>2027 target list — where we stand</h2><p class="vlede">'+vEsc(V.targets.note)+'</p></div>';
+  h += '<div class="vtargets">';
+  [['England',V.targets.england],['Scotland',V.targets.scotland],['Ireland',V.targets.ireland]].forEach(g=>{
+    h += '<div class="vtcol"><h4>'+g[0]+'</h4>';
+    g[1].forEach(r=>{
+      h += '<div class="vtrow '+r[2]+'"><span class="vtn">'+vEsc(r[0])+'</span><span class="vtv">'+vEsc(r[1])+'</span></div>';
+    });
+    h += '</div>';
+  });
+  h += '</div>';
+  h += '<div class="vadded"><b>Added to the list by us, not by Savills:</b> '+V.targets.added.map(vEsc).join(' &middot; ')+'</div>';
+
+  /* --- rules --- */
+  h += '<div class="vsec"><h2>The rules this round set</h2><p class="vlede">Standing constraints from the 18 Aug reply to Savills and the 21 Aug review. These govern what a viable site now looks like — they are recorded here, not applied to the scorecard.</p></div>';
+  h += '<div class="vrules">';
+  V.rules.forEach(r=>{ h += '<div class="vrule"><b>'+vEsc(r.h)+'</b><p>'+vEsc(r.b)+'</p></div>'; });
+  h += '</div>';
+
+  /* --- longlist --- */
+  h += '<div class="vsec"><h2>Street-level value longlist</h2><p class="vlede">'+vEsc(V.longlist.note)+'</p></div>';
+  h += '<div class="vll"><div class="vllcol"><h4>Tier A — student-led cities</h4><div class="vpills">'+V.longlist.a.map(x=>'<span>'+vEsc(x)+'</span>').join('')+'</div></div>';
+  h += '<div class="vllcol"><h4>Tier B — regional &amp; commuter towns</h4><div class="vpills alt">'+V.longlist.b.map(x=>'<span>'+vEsc(x)+'</span>').join('')+'</div></div></div>';
+  h += '<div class="vcaveat">'+vEsc(V.longlist.caveat)+'</div>';
+
+  /* --- actions --- */
+  h += '<div class="vsec"><h2>Open actions</h2></div><table class="vactions"><thead><tr><th>Action</th><th>Owner</th><th>Why it is still open</th></tr></thead><tbody>';
+  V.actions.forEach(a=>{ h += '<tr><td><b>'+vEsc(a[0])+'</b></td><td>'+vEsc(a[1])+'</td><td>'+vEsc(a[2])+'</td></tr>'; });
+  h += '</tbody></table>';
+
+  /* --- gaps --- */
+  h += '<div class="vsec"><h2>What this stage does not tell you</h2></div><ol class="vgaps">';
+  V.gaps.forEach(g=>{ h += '<li>'+vEsc(g)+'</li>'; });
+  h += '</ol>';
+
+  el.innerHTML = h;
+}
+
+/* ====================== 25 AUG — BLUEWATER SVL05 DEAL STAGE ======================
+   The first unit in this pipeline to reach a heads of terms. Sources, and nothing else:
+   the Landsec heads of terms dated 20 Aug 2026 (issued 24 Aug); the Bluewater email
+   chain 25 Jun – 24 Aug 2026; and the six documents Savills sent with it — the March
+   2026 leasing brochure, the Jan 2026 floor plans, the PLUS+ Opportunities Pack 2025,
+   the Brand Partner Marketing Pack April 2026, the BW Marketing Calendar 2026/27 and
+   the Landsec Spotlight media rate card Feb 2026. Every figure below is quoted from
+   one of those; the trading model is the only estimate on this stage. */
+const DEAL = {
+  sites: [{
+    location:'Bluewater — SVL05 (former GBK), the Plaza',
+    town:'Bluewater', unit:'SVL05', region:'South East', country:'England',
+    scheme:'Bluewater', landlord:'Blueco Limited (Landsec)',
+    nearest:'M17 Lakeside Thurrock', driveMin:25,
+    footfall_m:18, footfallTrend:'up', footfallSource:'Landsec brochure, March 2026',
+    catchment:2250000, students:0, affluence:4,
+    whitespace15:2, evening15:2, delivery15:1,
+    // carried verbatim from the 05 Aug Bluewater town record so the score stays comparable
+    demandIndex:0.5758896, whitespaceScorecard:0.25, affluenceNorm:0.75, networkFit:0.5,
+    formats:[
+      {format:'Shopping centre in-line', variant:'Heads of terms · capacity model, evening held at partial', recommended:true,
+       evening:'partial', sqft:3951, sqftDemised:3951, surplus:0,
+       rentPa:230000, rentTurnoverPct:0.075, rentCapPa:300000,
+       scPa:90000, scUncapped:false, ratesPa:99900, insPa:2927.64},
+      {format:'Shopping centre in-line', variant:'Heads of terms · Plaza evening trade (cinema, Gravity, Dinotropolis)',
+       evening:'yes', sqft:3951, sqftDemised:3951, surplus:0,
+       rentPa:230000, rentTurnoverPct:0.075, rentCapPa:300000,
+       scPa:90000, scUncapped:false, ratesPa:99900, insPa:2927.64},
+      {format:'Shopping centre in-line', variant:'Heads of terms · at the landlord break trigger, £2.50m',
+       evening:'partial', sqft:3951, sqftDemised:3951, surplus:0, netOverride:2500000,
+       rentPa:230000, rentTurnoverPct:0.075, rentCapPa:300000,
+       scPa:90000, scUncapped:false, ratesPa:99900, insPa:2927.64},
+      {format:'Shopping centre in-line', variant:"Heads of terms · at Bill's £2.98m",
+       evening:'partial', sqft:3951, sqftDemised:3951, surplus:0, netOverride:2980000,
+       rentPa:230000, rentTurnoverPct:0.075, rentCapPa:300000,
+       scPa:90000, scUncapped:false, ratesPa:99900, insPa:2927.64},
+      {format:'Shopping centre in-line', variant:'Heads of terms · at Five Guys £3.30m',
+       evening:'partial', sqft:3951, sqftDemised:3951, surplus:0, netOverride:3300000,
+       rentPa:230000, rentTurnoverPct:0.075, rentCapPa:300000,
+       scPa:90000, scUncapped:false, ratesPa:99900, insPa:2927.64}
+    ]
+  }],
+
+  /* Landsec's own published numbers. Source is named on every line because two of them
+     disagree with each other and one of them is stale. */
+  scheme:[
+    {k:'Annual footfall', v:'18 million', s:'Brochure Mar 26 · Spotlight Feb 26 · agent email — all three agree'},
+    {k:'Total annual sales', v:'£1.2bn', s:'Brochure Mar 26'},
+    {k:'Sales density', v:'£569 psf', s:'Brochure Mar 26 — scheme-wide, all categories'},
+    {k:'Average dwell', v:'89 minutes', s:'Spotlight Feb 26, against a 82-minute Landsec benchmark. The brochure quotes 82 as Bluewater’s own figure — it is the benchmark, not the number', flag:true},
+    {k:'Average spend per visit', v:'£81–82', s:'Spotlight Feb 26 — whole trip, every category, not F&B'},
+    {k:'Average drivetime', v:'40 minutes', s:'Spotlight Feb 26, benchmark 36. This is a destination, not a local centre'},
+    {k:'Visitor mix', v:'59% wider catchment · 31% domestic tourists · 6% local', s:'Spotlight Feb 26'},
+    {k:'Visit frequency', v:'25 a year · 33% visit monthly or more', s:'Spotlight Feb 26'},
+    {k:'Age of visitor', v:'c.70% aged 18–44, largest band 25–34', s:'Spotlight Feb 26 — read off a chart, treat as indicative', flag:true},
+    {k:'Gender split', v:'63 / 37', s:'Spotlight Feb 26'},
+    {k:'Affluent Acorn share', v:'30% in the most affluent categories, against a 15% UK average', s:'Brochure Mar 26. Spotlight’s Acorn table gives 35% across the top six bands'},
+    {k:'Top Acorn profiles', v:'Commuter-Belt Wealth 16% · Settled Suburbia 14% · Aspiring Communities 11% · Family Renters 10%', s:'Spotlight Feb 26, share of spend'},
+    {k:'Parking', v:'13,000 free spaces', s:'Brochure Mar 26'},
+    {k:'Brand partners', v:'275+ (brochure) / 300+ (Spotlight)', s:'The two decks disagree', flag:true},
+    {k:'Catchment growth', v:'Ebbsfleet Garden City — 15,000 homes, 36,000 residents, 7,000 under construction', s:'Brochure Mar 26'},
+    {k:'Infrastructure', v:'£6.8bn Lower Thames Crossing · proposed Crossrail extension · Ebbsfleet International 18 min to London', s:'Brochure Mar 26'},
+    {k:'Ranking', v:'Top four UK shopping centre', s:'Brochure Mar 26, sourced to CACI'}
+  ],
+
+  /* What the Jan 2026 floor plans actually show. This corrects the adjacency list in the
+     agent's introduction email, which mixed the two floors together. */
+  pitch:{
+    lede:'The 25 June email listed the Plaza adjacencies as "Showcase cinema, Wagamama, Big Easy, Real Greek, Ask Italia, Five Guys, Rosa’s Thai, Pizza Express, TGI Fridays". The January 2026 plans show that list spans both floors. SVL05 is ground floor only, so only half of it is actually next door — and the half that is, is the better half.',
+    rows:[
+      {t:'Same floor, same leg — the real neighbours', v:'Nando’s, The Real Greek, Browns, Gravity, Five Guys, Bella Italia, ASK, Pho, Showcase Cinema', good:true},
+      {t:'Upper floor, above us', v:'Wagamama, The Big Easy, Rosa’s Thai, Pizza Express, TGI Fridays, Ballerz'},
+      {t:'Not in the Plaza at all', v:'Bill’s sits in the Lower Rose Gallery. Chi — the ramen and sushi operator the 05 Aug record scored against us — is in The Village, at the opposite end of the scheme'},
+      {t:'The zone', v:'Landsec zones the Plaza as "family dining and entertainment". It also holds the Gravity Trampoline Park, Showcase Cinema and Dinotropolis soft play', good:true},
+      {t:'What this changes', v:'Five Guys at £3.3m is not a scheme comparator, it is a Plaza neighbour on our floor. Wagamama is a floor away. And an entertainment-anchored leg is not a 21:00 mall close, which is the assumption the 05 Aug record priced this site on', good:true}
+    ]
+  },
+
+  /* Free marketing is a real commercial term of the deal and the model gives it no credit
+     at all. The Spotlight rate card prices the paid half, so both can be stated. */
+  marketing:{
+    lede:'Clause 39 of the heads of terms obliges us to "allocate a specific marketing budget towards a proactive launch at Bluewater which will be agreed with the Bluewater Marketing Team". Until now that was an open-ended commitment. The four marketing documents price it.',
+    free:[
+      ['PLUS+ solus email','Bespoke single-brand email to the Bluewater list. Cost free to brand partners. 151,000 members at April 2026, 50–55% open rate — the highest of the nine Landsec destinations, against 30–35% at Liverpool ONE'],
+      ['Brand page','Dedicated page on bluewater.co.uk — logo, four images, 15-second video, 200–250 words, links'],
+      ['What’s On and Offers','Templated form, live within 72 hours. Menus, launches, events, deals'],
+      ['Social','31.1m annual reach across Bluewater channels, 245k followers. Content teams visit the centre bi-monthly and will film with brand partners on request'],
+      ['PR','Landsec press office works local, regional and national on brand-partner stories. A new opening is exactly their brief'],
+      ['Influencers','Curated list of local creators, briefed to visit brand partners that fit their audience'],
+      ['Web','1.4m annual users, 165k monthly sessions'],
+      ['Gamification','Fully branded digital game built into a PLUS+ campaign — spin-the-wheel, quiz, instant win']
+    ],
+    paid:[
+      ['Plaza Screen','£3,000','Large-format LED in the heart of the Plaza — the screen that faces our own leg. Landsec’s own copy sells it on the dwell time of guests eating at Five Guys, Nando’s, Big Easy and GBK'],
+      ['Pillar wraps, 5','£6,000','The knuckle pillars connecting the malls'],
+      ['Lift vinyls, 4','£4,800','£1,200 each, £1,100 at five or more. 20 lift locations'],
+      ['Floor vinyl, 50 sqm','£6,000','Spills the brand beyond the demise line'],
+      ['Staircase vinyl','£8,000','Double-sided, outside M&S'],
+      ['Escalator wrap, 1','£10,000','Six in total, two per main mall'],
+      ['Banner, 1','£14,000','Six double-sided panoramic LED-backlit banners, visible from both levels'],
+      ['Buntings, 28','£15,000','Four rows of seven'],
+      ['Flag banners, 14','£20,000','Along Guildhall. 20 through Thames Walk is £25,000'],
+      ['Escalator wraps, 6','£36,000','Bookends every main mall'],
+      ['Banners, 6','£60,000','Centre-wide, 100% of the audience']
+    ],
+    note:'All paid rates are for two weeks and exclude production, which Landsec manages and charges separately. Digital six-sheets and MVision screens are sold through JCDecaux, not Landsec — rates on application to Kelly Richards. A credible launch package of the Plaza Screen, five pillar wraps and four lift vinyls is £13,800 for a fortnight, which is 12% of the £115,000 capital contribution. The free channels above are worth considerably more than the paid ones at this scale, and cost nothing.'
+  },
+
+  /* Access January 2027 plus a 16-week fit-out obligation puts opening in May 2027.
+     The centre's own calendar says what is happening then. */
+  calendar:{
+    lede:'Handover is January 2027 and clause 9 gives us 16 weeks from access to open. That puts the opening in the first half of May 2027 — and Bluewater has published what is on.',
+    rows:[
+      {m:'Jan 2027', v:'Access Date (target, still blank in the heads of terms). Blue Monday, Veganuary, Kids Eat Free and New Season are the centre’s January content themes', tone:''},
+      {m:'Feb', v:'Fit-out. Half-term media campaign 15–19 Feb. Valentine’s Day', tone:''},
+      {m:'Mar', v:'Fit-out. Mother’s Day, International Women’s Day, Easter Sunday 28 Mar', tone:''},
+      {m:'Apr', v:'Easter school holidays 3–17 Apr, Easter ad campaign, Aardman character appearances, AR bug hunt', tone:''},
+      {m:'MAY 2027', v:'OPEN. The Kent Food Fest lands 16–17 May, with the May bank holiday and half-term media campaign around it. For a food brand this is the single best launch moment on the calendar — and it falls inside the 16-week window', tone:'good'},
+      {m:'Jun–Jul', v:'Summer ad campaign, Play Park opening, Kent County Show 3–5 Jul, Big Day Out at Dartford Park 11–12 Jul, summer holidays from 23 Jul', tone:''},
+      {m:'Aug–Sep', v:'Summer Food Festival, August bank holiday, back to school', tone:''},
+      {m:'Oct–Dec', v:'Halloween, Macmillan coffee morning, Purple Tuesday, the ice rink and Winterland, Twilight Trail, The Giving Tree, Christmas ad campaign', tone:''}
+    ],
+    note:'The FIFA World Cup runs 11 June to 19 July 2026 — a year before we would open, so it is not a launch lever here, but it is a reminder that the centre programmes around sport. Ask the marketing team to hold a Kent Food Fest slot before exchange, not after.'
+  },
+
+  clauses:[
+    {tag:'agreed', title:'Base rent — £230,000 pa', cl:'cl.12',
+     was:'Michael, 4 Aug: landlord at £240,000, we countered £230k — "£230k pa Agreed".',
+     now:'Initial base rent £230,000 per annum exclusive. £58.21 psf on 3,951 sq ft.',
+     why:'Lands where it was agreed. Note the quoting rent was £65 psf / £256,815, so the movement was £26,815.'},
+    {tag:'agreed', title:'Turnover rent — 7.5% capped at £300,000', cl:'cl.12',
+     was:'Landlord opened at 10%, then 8% with no cap. Michael countered 7%. Landed at 7.5% capped — "Agreed".',
+     now:'Rent is the higher of the £230,000 base and 7.5% of gross turnover less VAT, total capped at £300,000 pa.',
+     why:'The cap is the valuable half. Turnover rent overtakes the base at £3.07m of net sales and hits the cap at £4.00m, so everything above £4.00m is rent-free growth.'},
+    {tag:'agreed', title:'15 year term, mutual year-10 break', cl:'cl.10–11',
+     was:'Tenant break at year 10 proposed; landlord asked for a mutual break with theirs linked to turnover under £2.5m. Michael: "Agreed".',
+     now:'15 years from the quarter day after Access, contracted out of the 1954 Act. Both breaks at year 10 on 6 months notice. Landlord break conditional on average turnover across the preceding 3 years being below £2.5m net of VAT.',
+     why:'The £2.5m trigger is the number to look at hardest. On our own capacity model this unit trades at £1.94m, which is below the trigger from day one, and even at £2.5m the site only makes 16.8% — under the margin floor. The landlord has priced our downside more accurately than we have.',
+     cost:'Push the trigger to £2.0m, or make it fall away if the shortfall follows a scheme-wide footfall decline.'},
+    {tag:'changed', title:'Rent review — CPI now sits UNDER an open-market review', cl:'cl.16',
+     was:'"Rent review: 5 yearly linked to CPI with a cap and collar of 1-3%" — Michael accepted 1–4% on 4 Aug after Jess advised 0–5% was unusual.',
+     now:'TWO reviews. The base rent is reviewed to 100% of open market rent every 5 years, upwards only. Separately, "as a personal concession to the Tenant only", the rent is reviewed annually to CPI with a 1–4% cap and collar, compounded and rolled up at years 5 and 10.',
+     why:'This is the single most material change in the document and it was not flagged in the covering email. What we agreed was CPI INSTEAD OF open market. What is drafted is CPI as a concession sitting beneath an upwards-only OMV review — so the CPI collar caps nothing. A "personal concession to the Tenant only" also does not pass on assignment.',
+     cost:'Delete the open-market review, or make it explicit that CPI is the review mechanism and OMV does not apply.'},
+    {tag:'new', title:'Rent deposit — £115,000 plus VAT on exchange', cl:'cl.13',
+     was:'Jess, 24 Aug: "I have removed the deposit point and will share the accounts."',
+     now:'Clause 13 is still in the document. £115,000 plus VAT payable on exchange, topped up at each review to six months rent, and released only after three consecutive years of audited accounts showing profit at three times the annual rent and net worth at ten times the annual rent.',
+     why:'Either the covering email or the document is wrong — resolve it before anything else. The release test as drafted is close to unreachable: net worth of ten times £230,000 is £2.3m, and profit of three times rent is £690,000 from one unit. On those conditions the deposit is permanent working capital, not a deposit.',
+     cost:'£115,000 of cash out on exchange, against a £115,000 capital contribution that only arrives after we open.'},
+    {tag:'changed', title:'Service charge cap — the document is better than the email', cl:'cl.19',
+     was:'Jess, 24 Aug: "They are not wanting to agree a service charge cap but I suggest pushing back on this."',
+     now:'Clause 19 caps the service charge at £90,000 pa, rising with CPI 1–3%.',
+     why:'The cap we wanted is in the draft. Confirm in writing that clause 19 stands as drafted before it gets amended out at the next turn. History: 23/24 £77,027 · 24/25 £81,211 · 25/26 £80,557 · 26/27 £86,575 — so £90,000 is roughly one year ahead of the run rate.',
+     cost:'Uncapped, a drift to £120,000 costs 0.9 points of margin at £3m of sales.'},
+    {tag:'agreed', title:'Incentive — 15 months rent free plus £115,000 capital contribution', cl:'cl.14–15',
+     was:'Michael, 4 Aug: "Either 2 years rent free or 1 RF and C/C — i think this is going to be a deal breaker. So min 18 month package, optimal is 24 months," and "Cash is preferred."',
+     now:'Base rent payable from 15 months after the Access Date. Capital contribution £115,000 (six months rent) plus VAT, paid in one instalment 10 business days after the later of first trading, invoices, or completion of the Lease.',
+     why:'21 months of value against a stated minimum of 18 and an optimum of 24. It clears the floor. Two conditions to read though: the contribution is not payable if we are in an insolvency event when it falls due, and the landlord takes the capital allowances on it — so we lose the allowances on £115,000 of our own fit-out.',
+     cost:'The cash arrives after we have spent it, so it funds nothing. Ask for half on access.'},
+    {tag:'new', title:'Fit-out — no strip-out, new shopfront, full extract system', cl:'cl.6–8',
+     was:'"Handover: As is" was all that was ever quoted.',
+     now:'The unit comes in the condition the outgoing tenant leaves it and the landlord will carry out no stripping out. We install a new shopfront unless otherwise agreed, design an innovative shopfront occupying up to 50% of any shopfront zone, pay a £2,500 plus VAT approval fee to the Retail Development Manager, pay the structural engineer fees on exchange, erect hoarding to landlord specification, and design and install the kitchen extract and grease trap system to the fit-out guide.',
+     why:'The model carries a flat £300,000 all-in trading box. Stripping out a GBK, a new shopfront to a Bluewater specification, and a full extract and UV interlock system are not inside that number. This is the largest unpriced item in the deal and it sits entirely on our side.',
+     cost:'Get a contractor over the unit before exchange. A £100,000 overrun adds roughly 0.7 years to payback.'},
+    {tag:'new', title:'Open within 16 weeks or lose rent-free day for day', cl:'cl.9',
+     was:'Not discussed in the email record.',
+     now:'Fit out and open in the agreed brand no later than 16 weeks after the Access Date, force majeure aside. Every day late reduces the rent commencement date by a day.',
+     why:'16 weeks from access to open, on a unit we have to strip out and re-shopfront, with landlord approval of designs sitting in the middle of it. Every week of slippage is roughly £4,400 of rent-free burnt. On a January access it also puts the opening squarely on the Kent Food Fest in mid-May, which is worth protecting.',
+     cost:'Ask for 20 weeks, and for the clock to start on the later of access and design approval.'},
+    {tag:'new', title:'Daily turnover reporting, £50 a day for a miss', cl:'cl.17',
+     was:'Not discussed.',
+     now:'Turnover to be reported daily, with an annual certificate, and £50 payable for each day the daily figures are not submitted.',
+     why:'Drafted as "a daily monthly basis", so it needs clarifying anyway. At £50 a day the theoretical exposure is £18,250 a year for an administrative failure. It needs an automated feed out of Kobas on day one, not a manual routine.',
+     cost:'Ask for a 5 working-day grace period before the charge bites.'},
+    {tag:'new', title:'No concessions, no underletting, no assignment for 3 years', cl:'cl.23–24',
+     was:'Not discussed.',
+     now:'No assignment before the third anniversary, none of part, no underletting at all, AGA where reasonably required, and concessionaire agreements expressly not permitted. Group companies may occupy. Landlord has a pre-emption on assignment.',
+     why:'Combined with a 15-year term contracted out of the Act, a personal CPI concession and a landlord pre-emption, the only real exit is the year-10 break. It also closes off any franchise or concession structure at this unit, which matters given how the rest of the estate is being built.',
+     cost:'Nothing to pay, but it means the year-10 break has to survive drafting intact.'},
+    {tag:'new', title:'Marketing budget obligation — now priceable', cl:'cl.39',
+     was:'Not discussed in the email record; the four marketing documents arrived 4 Aug without comment.',
+     now:'The tenant must allocate a specific marketing budget towards a proactive launch at Bluewater, to be agreed with the Bluewater Marketing Team. The landlord may also use our name in all letting and marketing, and we must join the Retail Partnership.',
+     why:'An open-ended obligation until you price it. The Spotlight rate card does: the Plaza Screen that faces our own leg is £3,000 for a fortnight, five pillar wraps £6,000, four lift vinyls £4,800. Everything with real reach — the PLUS+ solus email to 151,000 members at a 50–55% open rate, the brand page, social, PR and influencers — is free to brand partners.',
+     cost:'Agree a capped figure in the heads of terms rather than leaving "a specific marketing budget" to be set later by the party spending it.'},
+    {tag:'open', title:'Exchange window and Access Date both unresolved', cl:'cl.1',
+     was:'"Timing: Handover January 2027."',
+     now:'The document reads "within 12 3 weeks of receipt of legal pack" — an unresolved tracked change — and the target Access Date is left as XXX. The landlord reserves the right to re-market if either date is missed.',
+     why:'The 15-month rent-free clock, the 16-week opening obligation and the May 2027 Kent Food Fest launch window all run from an Access Date that does not exist yet. Nothing else in the document can be priced until it does.',
+     cost:'Fix the Access Date before exchange, not after.'},
+    {tag:'open', title:'Pre-emption period is "1030 days"', cl:'cl.25',
+     was:'Not discussed.',
+     now:'Landlord pre-emption on assignment exercisable "1030 days" from receipt — a second unresolved tracked change, 10 or 30.',
+     why:'Minor on its own, but it is the second unresolved edit in the document. Both suggest the draft has not been proofed since the landlord marked it up.',
+     cost:''},
+    {tag:'new', title:'SDLT and registration on us', cl:'cl.30',
+     was:'Not discussed.',
+     now:'Each party bears its own legal costs; the tenant pays SDLT and registration.',
+     why:'On a 15-year term at £230,000 the net present value of the rent is roughly £2.65m, so SDLT at 1% above the £150,000 threshold is around £25,000, payable on completion.',
+     cost:'£25,000 of day-one cash the capex line does not carry.'}
+  ],
+
+  asks:[
+    {t:'Get Wagamama’s Bluewater turnover', w:'decides it',
+     p:'Everything turns on one number: does this box do £2.7m. Savills has quoted Wagamama in every other scheme on this pipeline and has given us Five Guys at £3.3m and Bill’s at £2.98m here, but not Wagamama. The plans now show why that matters more, not less — Wagamama is directly above us on the upper floor of the same leg. Ask for it, and for the Plaza’s own footfall separately from the 18m estate figure.'},
+    {t:'Delete the open-market rent review', w:'the whole term',
+     p:'We agreed CPI as the review. The draft has CPI as a personal concession sitting under an upwards-only open-market review at years 5, 10 and 15. Left as drafted, the 1–4% collar we negotiated protects nothing and does not survive an assignment.'},
+    {t:'Resolve the £115,000 rent deposit', w:'£115k cash',
+     p:'Jess says it was removed; clause 13 says otherwise, with a release test — profit at three times rent and net worth at ten times rent for three consecutive years — that we would not expect to meet from this unit. If it stays, it is permanent working capital, not a deposit.'},
+    {t:'Move the landlord break trigger to £2.0m', w:'protects the term',
+     p:'At £2.5m of turnover the site makes 16.8% and the landlord can break. Our own capacity model puts this unit at £1.94m. We should not sign a break we would trip while still trading profitably.'},
+    {t:'Price the fit-out before exchange', w:'unpriced',
+     p:'No strip-out, new shopfront, full extract and grease trap to the Bluewater guide, £2,500 approval fee and structural engineer fees on exchange. None of it is inside the £300,000 all-in capex the model carries. Get a contractor into the unit while the terms are still subject to contract.'},
+    {t:'Fix the Access Date, and aim the opening at the Kent Food Fest', w:'the launch',
+     p:'Clause 1 leaves the Access Date blank and the exchange window as an unresolved "12 3 weeks". A January access plus the 16-week obligation puts us open in the first half of May 2027, and the Kent Food Fest is 16–17 May. Ask the Bluewater marketing team to hold a slot as part of the clause 39 launch agreement, before exchange rather than after.'},
+    {t:'Cap the clause 39 marketing budget, and bank the free half', w:'open-ended',
+     p:'Clause 39 commits us to a marketing budget agreed with the landlord’s own marketing team. Name a figure now. The PLUS+ solus email to 151,000 members at a 50–55% open rate, the brand page, the What’s On listings, social, PR and influencer support are all cost-free to brand partners — get them written into the launch plan and keep the paid spend to the Plaza Screen and the pillar wraps.'},
+    {t:'Confirm the £90,000 service charge cap in writing', w:'0.9 pts',
+     p:'Clause 19 already caps it at £90,000 with CPI 1–3%. The covering email says the landlord is resisting a cap. Get the clause confirmed as drafted rather than arguing for it — the draft is currently better than the note attached to it.'},
+    {t:'Leave the base rent alone', w:'£0 above £3.07m',
+     p:'Counter-intuitive but arithmetic: turnover rent overtakes the base at £3.07m of net sales. If we believe this unit trades at Bill’s or Five Guys level, cutting the base rent is worth nothing at all. It is only worth arguing if we believe our own capacity model — and if we believe that, the answer is not a rent cut, it is no deal.'}
+  ],
+
+  docs:[
+    ['Bluewater Maki  Ramen 240826.doc','Heads of terms dated 20 Aug 2026, issued 24 Aug. 42 clauses. Read out in full on this stage.'],
+    ['Bluewater_Kent_Plans.pdf','Two A3 floor plans, January 2026. Lower and upper floor, every unit named. This is what corrects the adjacency list.'],
+    ['Bluewater - March 2026 - Brochure.pdf','14-page leasing deck. £1.2bn sales, £569 psf density, 13k spaces, Acorn profile, catchment map, the zoning plan that names the Plaza as family dining and entertainment.'],
+    ['Landsec Spotlight Media Rate Card - Feb 2026.pdf','78 pages across the Landsec estate; Bluewater is pages 3–16. Visitation metrics and the full paid-media price list. Note it still names House of Fraser as an anchor — NEXT is opening in that space in 2026, so the deck is stale on that point.'],
+    ['Brand Partner Marketing Support Pack APRIL 2026.pdf','15 pages. The free channels, and the table that puts Bluewater top of the Landsec estate on reach, members and open rate.'],
+    ['PLUS Opportunities Pack 2025.pdf','10 pages on PLUS+ solus emails. Bluewater 131k members at the time of writing, since updated to 151k. Contact is ross.tyson@landsec.com.'],
+    ['BW x Marketing Calendar 2026-27 v6.pdf','One-page calendar, issued Feb 2026. National dates, school holidays, campaigns, commercial events and content themes by month.']
+  ]
+};
+
+function renderDeal(){
+  const el = document.getElementById('pane-deal');
+  if(!el) return;
+  const A = state.A, site = DEAL.sites[0];
+  const rows = runModel(DEAL.sites, A);
+  const r = rows[0], best = r.best, F = site.formats[0];
+  const GATE_LO = 0.18, GATE_HI = 0.20;
+  const FOOTFALL = 18000000, DENSITY = 569;
+
+  const atNet = (n)=> computeFormat(site, Object.assign({}, F, {netOverride:n}), A);
+  const siteEbitda = (c)=> c.ebitda + c.central;
+  const sitePct = (c)=> c.net>0 ? siteEbitda(c)/c.net : 0;
+  const evening = site.formats[1] ? computeFormat(site, site.formats[1], A) : null;
+
+  function solve(target){
+    let lo=500000, hi=25000000;
+    for(let i=0;i<200;i++){ const m=(lo+hi)/2; if(sitePct(atNet(m))<target) lo=m; else hi=m; }
+    return (lo+hi)/2;
+  }
+  const need18 = solve(GATE_LO), need20 = solve(GATE_HI);
+  const pivot = F.rentPa / F.rentTurnoverPct;
+  const capAt = F.rentCapPa / F.rentTurnoverPct;
+  const occTotal = best.occ, occPsf = occTotal / F.sqftDemised;
+  const capture = (n)=> (n / best.sph) / FOOTFALL;   // share of scheme footfall needed
+
+  let h = '';
+
+  /* ---------- 1. the deal ---------- */
+  h += '<div class="vsec"><h2>The deal on the table</h2><p class="vlede">'
+     + 'Unit SVL05 in the Plaza, the former GBK, 3,951 sq ft on the ground floor only. Heads of terms dated 20 August 2026, '
+     + 'issued by Savills 24 August, with the leasing brochure, floor plans and four marketing documents behind them. '
+     + 'Landlord is Blueco Limited, the Landsec vehicle. Tenant proposed as Maki Property Ltd.'
+     + '</p></div>';
+
+  const tiles = [
+    ['Demise', num(F.sqftDemised)+' sq ft', 'Ground floor only. Plaza, the dining and entertainment leg.'],
+    ['Base rent', gbpk(F.rentPa), '£'+(F.rentPa/F.sqftDemised).toFixed(2)+' psf · quoted at £65 psf'],
+    ['Turnover rent', (F.rentTurnoverPct*100).toFixed(1)+'%', 'Higher of; total capped at '+gbpk(F.rentCapPa)],
+    ['Service charge', gbpk(F.scPa), 'Capped at cl.19, CPI 1–3%'],
+    ['Rates', gbpk(F.ratesPa), 'Plus insurance '+gbp(F.insPa)],
+    ['Total occupancy', gbpk(occTotal), '£'+occPsf.toFixed(2)+' psf, all in'],
+    ['Term', '15 years', 'Outside the Act · mutual year-10 break'],
+    ['Incentive', '15m RF + '+gbpk(115000), '21 months of value; asked for 18 min, 24 optimal']
+  ];
+  h += '<div class="dhero">';
+  tiles.forEach(t=>{ h += '<div class="dtile"><div class="dl">'+vEsc(t[0])+'</div><div class="dv">'+vEsc(t[1])+'</div><div class="dn">'+vEsc(t[2])+'</div></div>'; });
+  h += '</div>';
+
+  /* ---------- 2. the margin gate ---------- */
+  h += '<div class="vsec"><h2>Does it hit the mark?</h2><p class="vlede">'
+     + 'The standard set on 21 August is an 18–20% net margin on new locations. It is applied here and nowhere else on this page. '
+     + 'Margin is site EBITDA before the central recharge, with the post-central line alongside so the definition cannot be fudged. '
+     + 'The last column is the honest way to read the whole table: what share of Bluewater’s 18 million annual visits has to eat with us once, at the model’s £'
+     + best.sph.toFixed(2) + ' spend per head, for that row to happen.'
+     + '</p></div>';
+
+  const ladder = [1500000, best.net, evening?evening.net:null, 2000000, DENSITY*F.sqft, 2500000, need18, 2750000, 2980000, pivot, need20, 3300000, 3500000, capAt, 4500000].filter(x=>x);
+  const tags = {};
+  tags[Math.round(best.net)] = ['here','capacity model, evening held at partial'];
+  if(evening) tags[Math.round(evening.net)] = ['here','capacity model, Plaza evening trade'];
+  tags[Math.round(DENSITY*F.sqft)] = [null,'scheme sales density £569 psf × our demise'];
+  tags[Math.round(need18)] = ['mark','the 18% gate clears here'];
+  tags[Math.round(need20)] = ['mark','the 20% gate clears here'];
+  tags[2500000] = [null,'landlord break trigger — average of any 3 years'];
+  tags[2980000] = [null,"Bill's — Lower Rose Gallery, not the Plaza"];
+  tags[3300000] = [null,'Five Guys — same floor, same leg'];
+  tags[Math.round(pivot)] = [null,'turnover rent overtakes the base rent'];
+  tags[Math.round(capAt)] = [null,'turnover rent hits the £300k cap'];
+
+  h += '<div class="dgate"><table><thead><tr>'
+     + '<th>Net turnover</th><th>Rent paid</th><th>Occupancy</th><th>Occ %</th>'
+     + '<th>Site EBITDA</th><th>Site %</th><th>After central</th><th>18%</th><th>20%</th><th>Share of footfall</th>'
+     + '</tr></thead><tbody>';
+  const seen = {};
+  ladder.slice().sort((a,b)=>a-b).forEach(n=>{
+    const key = Math.round(n/1000)*1000;
+    if(seen[key]) return; seen[key]=1;
+    const c = atNet(n), sp = sitePct(c), se = siteEbitda(c);
+    const tg = tags[Math.round(n)] || [null,''];
+    const cls = tg[0] ? ' class="'+tg[0]+'"' : '';
+    h += '<tr'+cls+'><td>'+gbp(n)+(tg[1]?'<span class="src">'+vEsc(tg[1])+'</span>':'')+'</td>'
+       + '<td>'+gbp(c.rent)+'</td><td>'+gbp(c.occ)+'</td><td>'+pct(c.occPct,1)+'</td>'
+       + '<td>'+gbp(se)+'</td><td>'+pct(sp,1)+'</td><td>'+pct(c.ebitdaPct,1)+'</td>'
+       + '<td><b class="'+(sp>=GATE_LO?'pass':'fail')+'">'+(sp>=GATE_LO?'PASS':'FAIL')+'</b></td>'
+       + '<td><b class="'+(sp>=GATE_HI?'pass':'fail')+'">'+(sp>=GATE_HI?'PASS':'FAIL')+'</b></td>'
+       + '<td>'+(capture(n)*100).toFixed(2)+'%</td></tr>';
+  });
+  h += '</tbody></table><div class="dcap">'
+     + 'The 18% gate clears at <b>'+gbp(need18)+'</b> and the 20% gate at <b>'+gbp(need20)+'</b>. Four independent readings now sit under them: our capacity model at '
+     + gbp(best.net)+' with the evening held at partial, the same model at <b>'+(evening?gbp(evening.net):'—')+'</b> once the Plaza is treated as an evening pitch, '
+     + 'Landsec’s own scheme sales density of £569 psf which puts our demise at <b>'+gbp(DENSITY*F.sqft)+'</b>, and the two Plaza-area incumbents at £2.98m and £3.30m. '
+     + 'Read the last column before concluding anything: the 18% gate needs <b>'+(capture(need18)*100).toFixed(2)+'%</b> of Bluewater’s annual visits to eat with us once. '
+     + 'That is the gap stated as a business problem rather than a modelling one.'
+     + '</div></div>';
+
+  /* ---------- 3. P&L and scorecard ---------- */
+  h += '<div class="dsplit">';
+  h += '<div class="dpanel"><h3>P&amp;L at the capacity model, on the heads of terms</h3><table class="dpl">';
+  [['Seats', num(best.seats)], ['Utilisation', pct(best.util,1)], ['Covers per week', num(best.covers)],
+   ['Spend per head', '£'+best.sph.toFixed(2)], ['Dine-in', gbp(best.dineIn)], ['Delivery', gbp(best.delivery)]
+  ].forEach(x=>{ h += '<tr class="sub"><td>'+vEsc(x[0])+'</td><td>'+vEsc(x[1])+'</td></tr>'; });
+  h += '<tr class="tot"><td>Net sales</td><td>'+gbp(best.net)+'</td></tr>';
+  [['Rent',best.rent],['Service charge',best.sc],['Rates + insurance',best.rates + (F.insPa||0)],
+   ['Food '+pct(A.foodPct),best.food],['Labour '+pct(A.labourPct),best.labour],
+   ['Aggregator commission',best.agg],['Other variable '+pct(A.otherVarPct),best.otherVar]
+  ].forEach(x=>{ h += '<tr><td>'+vEsc(x[0])+'</td><td>('+gbp(x[1])+')</td></tr>'; });
+  h += '<tr class="tot"><td>Site EBITDA</td><td>'+gbp(siteEbitda(best))+' · '+pct(sitePct(best),1)+'</td></tr>';
+  h += '<tr><td>Central recharge '+pct(A.centralPct)+'</td><td>('+gbp(best.central)+')</td></tr>';
+  h += '<tr class="tot"><td>EBITDA after central</td><td>'+gbp(best.ebitda)+' · '+pct(best.ebitdaPct,1)+'</td></tr>';
+  h += '<tr class="sub"><td>Capex (flat all-in, excludes strip-out and extract)</td><td>'+gbp(best.capex)+'</td></tr>';
+  h += '<tr class="sub"><td>Payback incl. '+A.rampYears+'y ramp</td><td>'+yrs(best.payback)+'</td></tr>';
+  if(evening) h += '<tr class="sub"><td>Same model, Plaza evening trade</td><td>'+gbp(evening.net)+' · '+pct(sitePct(evening),1)+' site · '+yrs(evening.payback)+'</td></tr>';
+  h += '</table></div>';
+
+  h += '<div class="dpanel"><h3>Scorecard — same engine as every other stage</h3>';
+  h += '<div style="display:flex;align-items:baseline;gap:12px;margin-bottom:12px">'
+     + '<div style="font-size:34px;font-weight:800;letter-spacing:-1px;color:'+tierColor(r.tier)+'">'+r.score100.toFixed(1)+'</div>'
+     + '<div style="font-size:12px;color:var(--muted)">out of 100 &middot; <b style="color:'+tierColor(r.tier)+'">'+r.tier+'</b>'
+     + '<br><span style="color:var(--faint)">tiers: GO '+A.tierGo+'+ &middot; WATCH '+A.tierWatch+'+</span></div></div>';
+  h += '<div class="dcomp">';
+  [['Demand','demand'],['Whitespace','whitespace'],['Affluence','affluence'],['Occupancy cost','occupancy'],
+   ['EBITDA','ebitda'],['Payback','payback'],['Network fit','network']].forEach(k=>{
+    const got = r.pts[k[1]], max = A.weights[k[1]];
+    h += '<div class="dcrow"><span>'+vEsc(k[0])+'</span><div class="dbar"><i style="width:'+Math.round(max?got/max*100:0)+'%"></i></div>'
+       + '<b>'+got.toFixed(1)+' / '+max+'</b></div>';
+  });
+  h += '</div><p style="font-size:11.5px;color:var(--muted);line-height:1.6;margin:13px 0 0">'
+     + 'The score is dragged down by three things. <b>Network fit '+r.pts.network.toFixed(1)+'/'+A.weights.network+'</b> — M17 Lakeside is 25 minutes away, so a material share of this turnover transfers rather than being created. '
+     + '<b>Whitespace '+r.pts.whitespace.toFixed(1)+'/'+A.weights.whitespace+'</b>, and <b>occupancy '+r.pts.occupancy.toFixed(1)+'/'+A.weights.occupancy+'</b> at '+pct(best.occPct,1)+' of sales. '
+     + 'The 05 Aug town record scored Bluewater 41.3 and tiered it NO on a reasoned £58 psf estimate; the quoted rent came in at £58.21 psf, so the estimate was right and the tier has not moved. '
+     + '<b>What the new documents challenge is the inputs, not the arithmetic</b> — the whitespace and evening scores were both set on a reading of the scheme that the January plans and the Landsec zoning now contradict. Those inputs have deliberately not been changed; the case for changing them is set out below.'
+     + '</p></div>';
+  h += '</div>';
+
+  /* ---------- 4. the scheme, from Landsec's own numbers ---------- */
+  h += '<div class="vsec"><h2>The scheme, from the landlord’s own numbers</h2><p class="vlede">'
+     + 'Every line sourced. Three are flagged because the documents disagree with each other or with what has been quoted to us — which is worth knowing before any of them go into a paper.'
+     + '</p></div><div class="dgate"><table><thead><tr><th>Metric</th><th style="text-align:left">Figure</th><th style="text-align:left">Source and health warning</th></tr></thead><tbody>';
+  DEAL.scheme.forEach(x=>{
+    h += '<tr'+(x.flag?' class="here"':'')+'><td>'+vEsc(x.k)+'</td>'
+       + '<td style="text-align:left;color:var(--ink);font-weight:600">'+vEsc(x.v)+'</td>'
+       + '<td style="text-align:left;color:var(--muted);font-size:11.5px">'+vEsc(x.s)+'</td></tr>';
+  });
+  h += '</tbody></table><div class="dcap">'
+     + 'The two that matter commercially are the <b>£569 psf sales density</b>, which is the first scheme-level revenue anchor this model has ever had for Bluewater, and the <b>89-minute dwell against an 82-minute Landsec benchmark</b>. '
+     + 'Bluewater’s own brochure quotes 82 minutes as its dwell time; the Spotlight deck shows 82 is the benchmark across Landsec’s full-price assets and Bluewater is 89. Use 89, and say where it came from.'
+     + '</div></div>';
+
+  /* ---------- 5. the pitch, corrected ---------- */
+  h += '<div class="vsec"><h2>The pitch — what the January plans actually show</h2><p class="vlede">'+vEsc(DEAL.pitch.lede)+'</p></div>';
+  h += '<div class="dclause">';
+  DEAL.pitch.rows.forEach(x=>{
+    h += '<div class="dcl'+(x.good?' good':'')+'"><div class="dclh"><h4>'+vEsc(x.t)+'</h4></div><p class="dnow">'+vEsc(x.v)+'</p></div>';
+  });
+  h += '</div>';
+
+  /* ---------- 6. clause by clause ---------- */
+  const counts = {agreed:0,changed:0,new:0,open:0};
+  DEAL.clauses.forEach(c=>counts[c.tag]++);
+  h += '<div class="vsec"><h2>The heads of terms against what was agreed</h2><p class="vlede">'
+     + 'Fourteen substantive points. <b>'+counts.agreed+'</b> land where the email chain left them, <b>'+counts.changed+'</b> have changed, '
+     + '<b>'+counts['new']+'</b> are new and were never negotiated, and <b>'+counts.open+'</b> are unresolved tracked changes still sitting in the document. '
+     + 'The covering email flags two of these.'
+     + '</p></div>';
+  const tagName = {agreed:'as agreed', changed:'changed', 'new':'new', open:'unresolved'};
+  h += '<div class="dclause">';
+  ['changed','new','open','agreed'].forEach(t=>{
+    DEAL.clauses.filter(c=>c.tag===t).forEach(c=>{
+      h += '<div class="dcl '+c.tag+'"><div class="dclh"><h4>'+vEsc(c.title)+'</h4>'
+         + '<span class="dtag '+c.tag+'">'+vEsc(tagName[c.tag])+'</span></div>';
+      h += '<p class="dwas"><b>'+vEsc(c.cl)+'</b> &middot; Was: '+vEsc(c.was)+'</p>';
+      h += '<p class="dnow">Now: '+vEsc(c.now)+'</p>';
+      h += '<p class="dwhy">'+vEsc(c.why)+'</p>';
+      if(c.cost) h += '<div class="dcost">&rarr; '+vEsc(c.cost)+'</div>';
+      h += '</div>';
+    });
+  });
+  h += '</div>';
+
+  /* ---------- 7. the marketing package ---------- */
+  h += '<div class="vsec"><h2>What the marketing package is worth</h2><p class="vlede">'+vEsc(DEAL.marketing.lede)+'</p></div>';
+  h += '<div class="dsplit">';
+  h += '<div class="dpanel"><h3>Free to brand partners</h3><table class="dpl">';
+  DEAL.marketing.free.forEach(x=>{
+    h += '<tr><td style="width:34%;color:var(--ink);font-weight:600;vertical-align:top;padding-right:12px">'+vEsc(x[0])+'</td>'
+       + '<td style="text-align:left;color:var(--muted);font-size:11.5px;line-height:1.55">'+vEsc(x[1])+'</td></tr>';
+  });
+  h += '</table></div>';
+  h += '<div class="dpanel"><h3>Paid — Spotlight rate card, per fortnight</h3><table class="dpl">';
+  DEAL.marketing.paid.forEach(x=>{
+    h += '<tr><td style="color:var(--ink);font-weight:600;vertical-align:top">'+vEsc(x[0])
+       + '<span style="display:block;font-weight:400;color:var(--faint);font-size:11px;line-height:1.5;margin-top:2px">'+vEsc(x[2])+'</span></td>'
+       + '<td style="vertical-align:top;white-space:nowrap">'+vEsc(x[1])+'</td></tr>';
+  });
+  h += '</table></div></div>';
+  h += '<div class="dcap" style="border:1px solid var(--line);border-top:none;border-radius:0 0 11px 11px;margin-top:-1px">'+vEsc(DEAL.marketing.note)+'</div>';
+
+  /* ---------- 8. launch window ---------- */
+  h += '<div class="vsec"><h2>The launch window</h2><p class="vlede">'+vEsc(DEAL.calendar.lede)+'</p></div>';
+  h += '<div class="dgate"><table><thead><tr><th style="width:110px">When</th><th style="text-align:left">What is on</th></tr></thead><tbody>';
+  DEAL.calendar.rows.forEach(x=>{
+    h += '<tr'+(x.tone==='good'?' class="mark"':'')+'><td style="color:'+(x.tone==='good'?'var(--go);font-weight:700':'var(--muted)')+'">'+vEsc(x.m)+'</td>'
+       + '<td style="text-align:left;color:var(--muted);line-height:1.6">'+vEsc(x.v)+'</td></tr>';
+  });
+  h += '</tbody></table><div class="dcap">'+vEsc(DEAL.calendar.note)+'</div></div>';
+
+  /* ---------- 9. what to ask for ---------- */
+  h += '<div class="vsec"><h2>What to go back with, in order of what it is worth</h2><p class="vlede">'
+     + 'Ranked by effect on the decision, not by ease of asking. The first is not a negotiation point at all — it is the number that decides whether there is a deal here.'
+     + '</p></div><div class="dask">';
+  DEAL.asks.forEach((a,i)=>{
+    h += '<div class="daskrow"><div class="dnum">'+(i+1)+'</div><div class="dtxt"><b>'+vEsc(a.t)+'</b><p>'+vEsc(a.p)+'</p></div>'
+       + '<div class="dworth"><b>'+vEsc(a.w)+'</b>worth</div></div>';
+  });
+  h += '</div>';
+
+  /* ---------- 10. verdict ---------- */
+  h += '<div class="dverdict"><div class="dvh">Where this lands</div>'
+     + '<p>The commercial terms are good. £230,000 against a £65 psf quote, a 7.5% turnover rent with a £300,000 cap that makes everything above £4m of sales rent-free, '
+     + 'a capped service charge, and 21 months of incentive against a stated 18-month minimum. There is very little left in the rent.</p>'
+     + '<p>The six documents move the revenue question in our favour without settling it. The Plaza is Landsec’s designated family dining and entertainment zone, anchored by a cinema, a trampoline park and a soft play — not the 21:00 mall close the 05 August record priced this site on. '
+     + 'Five Guys at £3.3m is a neighbour on our own floor, not a scheme-wide comparator. The scheme trades at £569 psf, which on our demise is '+gbp(DENSITY*F.sqft)+'. Treating the Plaza as an evening pitch takes our own model from '+gbp(best.net)+' to '+(evening?gbp(evening.net):'—')+'. '
+     + 'All three of those readings still sit below the '+gbp(need18)+' the 18% gate needs — but they cluster around £2.2m rather than £1.9m, and the gap to the gate is now '+(capture(need18)*100 - capture(evening?evening.net:best.net)*100).toFixed(2)+' percentage points of scheme footfall rather than a difference of opinion about the model.</p>'
+     + '<p>Two things follow. First, the missing number is still Wagamama’s Bluewater turnover, and the plans have made it more relevant, not less — they trade directly above us in the same leg. Second, the drafting points are unchanged and none of them are detail: '
+     + 'the open-market rent review has been reinstated above the CPI review we agreed, the £115,000 deposit the covering email says was removed is still clause 13, and the landlord’s £2.5m break trigger sits above where our own model puts this unit. '
+     + 'The marketing package is the one clear piece of upside the model does not price at all — a solus email to 151,000 members at a 50–55% open rate, for nothing, in a scheme that puts 18 million people through the door.</p>'
+     + '</div>';
+
+  /* ---------- 11. documents ---------- */
+  h += '<div class="vsec"><h2>What is on file, and what each one is good for</h2></div><div class="dgate"><table><thead><tr>'
+     + '<th style="width:290px">Document</th><th style="text-align:left">What it gives us</th></tr></thead><tbody>';
+  DEAL.docs.forEach(d=>{
+    h += '<tr><td style="font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:11px;color:#8fa8b8">'+vEsc(d[0])+'</td>'
+       + '<td style="text-align:left;color:var(--muted);line-height:1.6">'+vEsc(d[1])+'</td></tr>';
+  });
+  h += '</tbody></table></div>';
+
+  /* ---------- 12. gaps ---------- */
+  h += '<div class="vsec"><h2>What this stage still does not know</h2></div><ol style="font-size:12.5px;color:var(--muted);line-height:1.7;padding-left:20px;max-width:880px">'
+     + '<li>The fit-out is unpriced. No strip-out from the landlord, a new shopfront to Bluewater specification and a full extract and grease-trap system are all outside the flat £300,000 capex the model carries. This is still the largest unquantified number in the deal.</li>'
+     + '<li>Wagamama’s Bluewater turnover has not been asked for. It is the comparator this model is calibrated against everywhere else, and they trade directly above us.</li>'
+     + '<li>The Plaza’s own footfall is still not published separately from the 18m estate figure, and the plans do not carry unit areas — so we cannot express Five Guys’ £3.3m as a sales density and compare it with ours.</li>'
+     + '<li>The whitespace and evening inputs have deliberately NOT been changed, so the 05 Aug score still stands as scored. The January plans and Landsec’s own zoning are the evidence for changing both; doing so would move this unit and, on consistency grounds, several others.</li>'
+     + '<li>Delivery is still modelled at the town record’s lowest setting. Nothing in these six documents speaks to delivery at all.</li>'
+     + '<li>Cannibalisation of M17 Lakeside is scored at 0.5 out of 10 on network fit but has never been quantified in pounds. Landsec’s 40-minute average drivetime and 59% wider-catchment share both bear on it and neither has been worked through.</li>'
+     + '<li>No site visit has been recorded. Michael asked to view on 1 July; nothing in the email record confirms it happened.</li>'
+     + '<li>The Spotlight rate card is stale in at least one place — it still names House of Fraser as an anchor, and NEXT is opening in that space in 2026. Treat its commentary as older than its February 2026 date.</li>'
+     + '</ol>';
+
+  el.innerHTML = h;
+}
+
+function applyStageChrome(){
+  const on = isVisits();
+  document.body.classList.toggle('visits-on', on);
+  document.querySelectorAll('.tabs').forEach(e=>e.style.display = on?'none':'');
+  document.querySelectorAll('main > .pane').forEach(e=>{ if(e.id!=='pane-visits') e.style.display = on?'none':''; });
+  const pv = document.getElementById('pane-visits');
+  if(pv) pv.style.display = (on && !isBook() && !isDeal())?'block':'none';
+  const pb = document.getElementById('pane-book');
+  if(pb) pb.style.display = isBook()?'block':'none';
+  const pd = document.getElementById('pane-deal');
+  if(pd) pd.style.display = isDeal()?'block':'none';
+  // The deal stage keeps the assumption rail: the whole point of it is to watch the
+  // margin gate move when an assumption moves.
+  const rail = document.getElementById('rail');
+  if(rail) rail.style.display = (on && !isDeal())?'none':'';
+  const th = document.querySelector('.tophint');
+  if(th) th.style.display = on?'none':'';
+}
+
 /* ====================== RENDER ====================== */
 let CURRENT=[];
 function renderAll(){
+  applyStageChrome();
+  document.querySelectorAll('#stageSeg button').forEach(b=>b.classList.toggle('active',b.dataset.stage===state.stage));
+  if(isVisits()){
+    document.getElementById('stageNote').textContent = stage().note;
+    document.getElementById('subtitle').innerHTML =
+      'The record of the round &middot; '+stage().sub;
+    if(isBook()) renderBook(); else if(isDeal()) renderDeal(); else renderVisits();
+    return;
+  }
   let rows = runModel(stage().sites(), state.A);
   if(hasStatus() && state.statusFilter!=='all'){
     rows = rows.filter(r=> (r.site.savills&&r.site.savills.status)===state.statusFilter.toUpperCase());
@@ -1262,7 +3152,8 @@ document.querySelectorAll('#stageSeg button').forEach(b=>b.onclick=()=>{
   state.stage=b.dataset.stage; state.ddIndex=0; state.baseline=null;
   state.sort={key:'total',dir:-1}; state.statusFilter='all';
   document.querySelectorAll('#statusSeg button').forEach(x=>x.classList.toggle('active',x.dataset.status==='all'));
-  buildControls(); renderAll();
+  if(!isVisits() || isDeal()) buildControls();
+  renderAll();
 });
 document.querySelectorAll('#statusSeg button').forEach(b=>b.onclick=()=>{
   state.statusFilter=b.dataset.status;
