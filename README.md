@@ -64,6 +64,103 @@ all still there.
 | **Viewings** | 22 Aug 2026 | The record of the 18–20 Aug viewing round — six towns, thirteen units — the seven scored field responses, the Princesshay Exeter appraisal reproduced in full, the per-town evidence register, the 2027 target-list decisions and the commercial rules set on 21 Aug. Not scored by the desk model (see below). |
 | **Agent book** | 22 Aug 2026 | Every live unit the agents currently have on us, from the email record: 19 units across both Savills desks plus Time Retail Partners, with quoted terms, incumbent trade, the plans and brochures on file, and where each one stands. Unscored. |
 | **Bluewater HOTs** | 25 Aug 2026 | SVL05 at Bluewater — the first unit in the pipeline to reach a heads of terms. Scored on the shared engine, run against the 18–20% margin standard, read clause by clause against what was agreed by email, and set against the six Landsec documents behind the deal. Opens by default. |
+| **Value markets** | 25 Aug 2026 | Matt's 21 Aug longlist of 15 mid-and-north towns at a ~£45k rent target, researched to model-input standard and scored on the shared engine at street-level format. Two priced pitches per town — as briefed, and the best actually available. Carries the corrections to the brief, an evidence grade on every input, and the £1.2m reality check. |
+
+## The 25 Aug value-market stage
+
+Matt issued a 15-town value-market longlist on 21 August — mid-and-north towns at a
+target rent of about £45,000, claimed capable of £1.2m–£1.6m. Every town has been
+researched to model-input standard and run through the same engine as the other scored
+stages. Three findings reframe the brief.
+
+**£45k is above market, not a stretch.** Evidenced quoting rents for a 1,600–2,200 sq ft
+unit run £8–£18 psf across the list. Wolverhampton's Victoria Street quotes £18,000 for
+1,800–2,300 sq ft; Bolton's closest comparable is £20,004; Barnsley's Market Street lets
+at £8.49 psf. Carrying £45k as a flat assumption overstates cost by roughly 2× in nine
+towns and would have made them look uninvestable for the wrong reason. Rents on this
+stage are the evidenced figure for the named pitch, not the brief's number.
+
+**The revenue thesis does not hold.** A 2,000 sq ft street unit seats 61. To carry £1.2m
+it needs roughly 931 covers a week at 68% utilisation, which maps to a demand index
+around 0.68–0.74. Westfield Stratford indexes 0.822; the median town on this list indexes
+0.41. Only Bury (0.670) gets close. The engine puts the real range at £0.62m–£1.20m,
+centre of gravity about £0.88m. **Nothing on the list reaches GO.**
+
+**The margin case is real, and it is the reason to keep going.** On the right pitch at the
+real rent, occupancy lands at 3–6% of sales against 8–11% on the shopping-centre boxes.
+Fourteen of fifteen clear the 18–20% net standard set on 21 August, and payback runs
+1.6–2.9 years against 2.5–5 on the August board.
+
+### Engine changes on this stage
+
+Two deliberate differences from the town stage, both flagged in the page footnote:
+
+- **Street-level capacity spec at 2,000 sq ft**, not a shopping-centre box.
+- **Rates are built from evidenced rateable values at the 2026/27 RHL multiplier of
+  38.2p**, not the town stage's `rates psf = 0.43 × rent psf` rule. That rule breaks in
+  these markets because the RV routinely sits *above* the passing rent — Hanley carries an
+  RV of £14.65 psf on a quoting rent of £11.27 psf. Small Business Rate Relief is not
+  modelled anywhere on the page: a multi-site group is not eligible for it.
+
+Everything else — the utilisation curve, the spend-per-head formula, the cost stack, the
+scorecard weights and the tier thresholds — is shared with the other scored stages, and
+the three earlier stages score identically before and after this stage was added.
+
+### Two toggles that exist only here
+
+Both read fields (`wsFull`) that only the fifteen value-market sites carry, so they are
+inert on every other stage regardless of state.
+
+- **Score cluster-neutral.** Network fit rewards distance from the existing estate. Every
+  town on this list is infill within 20–65 minutes of a Maki site — Wakefield scores 0/10,
+  Bury 0.5/10 — so the strategy is punished by construction. For a value-market cluster
+  play, proximity is an operational asset (Lynas drops, AM rota coverage, kitchen support),
+  not a liability. Dropping network fit and rescaling to 90 points makes Bury 79.1 and the
+  only GO on the list. **This is a live question for the committee, not a display option.**
+- **Ungate whitespace.** The no-Wagamama 40% discount was written in August and never
+  exercised, because every town on the August list already had one. Eight towns here have
+  none, so it bites for the first time. On the evidence the rule is right — Huddersfield's
+  Wagamama delivery kitchen opened and closed in 90 days, and Warrington's absence next to
+  sites in Bolton and Preston is a revealed judgement, not an oversight — but the toggle
+  shows the board without it.
+
+### The corrections to the brief
+
+Recorded on the stage banner and in each town's deep dive:
+
+- **Students.** UCLan is 22,015 FTE, not 35,000, and falling — and the institution is now
+  the University of Lancashire. "University Centre Doncaster" is **799 HE students** on
+  audited accounts, not a university. Wakefield has no university and the Leeds-overflow
+  claim runs the wrong way geographically. Warrington's Chester campus at Padgate has
+  closed. Barnsley is an FE college with an HE wing. Huddersfield is 13,430 FTE, not 20,000.
+- **Whitespace.** "Likely — verify" was wrong seven times. Preston has a trading Wagamama
+  *and* Cosmo at Animate. Stoke, Derby, Doncaster, Bolton and Wolverhampton all have
+  trading Wagamamas. Middlesbrough is reported to have 9,025 sq ft of Cosmo's Umami signed
+  on the named pitch. Wakefield, Barnsley and Doncaster each already have a ramen
+  specialist trading. Genuine whitespace survives in six towns, not fifteen.
+- **The pitch itself.** The named pitch is the wrong pitch in eleven of the fifteen.
+  Golden Square Warrington closes at 17:30 four days a week and has no full-service
+  restaurant in it. Frenchgate Doncaster closes at 17:30. The Potteries Centre and Market
+  Place Bolton close at 18:00. Half of Wakefield's named pitch — The Ridings — is
+  council-owned and scheduled for demolition around autumn 2028.
+
+### The one hard trading comparable
+
+**Koji, 314 High Street West, Sunderland.** 1,512 sq ft, 40–50 covers, prime pitch opposite
+the Empire, turning over £8,000–£10,000 a week before it closed on 10 August 2026 — that
+is £275–£344 per sq ft. The model puts a 2,000 sq ft Sunderland street unit at £391 psf,
+so it runs **14–42% hot against the only hard number in this exercise**. The turnover is
+vendor-stated on leasehold sale particulars, not audited. It is still the best number
+available, and it is still a seller's number.
+
+### What the adversarial pass changed
+
+Nine claims were corrected before this stage was built, listed in full on the stage banner.
+The material ones: Wolverhampton is 16th most income-deprived, not 9th (a count of
+districts misread as a rank); Bradford is 17th, not 4th; Huddersfield's 4.7m → 5.5m
+footfall uplift is withdrawn and the stage is scored on 4.7m flat, with Magnetar — not
+Northdale Advisors — as the Kingsgate buyer; the Mander Centre has been receiver-controlled
+since May 2022, not August 2025; and there is no YO! Sushi at Middlebrook.
 
 ## The 22 Aug viewings stage
 
@@ -383,6 +480,17 @@ stands in. Two things to hold on to:
 
 ## Known weaknesses — read before quoting any single number
 
+0. **The scorecard loses half its discrimination on the value-market stage.** Because
+   rents there are so low, all fifteen towns score the full 18/18 on occupancy cost and
+   thirteen score the full 15/15 on payback — 33 of the 100 points are effectively
+   constant across the list. The ranking on that stage is driven almost entirely by
+   demand, whitespace, affluence and network fit. The scorecard was calibrated for
+   shopping-centre rents and is doing less work there than the score implies.
+0b. **Five value-market towns have no publishable footfall** — Preston, Sunderland,
+   Wolverhampton, Warrington and Doncaster — and take the model's not-sourceable default,
+   which is punitive. Preston's demand index moves from 0.281 to 0.410 on a 7m assumption
+   and Warrington's from 0.432 to 0.626. Buying MRI Springboard or Place Informatics for
+   those five is the highest-value data purchase on the page.
 1. **The Westfield Stratford benchmark fails its own model.** At our standard
    format and published rent tone Stratford does not clear the hurdle, yet we
    trade there profitably. Loading the real Stratford lease terms and trading
