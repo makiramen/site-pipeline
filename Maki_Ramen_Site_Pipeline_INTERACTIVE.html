@@ -1669,7 +1669,7 @@ function hubDetail(e, A){
     h += '<div class="hubsec pairsec"><h4>'+vEsc(p.unit)+' &middot; 24 Nov</h4><table class="dpl">';
     [['Unit', vEsc(p.unit)+', '+vEsc(p.was)+', '+num(p.sqft)+' sq ft'],
      ['Rent', gbp(p.rent)],
-     ['Total occupancy, corrected', gbp(c.block)+' pa &middot; £'+c.psf.toFixed(2)+' psf (appraisal said '+gbpk(p.apprOcc)+')'],
+     ['Rent, rates and service charge', gbp(c.block)+' pa &middot; £'+c.psf.toFixed(2)+' psf (appraisal said '+gbpk(p.apprOcc)+')'],
      ['Sales for 18% net', gbp(c.n18)],
      ['Appraisal', p.apprScore+' / 100 &middot; '+vEsc(p.apprCall)],
      ['Where it stands', vEsc(p.status)]
@@ -3140,14 +3140,14 @@ function renderPair(){
     ['Covers','150 plus','Yo! Sushi traded 51 covers here, 58 before its 2014 refit. A table layout should seat more than a conveyor did, but nothing like 150','Philip Watts Design general arrangement, rev D','here'],
     ['Service charge','About £30,000, pro rata','£5,500 a year. A cap was asked for and refused','Landlord feedback via Savills, 14 Oct 2025','mark'],
     ['Rates','About £42,000','£32,465: rateable value £75,500 at the 43.0p multiplier','Particulars and the 2026/27 retail, hospitality and leisure multiplier','mark'],
-    ['Total occupancy','About £167,000','About '+gbp(cb.block)+' before insurance, which is not quoted','Sum of the above','mark'],
+    ['Rent, rates and service charge','About £167,000','About '+gbp(cb.block)+' before insurance, which is not quoted','Sum of the above','mark'],
     ['Wagamama','Trades on Jubilee Street itself','Trades at Argus Lofts on Kensington Street, the next street east. Close, but not on the pitch','Wagamama restaurant listing',''],
     ['Yo! Sushi','Vacating the unit','Already closed. The closure was sudden and unexplained in the press, and the unit has stood empty since','Yo! Sushi site listing, local press',''],
     ['Rent','£95,000','£95,000 in the signed-off heads of terms. £90,000 with a longer rent free was the position discussed on 24 Nov and is not yet in a revised document','Agreed HOTs, 4 Nov 2025','']
   ]);
   h += fix('Birmingham, The Arcadian', [
     ['Service charge','None. Scored as a key positive throughout','£36,679 a year plus VAT, and insurance of £2,476 plus VAT','Agent particulars for E107 to E110','here'],
-    ['Total occupancy','About £97,000','About '+gbp(ca.block)+' at the quoted rent','Sum of the lines in this table','here'],
+    ['Rent, rates and service charge','About £97,000','About '+gbp(ca.block)+' at the quoted rent','Sum of the lines in this table','here'],
     ['Whitespace','No Maki & Ramen in Birmingham, a new market','M21 Birmingham is ours, closed since 11 Oct 2026 after a fire. This would be a second Birmingham site, or the replacement for the first','Estate records','here'],
     ['Floor area','About 3,000 sq ft','3,334 sq ft','Agent particulars',''],
     ['Rent','£65,000','£60,000 quoted','Creative Retail email, 9 Nov 2026','mark'],
@@ -3156,14 +3156,14 @@ function renderPair(){
     ['Competitor list','Rozu named as an in-scheme rival','Rozu is listed as permanently closed. Missing from the list: the 100 seat Arcadian Food Court with ten Asian street food traders, and Takumi on Hurst Street','OpenTable listing, M Core release Sep 2025','']
   ]);
 
-  /* ---------- 3. occupancy side by side ---------- */
+  /* ---------- 3. property cost side by side ---------- */
   h += '<div class="vsec"><h2>What it costs to hold each unit</h2><p class="vlede">'
-     + 'Rent, service charge, insurance and rates, all excluding VAT. On the appraisals Birmingham looked £70,000 a year cheaper than Brighton. '
+     + 'Property cost here means rent plus service charge plus insurance plus rates, all excluding VAT. Fit-out is separate and is in the capex section below. On the appraisals Birmingham looked £70,000 a year cheaper than Brighton. '
      + 'On the documents the two are within '+gbp(Math.abs(cb.block-ca.block))+' of each other. What Birmingham does give is a third more floor for the same money.'
      + '</p></div>';
   h += '<div class="dhero">';
-  [['Brighton occupancy', gbpk(cb.block), 'Appraisal said £167k. '+ '£'+cb.psf.toFixed(2)+' per sq ft', 'good'],
-   ['Birmingham occupancy', gbpk(ca.block), 'Appraisal said £97k. '+ '£'+ca.psf.toFixed(2)+' per sq ft', 'warn'],
+  [['Brighton property cost', gbpk(cb.block), 'Appraisal said £167k. '+ '£'+cb.psf.toFixed(2)+' per sq ft', 'good'],
+   ['Birmingham property cost', gbpk(ca.block), 'Appraisal said £97k. '+ '£'+ca.psf.toFixed(2)+' per sq ft', 'warn'],
    ['Gap between them', gbp(Math.abs(cb.block-ca.block)), 'Appraisals implied £70,000', ''],
    ['Floor area', '2,520 v 3,334', 'Birmingham is 32% larger', ''],
    ['Sales for 18% net', gm(cb.n18)+' v '+gm(ca.n18), 'Brighton v Birmingham, quick-calc ratios', ''],
@@ -3177,7 +3177,7 @@ function renderPair(){
   h += line('Service charge', gbp(B.sc)+'<span class="src">uncapped</span>', gbp(A2.sc));
   h += line('Insurance', 'not quoted<span class="src">recharged under the lease, ask for the figure</span>', gbp(A2.ins));
   h += line('Rates', gbp(cb.rates)+'<span class="src">'+vEsc(B.rvNote)+'</span>', gbp(ca.rates)+'<span class="src">'+vEsc(A2.rvNote)+'</span>');
-  h += line('<b>Total occupancy</b>', '<b>'+gbp(cb.block)+'</b>', '<b>'+gbp(ca.block)+'</b>', 'here');
+  h += line('<b>Total property cost</b>', '<b>'+gbp(cb.block)+'</b>', '<b>'+gbp(ca.block)+'</b>', 'here');
   h += line('Per sq ft', '£'+cb.psf.toFixed(2), '£'+ca.psf.toFixed(2));
   h += line('If the rent moves', gbp(cbAlt.block)+'<span class="src">'+vEsc(B.rentAltLabel)+'</span>', gbp(caAlt.block)+'<span class="src">'+vEsc(A2.rentAltLabel)+'</span>');
   h += line('Break even sales', gbp(cb.be), gbp(ca.be));
@@ -3189,7 +3189,7 @@ function renderPair(){
 
   /* ---------- 4. net profit ---------- */
   h += '<div class="vsec"><h2>Net profit on the same model</h2><p class="vlede">'
-     + 'Your quick calc, re-run on the corrected occupancy. Same ratios as the sheets you sent: wages 28%, food 24%, variables 13%, VAT 7%, which leaves 28p in the pound to cover the unit. '
+     + 'Your quick calc, re-run on the corrected property costs. Same ratios as the sheets you sent: wages 28%, food 24%, variables 13%, VAT 7%, which leaves 28p in the pound to cover the unit. '
      + 'The house P&amp;L model (27 / 25 / 12 / 7) adds one point to every percentage below. Year one, before any rent free.'
      + '</p></div>';
   h += '<div class="dgate"><table><thead><tr><th>Sales</th><th>Brighton net profit</th><th>Brighton %</th><th>Birmingham net profit</th><th>Birmingham %</th><th>Difference</th></tr></thead><tbody>';
@@ -3215,8 +3215,9 @@ function renderPair(){
      + '</p></div>';
   h += '<div class="ppgrid">';
   h += '<article class="ppcard"><div class="pph"><div><h3>Brighton</h3><div class="vsub">priced</div></div></div><table class="dpl">'
-     + '<tr><td>Fit-out price in hand</td><td>£240,000 plus VAT, including a £10,000 contingency and moving the central extract to the side of the room</td></tr>'
-     + '<tr><td>Why it is that high for a fitted unit</td><td>The Yo! Sushi layout is a conveyor island in the middle of the floor. The belt and bar have gone, but a central column carries the electrics and the extract runs through the middle of the room</td></tr>'
+     + '<tr><td>Fit-out quote in hand</td><td>£243,000 plus VAT, including a £10,000 M&amp;E contingency and a £5,000 allowance to strip the central extract (quoted 23 Nov)</td></tr>'
+     + '<tr><td>Same contractor, Cardiff</td><td>£299,000 plus VAT, with a £12,000 M&amp;E contingency. Brighton is £56,000 cheaper to fit</td></tr>'
+     + '<tr><td>Why it is that high for a fitted unit</td><td>The Yo! Sushi layout is a conveyor island in the middle of the floor. The belt and bar have gone, but a central column carries the electrics and the central extract has to be stripped</td></tr>'
      + '<tr><td>Landlord money, as agreed</td><td>£47,500 contribution plus 9 months rent free, worth £71,250</td></tr>'
      + '<tr><td>Landlord money, as discussed 24 Nov</td><td>12 months rent free and 9 months of contribution, to be improved again on the back of the leaks</td></tr>'
      + '<tr class="tot"><td>Net cost to us</td><td>About £150,000 on your own estimate, before the leaks are settled</td></tr>'
@@ -3311,7 +3312,7 @@ function renderPair(){
      + 'At £1.5m of sales both make 19 to 20% on your quick calc, and both clear 18% at around £1.3m.</p>'
      + '<p><b>So the choice comes down to three things the appraisals do not settle.</b> '
      + 'One, which site is more likely to take £1.5m: Brighton has the stronger street and the smaller, harder working box; Birmingham has the bigger box, a theatre next door and a weaker pitch inside its scheme. '
-     + 'Two, cash to open: Brighton is priced at about £150,000 net with a leak to resolve; Birmingham is unpriced and could be more. '
+     + 'Two, cash to open: Brighton is quoted at £243,000 plus VAT, about £150,000 net of landlord money, with a leak to resolve; Birmingham is unpriced and could be more. '
      + 'Three, M21: Birmingham is not a new market for us, and the plan for the first site has to come first.</p>'
      + '<p><b>What would make it easy.</b> A contractor price for the Arcadian and an incentive figure from LCP. If that lands the net cost under Brighton’s, Birmingham is the better use of the capital because it needs '
      + '£'+Math.round(ca.n18/A2.sqft)+' a sq ft to hit 18% against Brighton’s £'+Math.round(cb.n18/B.sqft)+'. If it does not, Brighton is the deal that is already on paper.</p></div>';
