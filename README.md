@@ -547,6 +547,23 @@ stands in. Two things to hold on to:
     Towns, Units and Savills stages would very likely re-rank the whole board; that
     remains a deliberate decision not taken.
 
+## 24 Nov 2026: Brighton v Birmingham stage
+
+New stage on the page, and both towns now lead the "Towns, all in one" hub.
+
+- **Units:** 6 to 7 Jubilee Street, Brighton (former Yo! Sushi, 2,520 sq ft) and E107 to E110 at
+  The Arcadian, Birmingham (former Portrait Bar, 3,334 sq ft).
+- **What it does:** checks the two 24 Nov site appraisals and the quick NP calc against the heads of
+  terms, agent particulars, landlord emails and the Yo! Sushi drawings, and adds outside research.
+- **Headline:** the appraisals overstated Brighton occupancy (about £167k against £133k on the
+  documents) and understated Birmingham (about £97k against £126k, because the service charge of
+  £36,679 and insurance were left out). On the documents the two units cost about the same to hold.
+- **Not scored:** nothing on this stage runs through the pipeline engine or re-ranks earlier stages.
+- **Still open:** no fit-out price or incentive for the Arcadian; leaks, insurance and revised heads
+  of terms on Jubilee Street; the 2026 rateable values; what happens to M21 Birmingham.
+- **Documents:** filed locally under `Brighton_Jubilee_Street/` and `Birmingham_Arcadian/` in the BDM
+  folder. Third party drawings are listed on the page, not published.
+
 ## Notes
 
 - The model is a single self-contained HTML file; there is no build step.

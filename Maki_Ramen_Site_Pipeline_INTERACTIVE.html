@@ -122,6 +122,49 @@ ol.vgaps li{margin:9px 0;font-size:12.5px;color:var(--muted);line-height:1.65}
   .vgrid{grid-template-columns:1fr}
 }
 
+/* ---- 24 Nov: Brighton v Birmingham ---- */
+#pane-pair{display:none;padding:18px 22px 80px;max-width:1180px;--mk:#f47b20}
+#pane-pair .vsec{margin:34px 0 14px}
+#pane-pair .vsec:first-child{margin-top:8px}
+#pane-pair .vsec h2{margin:0;font-size:15.5px;letter-spacing:.2px;font-weight:700;color:var(--ink);
+  display:flex;align-items:center;gap:10px}
+#pane-pair .vsec h2::before{content:"";width:4px;height:15px;border-radius:2px;background:var(--mk)}
+#pane-pair .vsec h2::after{content:"";flex:1;height:1px;background:var(--line)}
+#pane-pair .vlede{margin:7px 0 0;font-size:12.5px;color:var(--muted);max-width:860px;line-height:1.6}
+#pane-pair .vsecth{color:var(--mk)}
+.ppgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:14px;align-items:start}
+.ppcard{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:15px 16px 14px;box-shadow:var(--shadow)}
+.pph{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px;
+  padding-bottom:10px;border-bottom:1px solid var(--line)}
+.pph h3{margin:0;font-size:15px;font-weight:700;line-height:1.3}
+.pph .vsub{font-size:11.5px;color:var(--faint);margin-top:3px}
+.ppcard .dpl td{vertical-align:top;padding:7px 0;line-height:1.5}
+.ppcard .dpl td:first-child{width:34%;padding-right:12px}
+.ppcard .dpl td:last-child{text-align:left;color:var(--ink)}
+.ppul{margin:0;padding-left:17px;font-size:12.5px;line-height:1.6;color:var(--muted)}
+.ppul li{margin:0 0 7px}
+.ppul b{color:var(--ink);font-weight:600}
+.ppsrc{font-size:10.5px;color:var(--faint);white-space:normal}
+.ppfix{margin-top:14px}
+.ppfix td{text-align:left !important;vertical-align:top;line-height:1.5}
+.ppfix th{text-align:left !important}
+.ppfix td:nth-child(1){width:15%} .ppfix td:nth-child(2){width:25%;color:var(--faint)}
+.ppfix td:nth-child(3){width:38%} .ppfix td b{font-weight:600;color:var(--ink)}
+#pane-pair .dgate td{vertical-align:top}
+#pane-pair .dgate tr.here td{background:rgba(244,123,32,.08)}
+.ppnote{margin-top:13px;padding:12px 14px;border-radius:9px;background:var(--panel2);border-left:3px solid var(--mk);
+  font-size:12.5px;line-height:1.62;color:var(--muted)}
+.ppnote b{color:var(--ink)}
+#pane-pair .vverdict.ppread{margin-top:26px;background:rgba(244,123,32,.07);border-color:rgba(244,123,32,.34);padding:15px 17px}
+#pane-pair .vverdict.ppread .vvhead{color:var(--mk)}
+#pane-pair .vverdict.ppread p{font-size:13px;line-height:1.65;color:var(--muted);margin:9px 0 0}
+#pane-pair .vverdict.ppread p b{color:var(--ink)}
+.ppdocs .bdocwrap{margin-bottom:12px}
+.ppfoot{margin-top:14px;font-size:11.5px;color:var(--faint);line-height:1.6;max-width:860px}
+.hubchip.pair{background:rgba(244,123,32,.12);color:#f47b20;border-color:rgba(244,123,32,.36)}
+.hubsec.pairsec h4{color:#f47b20}
+@media (max-width:900px){ .ppgrid{grid-template-columns:1fr} }
+
 /* ---- Agent book stage ---- */
 #pane-book{display:none;padding:18px 22px 80px;max-width:1180px}
 #pane-book .vsec{margin:34px 0 14px}
@@ -685,6 +728,7 @@ svg .quad{stroke:#3a414d;stroke-width:1;stroke-dasharray:4 4}
     <div class="stagebar">
       <div class="seg" id="stageSeg">
         <button data-stage="hub" class="active"><b>Towns · all in one</b><span class="sd">every place, every stage, merged</span></button>
+        <button data-stage="pair"><b>24 Nov &middot; Brighton v Birmingham</b><span class="sd">Jubilee Street &amp; The Arcadian &middot; corrected costs, research, plans</span></button>
         <button data-stage="towns"><b>05 Aug &middot; Towns</b><span class="sd">26 locations, format-led</span></button>
         <button data-stage="units"><b>10 Aug &middot; Units</b><span class="sd">24 live units, agent schedule</span></button>
         <button data-stage="savills"><b>14 Aug &middot; Savills call</b><span class="sd">25 units, status applied</span></button>
@@ -706,6 +750,7 @@ svg .quad{stroke:#3a414d;stroke-width:1;stroke-dasharray:4 4}
     <section id="pane-book"></section>
     <section id="pane-deal"></section>
     <section id="pane-hub"></section>
+    <section id="pane-pair"></section>
 
     <!-- RANKING -->
     <section class="pane active" id="pane-rank">
@@ -967,6 +1012,12 @@ const state = {A: structuredClone(DEFAULTS), tab:'rank', view:'table', sort:{key
 
 /* ====================== STAGES ====================== */
 const STAGES = {
+  pair: {
+    label:'24 Nov: Brighton v Birmingham',
+    sub:'6 to 7 Jubilee Street against E107 to E110 at The Arcadian \u00b7 two appraisals checked against the documents, with the research behind them',
+    note:'Two appraisals and a quick net profit calc arrived on 24 November. This stage checks them against the heads of terms, the agent particulars, the landlord emails and the drawings, and corrects the costs. Brighton was costed about \u00a334,000 a year too high and Birmingham about \u00a329,000 too low, so the cost gap between them all but disappears. Nothing on this stage is scored on the pipeline engine and nothing here re-ranks the earlier stages.',
+    sites:()=>[], isUnits:false, isVisits:true, isPair:true,
+  },
   value: {
     label:'25 Aug \u2014 15 value markets',
     sub:'15 mid & north towns \u00b7 street-level format at 2,000 sq ft \u00b7 two priced pitches each',
@@ -1492,6 +1543,9 @@ function buildHub(A){
   if(typeof APPRAISAL!=='undefined') get(APPRAISAL.town).appraisal = APPRAISAL;
   if(typeof DEAL!=='undefined') DEAL.sites.forEach(d=>{ get(d.town).deal = d; });
 
+  /* 24 Nov: the two appraised units */
+  if(typeof PAIR!=='undefined') PAIR.sites.forEach(p=>{ const e = get(p.town); e.pair = p; e.region = e.region || p.region; });
+
   /* the agent book */
   if(typeof BOOK!=='undefined') BOOK.groups.forEach(g=>{
     g.units.forEach(u=>{
@@ -1506,7 +1560,7 @@ function buildHub(A){
     e.bestUnit = e.units.filter(u=>!u.notModelled).sort((a,b)=>b.score100-a.score100)[0] || null;
     e.savills  = e.units.map(u=>u.site.savills).filter(Boolean);
     e.live     = e.savills.some(s=>s.status==='LIVE');
-    e.sort = (e.deal?4000:0) + (e.appraisal?2000:0) + (e.field?1000+e.field.overall:0)
+    e.sort = (e.pair?5000:0) + (e.deal?4000:0) + (e.appraisal?2000:0) + (e.field?1000+e.field.overall:0)
            + (e.bestUnit?e.bestUnit.score100:0) + (e.desk?e.desk.score100/100:0);
   });
   return rows.sort((a,b)=> b.sort-a.sort);
@@ -1516,6 +1570,7 @@ const hubState = {open:null, q:'', filter:'all'};
 
 function hubChips(e){
   const c = [];
+  if(e.pair)      c.push(['pair','24 Nov \u00b7 appraisal checked \u00b7 '+e.pair.status]);
   if(e.deal)      c.push(['deal','Heads of terms']);
   if(e.appraisal) c.push(['appr','Written appraisal']);
   if(e.field)     c.push([fieldTone(e.field.overall),'Field '+e.field.overall+'%']);
@@ -1607,6 +1662,20 @@ function renderHub(){
 
 function hubDetail(e, A){
   let h = '<div class="hubbody">';
+
+  /* ---- 24 Nov: the appraised unit, corrected ---- */
+  if(e.pair){
+    const p = e.pair, c = pairCalc(p);
+    h += '<div class="hubsec pairsec"><h4>'+vEsc(p.unit)+' &middot; 24 Nov</h4><table class="dpl">';
+    [['Unit', vEsc(p.unit)+', '+vEsc(p.was)+', '+num(p.sqft)+' sq ft'],
+     ['Rent', gbp(p.rent)],
+     ['Total occupancy, corrected', gbp(c.block)+' pa &middot; £'+c.psf.toFixed(2)+' psf (appraisal said '+gbpk(p.apprOcc)+')'],
+     ['Sales for 18% net', gbp(c.n18)],
+     ['Appraisal', p.apprScore+' / 100 &middot; '+vEsc(p.apprCall)],
+     ['Where it stands', vEsc(p.status)]
+    ].forEach(r=>{ h += '<tr><td>'+r[0]+'</td><td>'+r[1]+'</td></tr>'; });
+    h += '</table><button class="hubgo" data-goto="pair">Open Brighton v Birmingham &rarr;</button></div>';
+  }
 
   /* ---- the live deal, first because it is the only thing with a clock on it ---- */
   if(e.deal){
@@ -2387,7 +2456,7 @@ const VISITS = {
 };
 
 /* ====================== 22 AUG — VIEWING ROUND RENDER ====================== */
-function isVisits(){ return ['visits','book','deal','hub'].includes(state.stage); }
+function isVisits(){ return ['visits','book','deal','hub','pair'].includes(state.stage); }
 function isHub(){ return state.stage==='hub'; }
 function isDeal(){ return state.stage==='deal'; }
 function vEsc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
@@ -2979,13 +3048,337 @@ function renderDeal(){
   el.innerHTML = h;
 }
 
+
+/* ====================== 24 NOV: BRIGHTON v BIRMINGHAM ====================== */
+/* Jubilee Street (former Yo! Sushi) against The Arcadian E107-E110 (former Portrait Bar).
+   Every cost figure is taken from a source document, not from the two desk appraisals.
+   Net profit uses the quick-calc ratios supplied on 24 Nov: wages 28, food 24, variables 13, VAT 7. */
+const PAIR = {
+  contrib: 1 - 0.28 - 0.24 - 0.13 - 0.07,
+  rhlMult: 0.43,
+  sites: [
+    { key:'brighton', town:'Brighton', region:'South East', unit:'6 to 7 Jubilee Street', was:'former Yo! Sushi',
+      landlord:'L&G fund, via KLM Real Estate', agent:'Savills (Jess Hill)',
+      sqft:2520, rent:95000, rentAlt:90000, rentAltLabel:'at the £90,000 discussed on 24 Nov',
+      sc:5500, ins:null, rv:75500, rvNote:'RV from the Aug 2025 particulars (2023 list), 2026 list to confirm',
+      apprScore:68, apprCall:'Proceed, heads of terms agreed', apprOcc:167000, apprRev:[1800000,2100000,2500000],
+      status:'On hold', tone:'watch' },
+    { key:'birmingham', town:'Birmingham', region:'West Midlands', unit:'E107 to E110, The Arcadian', was:'former Portrait Bar',
+      landlord:'LCP, part of M Core', agent:'Creative Retail (Guy Sankey) and FHP',
+      sqft:3334, rent:60000, rentAlt:65000, rentAltLabel:'at the £65,000 used in the appraisal',
+      sc:36679, ins:2476, rv:61500, rvNote:'RV 2026 list, from the agent particulars',
+      apprScore:66, apprCall:'Proceed with conditions', apprOcc:97000, apprRev:[1500000,1850000,2200000],
+      status:'Preferred, no offer yet', tone:'go' }
+  ]
+};
+function isPair(){ return state.stage==='pair'; }
+function pairCalc(s, rentOverride){
+  const rent = rentOverride!=null ? rentOverride : s.rent;
+  const rates = s.rv * PAIR.rhlMult;
+  const block = rent + s.sc + (s.ins||0) + rates;
+  const c = PAIR.contrib;
+  return { rent, rates, block, psf: block/s.sqft, be: block/c, n18: block/(c-0.18), n20: block/(c-0.20),
+           np:(rev)=> rev*c - block };
+}
+
+function renderPair(){
+  const el = document.getElementById('pane-pair');
+  if(!el) return;
+  const B = PAIR.sites[0], A2 = PAIR.sites[1];
+  const cb = pairCalc(B), ca = pairCalc(A2), cbAlt = pairCalc(B, B.rentAlt), caAlt = pairCalc(A2, A2.rentAlt);
+  const p1 = (n)=> (n*100).toFixed(1)+'%';
+  const gm = (n)=> '£'+(n/1e6).toFixed(2)+'m';
+  let h = '';
+
+  /* ---------- 1. where each one stands ---------- */
+  h += '<div class="vsec"><h2>Two units, one decision</h2><p class="vlede">'
+     + 'Two site appraisals came in on 24 November, one for the former Yo! Sushi on Jubilee Street in Brighton and one for the former Portrait Bar at The Arcadian in Birmingham, '
+     + 'with a quick net profit calc for each. This stage puts them side by side, checks every cost in the appraisals against the documents behind the two units '
+     + '(heads of terms, agent particulars, the landlord emails and the Yo! Sushi drawings), and adds the research the appraisals did not do. '
+     + 'Nothing here is scored on the pipeline engine. The appraisal scores are shown as written, and the corrections are listed so you can see what would move them.'
+     + '</p></div>';
+
+  h += '<div class="ppgrid">';
+  [[B,cb,[
+      ['Unit','Units 6 and 7 combined, ground floor only, 2,520 sq ft, fitted with full extract'],
+      ['Deal on paper','Agreed heads of terms dated 4 Nov 2025: 15 years, tenant break at year 10, £95,000, CPI reviews at years 5 and 10 collared 1 to 3%, 9 months rent free, £47,500 contribution paid half on completion and half on opening, no deposit'],
+      ['History','First agreed for a franchisee, dropped on 11 Nov 2025 when the franchisee withdrew. Savills re-issued the same heads of terms on 30 Oct 2026 and the unit is now being looked at as a company site'],
+      ['Activity this month','Plans received 11 Nov. Access for contractors and viewings on 12, 16 and 23 Nov. One fit-out price in, a second contractor has surveyed and is waiting on architect drawings and a scope'],
+      ['Open with the landlord','Leaks in the building. The landlord is back on 25 Nov and the incentive is being reopened on the back of it'],
+      ['Where it sits','Second choice of the two at the 24 Nov BDM catch up, on fit-out cost. Not formally closed: the decision was left for this comparison']
+    ]],
+   [A2,ca,[
+      ['Unit','Units E107 to E110 at piazza level, 3,334 sq ft, a former bar. Next to the car park entrance, facing the piazza rather than Hurst Street'],
+      ['Terms quoted','£60,000 a year quoted by the agent on 9 Nov 2026, exclusive of service charge, insurance, rates and VAT. New lease, length open. No incentive quoted yet'],
+      ['Also vacant in the scheme','Unit B111, the former Sobar, 4,350 sq ft with terrace at £75,000, or split: Unit 01 of 1,470 sq ft at £45,000, Unit 02 of 1,008 sq ft at £37,500 (terms already agreed on Unit 02). The unit first enquired about, C101 to C103, was let last year'],
+      ['Activity this month','Particulars and floor plans in on 9 Nov, viewing arranged with the agent. No offer made'],
+      ['Open with the landlord','Incentive package and lease length. Two large vacant units on one piazza is leverage'],
+      ['Where it sits','Preferred of the two at the 24 Nov BDM catch up, as a company site at about £1.5m. A franchise route was also discussed']
+    ]]
+  ].forEach(x=>{
+    const s = x[0];
+    h += '<article class="ppcard"><div class="pph"><div><h3>'+vEsc(s.town)+' &middot; '+vEsc(s.unit)+'</h3>'
+       + '<div class="vsub">'+vEsc(s.was)+' &middot; '+vEsc(s.landlord)+' &middot; '+vEsc(s.agent)+'</div></div>'
+       + '<span class="bstatus '+s.tone+'">'+vEsc(s.status)+'</span></div><table class="dpl">';
+    x[2].forEach(r=>{ h += '<tr><td>'+vEsc(r[0])+'</td><td>'+vEsc(r[1])+'</td></tr>'; });
+    h += '</table></article>';
+  });
+  h += '</div>';
+
+  /* ---------- 2. corrections ---------- */
+  h += '<div class="vsec"><h2>What the appraisals got wrong</h2><p class="vlede">'
+     + 'Both appraisals were written without the particulars in front of them and say so. These are the figures that change once the documents are read. '
+     + 'The two errors that matter are opposite in direction: Brighton was costed too high, Birmingham too low, and between them they created a cost gap that does not exist.'
+     + '</p></div>';
+  const fix = (title, rows)=>{
+    let t = '<div class="dgate ppfix"><table><thead><tr><th>'+vEsc(title)+'</th><th>Appraisal says</th><th>Documents say</th><th>Source</th></tr></thead><tbody>';
+    rows.forEach(r=>{ t += '<tr'+(r[4]?' class="'+r[4]+'"':'')+'><td>'+vEsc(r[0])+'</td><td>'+vEsc(r[1])+'</td><td><b>'+vEsc(r[2])+'</b></td><td><span class="src">'+vEsc(r[3])+'</span></td></tr>'; });
+    return t+'</tbody></table></div>';
+  };
+  h += fix('Brighton, Jubilee Street', [
+    ['Floor area','3,500 to 4,500 sq ft estimated, 150 covers plus','2,520 sq ft, ground floor only','KLM Real Estate particulars, Aug 2025','here'],
+    ['Covers','150 plus','Yo! Sushi traded 51 covers here, 58 before its 2014 refit. A table layout should seat more than a conveyor did, but nothing like 150','Philip Watts Design general arrangement, rev D','here'],
+    ['Service charge','About £30,000, pro rata','£5,500 a year. A cap was asked for and refused','Landlord feedback via Savills, 14 Oct 2025','mark'],
+    ['Rates','About £42,000','£32,465: rateable value £75,500 at the 43.0p multiplier','Particulars and the 2026/27 retail, hospitality and leisure multiplier','mark'],
+    ['Total occupancy','About £167,000','About '+gbp(cb.block)+' before insurance, which is not quoted','Sum of the above','mark'],
+    ['Wagamama','Trades on Jubilee Street itself','Trades at Argus Lofts on Kensington Street, the next street east. Close, but not on the pitch','Wagamama restaurant listing',''],
+    ['Yo! Sushi','Vacating the unit','Already closed. The closure was sudden and unexplained in the press, and the unit has stood empty since','Yo! Sushi site listing, local press',''],
+    ['Rent','£95,000','£95,000 in the signed-off heads of terms. £90,000 with a longer rent free was the position discussed on 24 Nov and is not yet in a revised document','Agreed HOTs, 4 Nov 2025','']
+  ]);
+  h += fix('Birmingham, The Arcadian', [
+    ['Service charge','None. Scored as a key positive throughout','£36,679 a year plus VAT, and insurance of £2,476 plus VAT','Agent particulars for E107 to E110','here'],
+    ['Total occupancy','About £97,000','About '+gbp(ca.block)+' at the quoted rent','Sum of the lines in this table','here'],
+    ['Whitespace','No Maki & Ramen in Birmingham, a new market','M21 Birmingham is ours, closed since 11 Oct 2026 after a fire. This would be a second Birmingham site, or the replacement for the first','Estate records','here'],
+    ['Floor area','About 3,000 sq ft','3,334 sq ft','Agent particulars',''],
+    ['Rent','£65,000','£60,000 quoted','Creative Retail email, 9 Nov 2026','mark'],
+    ['Rates','About £32,000 on an assumed RV of £57,000','£26,445: rateable value £61,500 at the 43.0p multiplier','Particulars and the 2026/27 multiplier','mark'],
+    ['The unit','A restaurant unit in an Asian dining scheme','A late night bar. It was the subject of a licence review after a shooting in Dec 2023 and reopened under search and ID scan conditions','Press reports, Jan 2024',''],
+    ['Competitor list','Rozu named as an in-scheme rival','Rozu is listed as permanently closed. Missing from the list: the 100 seat Arcadian Food Court with ten Asian street food traders, and Takumi on Hurst Street','OpenTable listing, M Core release Sep 2025','']
+  ]);
+
+  /* ---------- 3. occupancy side by side ---------- */
+  h += '<div class="vsec"><h2>What it costs to hold each unit</h2><p class="vlede">'
+     + 'Rent, service charge, insurance and rates, all excluding VAT. On the appraisals Birmingham looked £70,000 a year cheaper than Brighton. '
+     + 'On the documents the two are within '+gbp(Math.abs(cb.block-ca.block))+' of each other. What Birmingham does give is a third more floor for the same money.'
+     + '</p></div>';
+  h += '<div class="dhero">';
+  [['Brighton occupancy', gbpk(cb.block), 'Appraisal said £167k. '+ '£'+cb.psf.toFixed(2)+' per sq ft', 'good'],
+   ['Birmingham occupancy', gbpk(ca.block), 'Appraisal said £97k. '+ '£'+ca.psf.toFixed(2)+' per sq ft', 'warn'],
+   ['Gap between them', gbp(Math.abs(cb.block-ca.block)), 'Appraisals implied £70,000', ''],
+   ['Floor area', '2,520 v 3,334', 'Birmingham is 32% larger', ''],
+   ['Sales for 18% net', gm(cb.n18)+' v '+gm(ca.n18), 'Brighton v Birmingham, quick-calc ratios', ''],
+   ['Sales per sq ft for 18%', '£'+Math.round(cb.n18/B.sqft)+' v £'+Math.round(ca.n18/A2.sqft), 'Brighton has to work its floor 40% harder', '']
+  ].forEach(t=>{ h += '<div class="dtile '+t[3]+'"><div class="dl">'+vEsc(t[0])+'</div><div class="dv">'+vEsc(t[1])+'</div><div class="dn">'+vEsc(t[2])+'</div></div>'; });
+  h += '</div>';
+
+  const line = (lab, fb, fa, cls)=> '<tr'+(cls?' class="'+cls+'"':'')+'><td>'+lab+'</td><td>'+fb+'</td><td>'+fa+'</td></tr>';
+  h += '<div class="dgate"><table><thead><tr><th>Per year, ex VAT</th><th>Brighton, Jubilee Street</th><th>Birmingham, The Arcadian</th></tr></thead><tbody>';
+  h += line('Rent', gbp(cb.rent)+'<span class="src">agreed heads of terms</span>', gbp(ca.rent)+'<span class="src">agent quote, nothing agreed</span>');
+  h += line('Service charge', gbp(B.sc)+'<span class="src">uncapped</span>', gbp(A2.sc));
+  h += line('Insurance', 'not quoted<span class="src">recharged under the lease, ask for the figure</span>', gbp(A2.ins));
+  h += line('Rates', gbp(cb.rates)+'<span class="src">'+vEsc(B.rvNote)+'</span>', gbp(ca.rates)+'<span class="src">'+vEsc(A2.rvNote)+'</span>');
+  h += line('<b>Total occupancy</b>', '<b>'+gbp(cb.block)+'</b>', '<b>'+gbp(ca.block)+'</b>', 'here');
+  h += line('Per sq ft', '£'+cb.psf.toFixed(2), '£'+ca.psf.toFixed(2));
+  h += line('If the rent moves', gbp(cbAlt.block)+'<span class="src">'+vEsc(B.rentAltLabel)+'</span>', gbp(caAlt.block)+'<span class="src">'+vEsc(A2.rentAltLabel)+'</span>');
+  h += line('Break even sales', gbp(cb.be), gbp(ca.be));
+  h += line('Sales for 18% net', gbp(cb.n18), gbp(ca.n18), 'mark');
+  h += line('Sales for 20% net', gbp(cb.n20), gbp(ca.n20), 'mark');
+  h += line('Appraisal revenue range', B.apprRev.map(gm).join(' / ')+'<span class="src">low / central / best, desk estimate on the wrong floor area</span>',
+                                       A2.apprRev.map(gm).join(' / ')+'<span class="src">low / central / best, assumes a halal certified kitchen</span>');
+  h += '</tbody></table></div>';
+
+  /* ---------- 4. net profit ---------- */
+  h += '<div class="vsec"><h2>Net profit on the same model</h2><p class="vlede">'
+     + 'Your quick calc, re-run on the corrected occupancy. Same ratios as the sheets you sent: wages 28%, food 24%, variables 13%, VAT 7%, which leaves 28p in the pound to cover the unit. '
+     + 'The house P&amp;L model (27 / 25 / 12 / 7) adds one point to every percentage below. Year one, before any rent free.'
+     + '</p></div>';
+  h += '<div class="dgate"><table><thead><tr><th>Sales</th><th>Brighton net profit</th><th>Brighton %</th><th>Birmingham net profit</th><th>Birmingham %</th><th>Difference</th></tr></thead><tbody>';
+  [1200000,1350000,1500000,1750000,2000000].forEach(rev=>{
+    const nb = cb.np(rev), na = ca.np(rev);
+    const mk = (rev===1350000||rev===1500000||rev===1750000) ? ' class="here"' : '';
+    h += '<tr'+mk+'><td>'+gbp(rev)+(mk?'<span class="src">in your quick calc</span>':'')+'</td>'
+       + '<td>'+gbp(nb)+'</td><td><b class="'+(nb/rev>=0.18?'pass':'fail')+'">'+p1(nb/rev)+'</b></td>'
+       + '<td>'+gbp(na)+'</td><td><b class="'+(na/rev>=0.18?'pass':'fail')+'">'+p1(na/rev)+'</b></td>'
+       + '<td>'+gbp(Math.abs(na-nb))+' to '+(na>nb?'Birmingham':'Brighton')+'</td></tr>';
+  });
+  h += '</tbody></table></div>';
+  h += '<div class="ppnote"><b>How this differs from the two NP Calc sheets.</b> '
+     + 'The sheets carry rent including VAT (£108,000 for Brighton is £90,000 plus VAT, £78,000 for the Arcadian is £65,000 plus VAT) and a flat £35,000 of rates on both. '
+     + 'VAT on rent is recoverable, so it is taken out here, and rates are set from each rateable value. '
+     + 'The sheets give Brighton 17.4%, 18.5% and 19.8% at £1.35m, £1.5m and £1.75m. For the Arcadian the first sheet, with no service charge, gives 19.6%, 20.5% and 21.5%, '
+     + 'and the second, with £46,986 of service charge and insurance including VAT, gives 16.2%, 17.3% and 18.9%. The second sheet is the right one on service charge. '
+     + 'With VAT stripped out of both, the two sites land within a point of each other at every sales level.</div>';
+
+  /* ---------- 5. capex ---------- */
+  h += '<div class="vsec"><h2>Capex and year one cash</h2><p class="vlede">'
+     + 'This is where the two actually differ, and only one side has a number.'
+     + '</p></div>';
+  h += '<div class="ppgrid">';
+  h += '<article class="ppcard"><div class="pph"><div><h3>Brighton</h3><div class="vsub">priced</div></div></div><table class="dpl">'
+     + '<tr><td>Fit-out price in hand</td><td>£240,000 plus VAT, including a £10,000 contingency and moving the central extract to the side of the room</td></tr>'
+     + '<tr><td>Why it is that high for a fitted unit</td><td>The Yo! Sushi layout is a conveyor island in the middle of the floor. The belt and bar have gone, but a central column carries the electrics and the extract runs through the middle of the room</td></tr>'
+     + '<tr><td>Landlord money, as agreed</td><td>£47,500 contribution plus 9 months rent free, worth £71,250</td></tr>'
+     + '<tr><td>Landlord money, as discussed 24 Nov</td><td>12 months rent free and 9 months of contribution, to be improved again on the back of the leaks</td></tr>'
+     + '<tr class="tot"><td>Net cost to us</td><td>About £150,000 on your own estimate, before the leaks are settled</td></tr>'
+     + '</table></article>';
+  h += '<article class="ppcard"><div class="pph"><div><h3>Birmingham</h3><div class="vsub">not priced</div></div></div><table class="dpl">'
+     + '<tr><td>Fit-out price in hand</td><td>None. Nobody has surveyed it</td></tr>'
+     + '<tr><td>What it is today</td><td>A bar. The particulars confirm mains services only. Whether there is a kitchen extract route, gas and a grease trap is not stated anywhere</td></tr>'
+     + '<tr><td>Landlord money</td><td>Nothing quoted. To be requested</td></tr>'
+     + '<tr><td>Risk</td><td>If it needs a full kitchen and extract installation it will cost more to open than Brighton, not less, and the appraisal case for it as the low cost option falls away</td></tr>'
+     + '<tr class="tot"><td>Net cost to us</td><td>Unknown until a contractor has walked it</td></tr>'
+     + '</table></article>';
+  h += '</div>';
+
+  /* ---------- 6. research ---------- */
+  h += '<div class="vsec"><h2>Research the appraisals did not do</h2><p class="vlede">'
+     + 'Checked on 24 November 2026 against public sources and the email record. Source in brackets after each point.'
+     + '</p></div>';
+  const col = (title, groups)=>{
+    let c = '<article class="ppcard"><div class="pph"><div><h3>'+vEsc(title)+'</h3></div></div>';
+    groups.forEach(g=>{
+      c += '<div class="vsecth">'+vEsc(g[0])+'</div><ul class="ppul">';
+      g[1].forEach(i=>{ c += '<li>'+vEsc(i[0])+(i[1]?' <span class="ppsrc">['+vEsc(i[1])+']</span>':'')+'</li>'; });
+      c += '</ul>';
+    });
+    return c+'</article>';
+  };
+  h += '<div class="ppgrid">';
+  h += col('Brighton, Jubilee Street', [
+    ['The pitch', [
+      ['Jubilee Street is the chain dining street of the North Laine: Five Guys, Las Iguanas, Pizza Express, Starbucks, and Rudy’s Pizza in the former Chilli Pickle, 3,500 sq ft and about 160 covers. A growing national operator has recently bet on the street at scale','KLM particulars; local press'],
+      ['Other operators have looked at this exact unit. Las Iguanas and Banana Tree could not make the space work. Cosmo has wanted Brighton for years and cannot find a unit big enough','Savills, Aug 2025'],
+      ['Supply is the constraint in Brighton, not demand. The alternatives viewed on 23 Nov on West Street were all too small or split over three or four floors. A single level 2,520 sq ft box is rare here','Savills, 24 Nov 2026']
+    ]],
+    ['Demand', [
+      ['The visitor numbers in the appraisal are a year old. 2024: 12.2m trips (10.5m day visits, 1.7m staying), total value £1.39bn, up 9% on 2023','VisitBrighton economic impact report 2024'],
+      ['Still seasonal and day trip led, as the appraisal says. Nothing found that changes that']
+    ]],
+    ['Competition the appraisal missed', [
+      ['Tonkotsu trades on New Road, a short walk away, and is the closest like for like: a national ramen brand with a £10 ramen and gyoza set','Tonkotsu listing; Time Out'],
+      ['Goemon Ramen Bar is the local favourite for ramen and queues at peak. Pompoko is the long standing cheap Japanese canteen. Bonsai Plant Kitchen runs a lunchtime ramen club. Moshimo, Taro, Bincho Yakitori and Mogumogu fill out the Japanese field','Restaurants Brighton guide 2026'],
+      ['Wagamama is one street over on Kensington Street, not on Jubilee Street. Still the main national rival, but the appraisal scored it as on the doorstep','Wagamama listing'],
+      ['A deep independent Japanese field for a city this size. The appraisal competitive score of 5 out of 10 looks about right, for different reasons']
+    ]],
+    ['Risks the appraisal missed', [
+      ['Leaks. Raised by us this month, and not new: Yo! Sushi once shut this restaurant for a night over a water leak. Get the cause and the remedy in writing, and a landlord obligation in the lease, before any money is committed','Email record; regional press'],
+      ['Heads of terms are a year old and carry a completion date of 5 Jan 2026. They need re-papering, and the deal is conditional on L&G fund board approval and on approval of our fit-out plans','Agreed HOTs'],
+      ['The landlord has a right to take the lease back on any assignment, on 14 days notice. That matters if the site is ever passed to a franchisee','Agreed HOTs, alienation clause'],
+      ['Service charge is uncapped. Small today at £5,500, but worth a cap or a base year given the leaks','Savills, Oct 2025'],
+      ['User clause is a high quality Asian restaurant, which fits. Lease is inside the 1954 Act, which is in our favour','Agreed HOTs']
+    ]]
+  ]);
+  h += col('Birmingham, The Arcadian', [
+    ['The pitch', [
+      ['The scheme is 121,000 sq ft with 16 restaurants and a car park of about 500 spaces. LCP has been repositioning it: new signage and screens, a rebuilt fountain, murals, a 100 seat food court with ten Asian street food traders, a 4,200 sq ft Chinese arcade, and a relaunched Sly Old Fox pub','M Core release, Sep 2025'],
+      ['The Hippodrome next door takes over 600,000 paid visitors a year (623,145 in 2023/24) and is described as the busiest single theatre in the country. That is a pre-show dinner trade Brighton has no equivalent of','Birmingham Hippodrome annual review'],
+      ['The unit faces the piazza by the car park entrance. Footfall from Hurst Street has to come into the scheme to find it. Check sightlines and signage rights at the viewing','Agent site plan']
+    ]],
+    ['Demand', [
+      ['Smithfield, the £1.9bn redevelopment of the old wholesale markets, sits on the edge of Southside: over 3,000 homes, a new park and markets, in four phases over about ten years, with construction due to start in 2026. A long term tailwind, with years of building work around it first','Smithfield Birmingham; Construction Enquirer'],
+      ['This is a living Chinatown that serves the local Chinese community, Chinese students and recent arrivals from Hong Kong, rather than a tourist one. Good for repeat trade, demanding on authenticity and price','Vittles guide to Birmingham Chinatown, Feb 2026'],
+      ['The census figures in the appraisal are right (2021: about 1.14m people, 29.9% Muslim). The 80,000 students is a round estimate across the universities and was not re-checked']
+    ]],
+    ['Competition the appraisal missed', [
+      ['Inside the scheme: Kyoto Sushi and Grill is an all you can eat Japanese buffet, Happy Lamb is all you can eat hot pot, Seafood City, and the food court at street food prices. The value end of Asian dining here is very well covered','LCP; OpenTable'],
+      ['Takumi, a Japanese restaurant with ramen on the menu, trades at 35 Hurst Street','Local listing'],
+      ['The city has filled up with ramen since the appraisal’s picture of it: Tonkotsu announced a move from its Selfridges counter to a larger restaurant at Grand Central, Kibou has opened on Temple Row, Maneki Ramen in the Jewellery Quarter was named best Japanese restaurant at the 2025 ARTA awards, and Wagamama trades at both the Bullring and New Street','Time Out; trade press'],
+      ['On halal specifically, Yakinori already trades in the city with no pork on the menu and halal options. The gap is narrower than the appraisal suggests','Feed the Lion review']
+    ]],
+    ['Risks the appraisal missed', [
+      ['M21. A second Birmingham site roughly ten minutes walk from the first only makes sense if the two serve different customers. Decide what happens to M21 before, not after','Estate records'],
+      ['Late night economy on the doorstep. The unit’s own history is a nightclub with a serious incident, and the scheme has a strong late night trade. Good for late covers, a question for family and halal led trade','Press, Jan 2024'],
+      ['Three units empty or recently empty on one piazza says the repositioning is not finished. Ask for scheme footfall and the trading history of the food operators','Agent email, 9 Nov 2026'],
+      ['Planning: the particulars say subject to planning and put the use question on the tenant. Confirm restaurant use and extraction consent','Agent particulars'],
+      ['Rent is quoted, not agreed. No lease length, break, review pattern or incentive on paper','Agent email, 9 Nov 2026']
+    ]]
+  ]);
+  h += '</div>';
+
+  /* ---------- 7. positioning ---------- */
+  h += '<div class="vsec"><h2>Halal, or Chinatown</h2><p class="vlede">'
+     + 'The Birmingham appraisal builds its whole revenue case on a fully halal certified kitchen and puts 35 to 45% of covers down to it. '
+     + 'The conversation on 24 November went somewhere else: a Chinatown site, with Chinese on the signage and menu next to the English, priced for students. '
+     + 'These are two different restaurants. A halal kitchen means certified protein through the central kitchen and a much smaller drinks line. '
+     + 'A Chinatown led offer keeps the menu and the bar as they are and competes on the piazza with operators who have been there for years. '
+     + 'The appraisal’s £1.85m central case belongs to the first. The £1.5m talked about on the 24th belongs to the second, and is the safer number to plan on. '
+     + 'In Brighton the question barely arises: about 3% of residents are Muslim and the appraisal puts halal at around 5% of covers.'
+     + '</p></div>';
+
+  /* ---------- 8. the read ---------- */
+  h += '<div class="vverdict ppread"><div class="vvhead">The read</div>'
+     + '<p><b>The cost argument for Birmingham over Brighton does not survive the documents.</b> Holding either unit costs about £125,000 to £135,000 a year. '
+     + 'At £1.5m of sales both make 19 to 20% on your quick calc, and both clear 18% at around £1.3m.</p>'
+     + '<p><b>So the choice comes down to three things the appraisals do not settle.</b> '
+     + 'One, which site is more likely to take £1.5m: Brighton has the stronger street and the smaller, harder working box; Birmingham has the bigger box, a theatre next door and a weaker pitch inside its scheme. '
+     + 'Two, cash to open: Brighton is priced at about £150,000 net with a leak to resolve; Birmingham is unpriced and could be more. '
+     + 'Three, M21: Birmingham is not a new market for us, and the plan for the first site has to come first.</p>'
+     + '<p><b>What would make it easy.</b> A contractor price for the Arcadian and an incentive figure from LCP. If that lands the net cost under Brighton’s, Birmingham is the better use of the capital because it needs '
+     + '£'+Math.round(ca.n18/A2.sqft)+' a sq ft to hit 18% against Brighton’s £'+Math.round(cb.n18/B.sqft)+'. If it does not, Brighton is the deal that is already on paper.</p></div>';
+
+  /* ---------- 9. open items ---------- */
+  h += '<div class="vsec"><h2>Before a decision</h2></div>';
+  h += '<div class="dgate"><table><thead><tr><th>Item</th><th>Site</th><th>With</th></tr></thead><tbody>';
+  [['Contractor walk round and fit-out price, including kitchen extract route, gas and drainage','Birmingham','Operations'],
+   ['Incentive, lease length, break and review pattern in writing','Birmingham','Creative Retail'],
+   ['Scheme footfall and any trading figures for the food operators','Birmingham','Creative Retail'],
+   ['Decision on M21: reopen, relocate here, or run both','Birmingham','Michael and Teddy'],
+   ['Halal or Chinatown positioning, and what it does to the central kitchen','Birmingham','Michael, Sophie'],
+   ['Cause of the leaks, landlord remedy, and the improved incentive','Brighton','Savills, after 25 Nov'],
+   ['Revised heads of terms: rent, rent free, contribution and a new completion date','Brighton','Savills'],
+   ['Insurance figure, and a service charge cap or base year','Brighton','Savills'],
+   ['2026 rateable value on both units, checked on the VOA list','Both','Finance'],
+   ['Architect drawing and scope so the second contractor can price','Brighton','Michael']
+  ].forEach(r=>{ h += '<tr><td>'+vEsc(r[0])+'</td><td>'+vEsc(r[1])+'</td><td>'+vEsc(r[2])+'</td></tr>'; });
+  h += '</tbody></table></div>';
+
+  /* ---------- 10. documents ---------- */
+  h += '<div class="vsec"><h2>Plans and documents</h2><p class="vlede">'
+     + 'Everything found for the two units, filed in the BDM folder under Brighton_Jubilee_Street and Birmingham_Arcadian. The drawings are third party documents and are listed here, not published.'
+     + '</p></div>';
+  const docs = (title, list)=>{
+    let d = '<article class="ppcard ppdocs"><div class="pph"><div><h3>'+vEsc(title)+'</h3></div></div><ul class="ppul">';
+    list.forEach(x=>{ d += '<li><b>'+vEsc(x[0])+'</b>: '+vEsc(x[1])+'</li>'; });
+    return d+'</ul></article>';
+  };
+  h += '<div class="ppgrid">';
+  h += docs('Brighton, Jubilee Street', [
+    ['Agreed HOTs 04 11 2025.doc','Heads of terms, L&G to Maki Property Ltd. Re-issued by Savills 30 Oct 2026'],
+    ['6-7-Jubilee-Street-Brighton_1308.pdf','KLM Real Estate letting particulars: 2,520 sq ft, RV £75,500, EPC B'],
+    ['PWD_01_113 01 GA Rev D.pdf','Yo! Sushi general arrangement plan, 2014 refit. Shows the conveyor island, 51 covers, kitchen, wash up, stores, office, staff room and three WCs at the rear'],
+    ['PWD_01_113 02C Sections.pdf','Internal sections and elevations'],
+    ['PWD_01_113 03A Banquet seating.pdf','Booth seating detail'],
+    ['PWD_01_113 04 Meet and Greet.pdf','Front of house joinery'],
+    ['PWD_01_113 05 Drink Station.pdf','Drinks station joinery'],
+    ['PWD_GM_0002revF.dwg','CAD file of the original shopfront and layout, for the architect'],
+    ['12 03 2007 Licence for alterations.pdf','The original 2007 licence for Yo! Sushi’s fit-out, with the layout drawings of the time attached'],
+    ['Maki_Ramen_Site_Appraisal_Jubilee_Street_Brighton.pdf','The 14 page appraisal, 68 out of 100'],
+    ['NP_Calc_Quick.pdf','Quick net profit calc, Brighton and Arcadian']
+  ]);
+  h += docs('Birmingham, The Arcadian', [
+    ['Unit E107-E110 The Arcadian Birmingham.pdf','Agent particulars and site plan: 3,334 sq ft, service charge £36,679, insurance £2,476, RV £61,500'],
+    ['Unit B111 GF The Arcadian Birmingham.pdf','The other vacant unit, former Sobar: 4,350 sq ft with terrace, service charge about £34,000'],
+    ['Unit B111 Unit 01 & Unit 02.pdf','Proposed split of B111 into 1,470 and 1,008 sq ft units'],
+    ['Maki_Ramen_Site_Appraisal_Arcadian_Birmingham.pdf','The 14 page appraisal, 66 out of 100'],
+    ['NP_Calc_Quick_1.pdf','Quick net profit calc with the Arcadian service charge added']
+  ]);
+  h += '</div>';
+
+  h += '<p class="ppfoot">Not on file for either unit: a measured survey, an M&amp;E schedule, or a landlord fit-out guide. The Brighton M&amp;E pack was shared by the agent as a link in Oct 2025 and should be downloaded before it expires. '
+     + 'There is no floor plan for E107 to E110 beyond the scheme site plan.</p>';
+
+  el.innerHTML = h;
+}
+
 function applyStageChrome(){
   const on = isVisits();
   document.body.classList.toggle('visits-on', on);
   document.querySelectorAll('.tabs').forEach(e=>e.style.display = on?'none':'');
   document.querySelectorAll('main > .pane').forEach(e=>{ if(e.id!=='pane-visits') e.style.display = on?'none':''; });
   const pv = document.getElementById('pane-visits');
-  if(pv) pv.style.display = (on && !isBook() && !isDeal() && !isHub())?'block':'none';
+  if(pv) pv.style.display = (on && !isBook() && !isDeal() && !isHub() && !isPair())?'block':'none';
+  const pp = document.getElementById('pane-pair');
+  if(pp) pp.style.display = isPair()?'block':'none';
   const pb = document.getElementById('pane-book');
   if(pb) pb.style.display = isBook()?'block':'none';
   const pd = document.getElementById('pane-deal');
@@ -3011,7 +3404,7 @@ function renderAll(){
     document.getElementById('stageNote').textContent = stage().note;
     document.getElementById('subtitle').innerHTML =
       'The record of the round &middot; '+stage().sub;
-    if(isBook()) renderBook(); else if(isDeal()) renderDeal(); else if(isHub()) renderHub(); else renderVisits();
+    if(isBook()) renderBook(); else if(isDeal()) renderDeal(); else if(isHub()) renderHub(); else if(isPair()) renderPair(); else renderVisits();
     return;
   }
   let rows = runModel(stage().sites(), state.A);
