@@ -163,6 +163,14 @@ ol.vgaps li{margin:9px 0;font-size:12.5px;color:var(--muted);line-height:1.65}
 .ppfoot{margin-top:14px;font-size:11.5px;color:var(--faint);line-height:1.6;max-width:860px}
 .hubchip.pair{background:rgba(244,123,32,.12);color:#f47b20;border-color:rgba(244,123,32,.36)}
 .hubsec.pairsec h4{color:#f47b20}
+.p3 tr.p3sec td{background:var(--panel2);color:#f47b20;font-size:9.5px;font-weight:800;letter-spacing:1.3px;text-transform:uppercase;text-align:left;padding:7px 11px}
+.p3 th{font-size:11px !important;color:var(--ink) !important;letter-spacing:.4px !important;vertical-align:top}
+.p3 th:last-child,.p3 td:last-child{background:rgba(244,123,32,.07)}
+.p3 td{padding:6px 11px !important}
+.p3 td:first-child{color:var(--muted);width:30%}
+.p3n{display:inline-block;background:#f47b20;color:#111;border-radius:3px;padding:0 5px;font-size:10px;margin-right:3px}
+.p3p{color:var(--faint);font-size:10.5px}
+.p3 b.amb{color:var(--watch)}
 @media (max-width:900px){ .ppgrid{grid-template-columns:1fr} }
 
 /* ---- Agent book stage ---- */
@@ -728,7 +736,7 @@ svg .quad{stroke:#3a414d;stroke-width:1;stroke-dasharray:4 4}
     <div class="stagebar">
       <div class="seg" id="stageSeg">
         <button data-stage="hub" class="active"><b>Towns · all in one</b><span class="sd">every place, every stage, merged</span></button>
-        <button data-stage="pair"><b>24 Nov &middot; Brighton v Birmingham</b><span class="sd">Jubilee Street &amp; The Arcadian &middot; corrected costs, research, plans</span></button>
+        <button data-stage="pair"><b>24 Nov &middot; Brighton v Birmingham</b><span class="sd">three site P&amp;L with Cardiff &middot; corrected costs, research, plans</span></button>
         <button data-stage="towns"><b>05 Aug &middot; Towns</b><span class="sd">26 locations, format-led</span></button>
         <button data-stage="units"><b>10 Aug &middot; Units</b><span class="sd">24 live units, agent schedule</span></button>
         <button data-stage="savills"><b>14 Aug &middot; Savills call</b><span class="sd">25 units, status applied</span></button>
@@ -3124,6 +3132,80 @@ function renderPair(){
     h += '</table></article>';
   });
   h += '</div>';
+
+  /* ---------- 1b. three sites, one P&L (house model) ---------- */
+  (function(){
+    const EST=[3714632,3376856,3280936,2518584,2456390,2355847,2125974,2105760,1840511,1780546,1684089,1409874,1586218,1417633,1293978,1286952,1240511,1778350,1232713,1027770];
+    const S3=[
+      {k:'Brighton',sub:'6 to 7 Jubilee Street',R:1500000,rent:108000,rates:32465,sc:6600,trig:null,pct:0,capex:243000,capcon:67500,rf:108000,rfm:12,rentx:90000,scx:5500,est:false,pot:['GOOD','pass']},
+      {k:'Birmingham',sub:'E107 to E110, The Arcadian',R:1500000,rent:72000,rates:26445,sc:44015,trig:null,pct:0,capex:300000,capcon:0,rf:0,rfm:0,rentx:60000,scx:36679,est:true,pot:['GOOD','pass']},
+      {k:'Cardiff',sub:'KUG03, St Davids',R:2000000,rent:120000,rates:58800,sc:69522.408,trig:2500000,pct:0.08,capex:299000,capcon:120000,rf:120000,rfm:12,rentx:120000,scx:57935.34,est:false,pot:['FAIR','amb']}
+    ];
+    const to=(s,R,g)=> s.trig ? Math.max(0,(R-s.trig)*s.pct*(g?1.2:1)) : 0;
+    const npAt=(s,R)=> 0.29*R-(s.rent+s.rates+s.sc)-to(s,R,true);
+    const solve=(s,m)=>{ let lo=0,hi=5e7; for(let i=0;i<200;i++){ const mid=(lo+hi)/2; if(npAt(s,mid)-m*mid>0) hi=mid; else lo=mid; } return hi; };
+    S3.forEach(s=>{
+      const R=s.R; s.wages=.27*R; s.food=.25*R; s.vr=.12*R; s.tax=.07*R; s.to=to(s,R,true);
+      s.block=s.rent+s.rates+s.sc; s.cost=s.wages+s.food+s.vr+s.tax+s.block+s.to; s.np=R-s.cost;
+      s.close0=s.np-s.capex; s.close=s.np+s.rf+s.capcon-s.capex;
+      s.bep=solve(s,0); s.r18=solve(s,.18); s.head=R-s.r18; s.move=s.r18/R-1;
+      s.above=EST.filter(e=>e>s.r18).length;
+      s.npx=0.29*R-(s.rentx+s.rates+s.scx)-to(s,R,false);
+      const m=s.np/12; s.pb0=Math.ceil(s.capex/m);
+      let cum=s.capcon,n=0; while(cum<s.capex){ n++; cum+=m+((s.rfm&&n<=s.rfm)?s.rf/s.rfm:0); } s.pb1=n;
+    });
+    const sum=(k)=> S3.reduce((a,s)=>a+s[k],0);
+    const sg=(v)=> (v<0?'-':'')+gbp(Math.abs(v));
+    const pc=(v)=> (v*100).toFixed(2)+'%';
+    const fm=(m)=> Math.floor(m/12)+'y '+(m%12)+'m';
+    const ng=(v)=> v<0 ? '<b class="fail">'+sg(v)+'</b>' : sg(v);
+    const row=(lab,f,tot,cls)=> '<tr'+(cls?' class="'+cls+'"':'')+'><td>'+lab+'</td>'+S3.map(s=>'<td>'+f(s)+'</td>').join('')+'<td>'+(tot==null?'':tot)+'</td></tr>';
+    const secr=(t)=> '<tr class="p3sec"><td colspan="5">'+t+'</td></tr>';
+    const TR=sum('R'), TN=sum('np');
+    const B3=S3[0], A3=S3[1], C3=S3[2];
+    h += '<div class="vsec"><h2>Three sites, one P&amp;L</h2><p class="vlede">'
+       + 'Brighton, Birmingham and Cardiff on the house model: wages 27%, food 25%, variable 12%, tax 7%, with rent, rates and service charge as one fixed block and turnover rent on top. '
+       + 'Each site is at its own sales assumption, and fit-out is at the contractor quotes of 23 November. '
+       + '<b>Brighton and Birmingham both clear 18% at £1.5m. Cardiff makes '+pc(C3.np/C3.R)+' at £2.0m and needs '+gbp(C3.r18)+'.</b> '
+       + 'Brighton and Birmingham are '+gbp(Math.abs(A3.np-B3.np))+' apart on profit, so the choice between them is fit-out and incentive: Brighton is quoted and incentivised, Birmingham is neither.'
+       + '</p></div>';
+    h += '<div class="dgate p3"><table><thead><tr><th></th>'+S3.map((s,i)=>'<th><span class="p3n">'+(i+1)+'</span> '+vEsc(s.k)+'<span class="src">'+vEsc(s.sub)+'</span></th>').join('')+'<th>Three combined</th></tr></thead><tbody>';
+    h += secr('Gross sales');
+    h += row('<b>Money in</b>', s=>'<b>'+gbp(s.R)+'</b>', '<b>'+gbp(TR)+'</b>');
+    h += row('Wages <span class="p3p">27%</span>', s=>gbp(s.wages), gbp(sum('wages')));
+    h += row('Rent, rates and service charge', s=>gbp(s.block)+'<span class="src">'+pc(s.block/s.R)+' of sales</span>', gbp(sum('block'))+'<span class="src">'+pc(sum('block')/TR)+'</span>');
+    h += row('Turnover rent', s=> s.trig ? gbp(s.to) : 'none', gbp(sum('to')));
+    h += row('Food costs <span class="p3p">25%</span>', s=>gbp(s.food), gbp(sum('food')));
+    h += row('Variable costs <span class="p3p">12%</span>', s=>gbp(s.vr), gbp(sum('vr')));
+    h += row('Tax <span class="p3p">7%</span>', s=>gbp(s.tax), gbp(sum('tax')));
+    h += row('<b>Total costs</b>', s=>'<b>'+gbp(s.cost)+'</b>', '<b>'+gbp(sum('cost'))+'</b>');
+    h += row('<b>Net profit</b>', s=>'<b>'+gbp(s.np)+'</b>', '<b>'+gbp(TN)+'</b>', 'here');
+    h += row('<b>Net profit %</b>', s=>'<b class="'+(s.np/s.R>=.18?'pass':'fail')+'">'+pc(s.np/s.R)+'</b>', '<b class="'+(TN/TR>=.18?'pass':'fail')+'">'+pc(TN/TR)+'</b>', 'here');
+    h += row('Net profit % with rent and SC ex VAT', s=>pc(s.npx/s.R), pc(sum('npx')/TR));
+    h += secr('Year one cash');
+    h += row('Fit-out, ex VAT', s=>'<b class="fail">'+sg(-s.capex)+'</b>'+(s.est?'<span class="src">placeholder, not priced</span>':'<span class="src">contractor quote</span>'), '<b class="fail">'+sg(-sum('capex'))+'</b>');
+    h += row('Closing balance before incentives', s=>ng(s.close0), ng(sum('close0')));
+    h += row('Capital contribution', s=> s.capcon?gbp(s.capcon):'none quoted', gbp(sum('capcon')));
+    h += row('Rent free credit, year 1', s=> s.rf?gbp(s.rf):'none quoted', gbp(sum('rf')));
+    h += row('<b>Closing balance with incentives</b>', s=>'<b>'+ng(s.close)+'</b>', '<b>'+ng(sum('close'))+'</b>', 'here');
+    h += secr('The test');
+    h += row('Break even sales', s=>gbp(s.bep), gbp(sum('bep')));
+    h += row('<b>Sales to hit 18% net</b>', s=>'<b>'+gbp(s.r18)+'</b>', '<b>'+gbp(sum('r18'))+'</b>', 'mark');
+    h += row('Headroom on this line', s=>ng(s.head), ng(sum('head')));
+    h += row('Movement needed on this line', s=>'<b class="'+(s.move<=0?'pass':'fail')+'">'+(s.move>0?'+':'')+(s.move*100).toFixed(1)+'%</b>', null);
+    h += row('Fit-out payback, before incentives', s=>fm(s.pb0), null);
+    h += row('Fit-out payback, with incentives', s=>fm(s.pb1), null);
+    h += row('Maki sites already above that line', s=>s.above+' of 20', null);
+    h += row('<b>Potential to hit 18%</b>', s=>'<b class="'+s.pot[1]+'">'+s.pot[0]+'</b>', '<b class="pass">2 of 3</b>', 'here');
+    h += '</tbody></table></div>';
+    h += '<div class="ppnote"><b>What sits behind it.</b> '
+       + '<b>Sales:</b> Brighton and Birmingham at £1.5m, the middle case of the 24 Nov quick calc. Cardiff at £2.0m, as on the 30 Sep six site sheet. '
+       + '<b>Brighton:</b> rent £90,000 with 12 months rent free and a 9 month contribution of £67,500, the position discussed on 24 Nov. The signed heads of terms of 4 Nov 2025 say £95,000, 9 months rent free and £47,500. Fit-out £243,000 plus VAT. '
+       + '<b>Birmingham:</b> rent £60,000 as quoted by the agent; at £65,000 net profit falls by £6,000. No incentive quoted. Fit-out is not priced and £300,000 is a placeholder, the first number to replace. '
+       + '<b>Cardiff:</b> terms as on the 30 Sep sheet (rent £120,000, turnover rent 8% over £2.5m, one year rent free, £120,000 contribution), with fit-out now at the £299,000 plus VAT quote. '
+       + '<b>VAT:</b> rent and service charge are carried including VAT at Brighton and Birmingham, and service charge including VAT at Cardiff, as on the quick calc and the six site sheet. VAT on rent is recoverable, so the ex VAT row is the like for like position. The quick calc table further down this page uses the 28% ratios and Brighton at the signed £95,000, so its figures differ slightly. Insurance sits outside the model. '
+       + '<b>Payback</b> is net profit repaying the fit-out at a flat monthly rate with no ramp up. Maki sites above the line counts our 20 trading sites by annualised sales, 12 months to 31 Aug 2026.</div>';
+  })();
 
   /* ---------- 2. corrections ---------- */
   h += '<div class="vsec"><h2>What the appraisals got wrong</h2><p class="vlede">'
