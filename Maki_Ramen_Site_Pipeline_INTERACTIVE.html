@@ -3137,11 +3137,11 @@ function renderPair(){
   (function(){
     const EST=[3714632,3376856,3280936,2518584,2456390,2355847,2125974,2105760,1840511,1780546,1684089,1409874,1586218,1417633,1293978,1286952,1240511,1778350,1232713,1027770];
     const S3=[
-      {k:'Brighton',sub:'6 to 7 Jubilee Street',R:1500000,rent:108000,rates:32465,sc:6600,trig:null,pct:0,quote:243000,capex:391600,capcon:67500,rf:108000,rfm:12,rentx:90000,scx:5500,est:false,pot:['GOOD','pass']},
+      {k:'Brighton',sub:'6 to 7 Jubilee Street',R:1500000,rent:114000,rates:32465,sc:6600,trig:null,pct:0,quote:243000,capex:391600,capcon:47500,rf:85500,rfm:9,rentx:95000,scx:5500,est:false,pot:['GOOD','pass']},
       {k:'Birmingham',sub:'E107 to E110, The Arcadian',R:1500000,rent:72000,rates:26445,sc:44015,trig:null,pct:0,quote:300000,capex:460000,capcon:0,rf:0,rfm:0,rentx:60000,scx:36679,est:true,pot:['GOOD','pass']},
-      {k:'Cardiff',sub:'KUG03, St Davids',R:2000000,rent:120000,rates:58800,sc:69522.408,trig:2500000,pct:0.08,quote:299000,capex:458800,capcon:120000,rf:120000,rfm:12,rentx:120000,scx:57935.34,est:false,pot:['FAIR','amb']}
+      {k:'Cardiff',sub:'KUG03, St Davids',R:2000000,rent:120000,rates:58800,sc:69522.408,trig:1,pct:0.07,base:120000,cap:40000,rfpay:18,quote:299000,capex:458800,capcon:120000,rf:120000,rfm:12,rentx:120000,scx:57935.34,est:false,pot:['LOW','fail']}
     ];
-    const to=(s,R,g)=> s.trig ? Math.max(0,(R-s.trig)*s.pct*(g?1.2:1)) : 0;
+    const to=(s,R,g)=> s.trig ? Math.min(s.cap, Math.max(0, s.pct*R/1.2 - s.base))*(g?1.2:1) : 0;
     const npAt=(s,R)=> 0.29*R-(s.rent+s.rates+s.sc)-to(s,R,true);
     const solve=(s,m)=>{ let lo=0,hi=5e7; for(let i=0;i<200;i++){ const mid=(lo+hi)/2; if(npAt(s,mid)-m*mid>0) hi=mid; else lo=mid; } return hi; };
     S3.forEach(s=>{
@@ -3152,7 +3152,7 @@ function renderPair(){
       s.above=EST.filter(e=>e>s.r18).length;
       s.npx=0.29*R-(s.rentx+s.rates+s.scx)-to(s,R,false);
       const m=s.np/12; s.pb0=Math.ceil(s.capex/m);
-      let cum=s.capcon,n=0; while(cum<s.capex){ n++; cum+=m+((s.rfm&&n<=s.rfm)?s.rf/s.rfm:0); } s.pb1=n;
+      let cum=s.capcon,n=0; while(cum<s.capex){ n++; cum+=m+((s.rfm&&n<=(s.rfpay||s.rfm))?s.rf/s.rfm:0); } s.pb1=n;
     });
     const sum=(k)=> S3.reduce((a,s)=>a+s[k],0);
     const sg=(v)=> (v<0?'-':'')+gbp(Math.abs(v));
@@ -3165,7 +3165,7 @@ function renderPair(){
     const B3=S3[0], A3=S3[1], C3=S3[2];
     h += '<div class="vsec"><h2>Three sites, one P&amp;L</h2><p class="vlede">'
        + 'Brighton, Birmingham and Cardiff on the house model: wages 27%, food 25%, variable 12%, tax 7%, with rent, rates and service charge as one fixed block and turnover rent on top. '
-       + 'Each site is at its own sales assumption. Capex is the fit-out figure plus VAT plus £100,000 on every site. '
+       + 'Each site is at its own sales assumption, on the terms in the documents we hold. Capex is the fit-out figure plus VAT plus £100,000 on every site. '
        + '<b>Brighton and Birmingham both clear 18% at £1.5m. Cardiff makes '+pc(C3.np/C3.R)+' at £2.0m and needs '+gbp(C3.r18)+'.</b> '
        + 'Brighton and Birmingham are '+gbp(Math.abs(A3.np-B3.np))+' apart on profit, so the choice between them is fit-out and incentive: Brighton is quoted and incentivised, Birmingham is neither.'
        + '</p></div>';
@@ -3200,9 +3200,9 @@ function renderPair(){
     h += '</tbody></table></div>';
     h += '<div class="ppnote"><b>What sits behind it.</b> '
        + '<b>Sales:</b> Brighton and Birmingham at £1.5m, the middle case of the 24 Nov quick calc. Cardiff at £2.0m, as on the 30 Sep six site sheet. '
-       + '<b>Brighton:</b> rent £90,000 with 12 months rent free and a 9 month contribution of £67,500, the position discussed on 24 Nov. The signed heads of terms of 4 Nov 2025 say £95,000, 9 months rent free and £47,500. Capex £391,600: the £243,000 quote plus VAT plus £100,000. '
-       + '<b>Birmingham:</b> rent £60,000 as quoted by the agent; at £65,000 net profit falls by £6,000. No incentive quoted. Fit-out is not priced: £300,000 is a placeholder, carried at £460,000 with VAT and the £100,000, and is the first number to replace. '
-       + '<b>Cardiff:</b> terms as on the 30 Sep sheet (rent £120,000, turnover rent 8% over £2.5m, one year rent free, £120,000 contribution), with capex at £458,800: the £299,000 quote plus VAT plus £100,000. '
+       + '<b>Brighton:</b> the agreed heads of terms of 4 Nov 2025: rent £95,000, 9 months rent free, £47,500 contribution. Service charge £5,500 from the landlord email of Oct 2025. Capex £391,600: the £243,000 quote plus VAT plus £100,000. '
+       + '<b>Birmingham:</b> rent £60,000 from the agent email of 9 Nov and service charge £36,679 from the particulars. There are no heads of terms and no incentive quoted. Fit-out is not priced: £300,000 is a placeholder, carried at £460,000 with VAT and the £100,000, and is the first number to replace. '
+       + '<b>Cardiff:</b> the heads of terms of 16 Nov 2026: base rent £120,000, turnover rent of 7% of sales ex VAT above the base with total rent capped at £160,000, 18 months rent free (12 of them fall in year one), £120,000 contribution, service charge £57,935. Rates £58,800 are from the earlier schedule, not the heads of terms. The £5,755 merchants association levy and £1,321 insurance sit outside the block. Turnover rent starts at about £2.06m of gross sales, which is why the 18% line is as high as it is. Capex at £458,800: the £299,000 quote plus VAT plus £100,000. '
        + '<b>VAT:</b> rent and service charge are carried including VAT at Brighton and Birmingham, and service charge including VAT at Cardiff, as on the quick calc and the six site sheet. VAT on rent is recoverable, so the ex VAT row is the like for like position. The quick calc table further down this page uses the 28% ratios and Brighton at the signed £95,000, so its figures differ slightly. Insurance sits outside the model. '
        + '<b>Payback</b> is net profit repaying the capex at a flat monthly rate with no ramp up. Maki sites above the line counts our 20 trading sites by annualised sales, 12 months to 31 Aug 2026.</div>';
   })();
@@ -3302,7 +3302,7 @@ function renderPair(){
      + '<tr><td>Why it is that high for a fitted unit</td><td>The Yo! Sushi layout is a conveyor island in the middle of the floor. The belt and bar have gone, but a central column carries the electrics and the central extract has to be stripped</td></tr>'
      + '<tr><td>Landlord money, as agreed</td><td>£47,500 contribution plus 9 months rent free, worth £71,250</td></tr>'
      + '<tr><td>Landlord money, as discussed 24 Nov</td><td>12 months rent free and 9 months of contribution, to be improved again on the back of the leaks</td></tr>'
-     + '<tr class="tot"><td>Capex carried in the P&amp;L</td><td>£391,600: the quote plus VAT plus £100,000. £324,100 after the £67,500 contribution, before rent free</td></tr>'
+     + '<tr class="tot"><td>Capex carried in the P&amp;L</td><td>£391,600: the quote plus VAT plus £100,000. £344,100 after the £47,500 contribution in the heads of terms, before rent free</td></tr>'
      + '</table></article>';
   h += '<article class="ppcard"><div class="pph"><div><h3>Birmingham</h3><div class="vsub">not priced</div></div></div><table class="dpl">'
      + '<tr><td>Fit-out price in hand</td><td>None. Nobody has surveyed it</td></tr>'
